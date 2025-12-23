@@ -39,7 +39,6 @@ $pcemb_shortcode_args = array(
   'locale'                     => $attributes['locale'] ?? 'en',
 
   // View settings.
-  'list_type'                  => $attributes['listType'] ?? 'listMonth',
   'custom_list_button'         => $attributes['customListButton'] ?? 'list',
   'custom_days'                => $attributes['customDays'] ?? '28',
   'views'                      => $attributes['views'] ?? 'dayGridMonth, listMonth',

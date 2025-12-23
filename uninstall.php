@@ -17,15 +17,21 @@ if (! defined('WP_UNINSTALL_PLUGIN')) {
 global $wpdb;
 
 // Delete all ICS cache transients.
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 $wpdb->query(
-  "DELETE FROM {$wpdb->options} 
-	WHERE option_name LIKE '_transient_pcemb_ics_%' 
-	OR option_name LIKE '_transient_timeout_pcemb_ics_%'"
+  $wpdb->prepare(
+    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
+    $wpdb->esc_like('_transient_pcemb_ics_') . '%',
+    $wpdb->esc_like('_transient_timeout_pcemb_ics_') . '%'
+  )
 );
 
 // Delete all rate limit transients.
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 $wpdb->query(
-  "DELETE FROM {$wpdb->options} 
-	WHERE option_name LIKE '_transient_pcemb_rate_%' 
-	OR option_name LIKE '_transient_timeout_pcemb_rate_%'"
+  $wpdb->prepare(
+    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
+    $wpdb->esc_like('_transient_pcemb_rate_') . '%',
+    $wpdb->esc_like('_transient_timeout_pcemb_rate_') . '%'
+  )
 );

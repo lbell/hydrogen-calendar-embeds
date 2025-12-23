@@ -67,25 +67,25 @@ Defaults to numeric indexes (0, 1, 2, etc.)
 
 Sets the locale for calendar. Defaults to `"en"`.
 
-#### `list_type="listCustom"`
+#### `views="dayGridMonth, listMonth"`
 
-Sets the list type. Options: `listDay`, `listWeek`, `listMonth`, `listYear`, and `listCustom`. (Also accepts day, week, month, year, and custom).
+Sets the view types available. If only one view is provided, no view switch buttons will be shown. Defaults to `"dayGridMonth, listMonth"`.
 
-Defaults to `listCustom` for backward compatibility.
+Available views:
 
-> **Note:** `listCustom` allows you to set the number of days you want to display from the current date. Whereas `listMonth` shows all the events from this month (including past events), `list_type="custom" custom_days="28"` will show the next 28 days across months.
+- `dayGridMonth` - Monthly calendar grid
+- `listDay`, `listWeek`, `listMonth`, `listYear` - List views for different time spans
+- `listCustom` - Custom duration list view (see `custom_days` below)
+
+> **Tip:** `listCustom` allows you to set the number of days you want to display from the current date. Whereas `listMonth` shows all the events from this month (including past events), using `views="dayGridMonth, listCustom" custom_days="28"` will show the next 28 days across months.
 
 #### `custom_days="28"`
 
-Sets the number of days to show in the list tab. Defaults to 28. Only used with `listCustom`.
+Sets the number of days to show when using `listCustom` view. Defaults to `"28"`.
 
 #### `custom_list_button="list"`
 
-Sets the label for the `listCustom` button. Defaults to `"list"`.
-
-#### `views="dayGridMonth, listCustom"`
-
-Sets the view types available. If only one view is provided, no view switch buttons will be shown. Defaults to `"dayGridMonth, listCustom"`.
+Sets the button label for the `listCustom` view. Defaults to `"list"`.
 
 #### `initial_view="dayGridMonth"`
 

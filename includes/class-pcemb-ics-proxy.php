@@ -8,7 +8,7 @@
  * FullCalendar's iCalendar plugin handles all the parsing.
  *
  * @package Pretty_Calendar_Embeds
- * @since   2.3.0
+ * @since   1.0.0
  */
 
 if (! defined('ABSPATH')) {

@@ -1,4 +1,14 @@
 /**
+ * Pretty Calendar Embeds - Helper Functions
+ *
+ * Utility functions for calendar rendering including view resolution,
+ * ICS URL parsing, event source building, and tooltip content helpers.
+ *
+ * @package pretty-calendar-embeds
+ * @since 1.0.0
+ */
+
+/**
  * Splits comma separated list of ICS feeds into array and builds eventSources
  * object via server-side proxy for CORS handling.
  *
@@ -76,34 +86,11 @@ function pcemb_split_ics_urls(icsString) {
  * @returns object
  */
 const pcemb_resolve_views = (settings) => {
-  // const gridViews = [
-  //   "dayGridDay",
-  //   "dayGridWeek",
-  //   "dayGridMonth",
-  //   "dayGridYear",
-  // ];
-  // const listViews = [
-  //   "listDay",
-  //   "listWeek",
-  //   "listMonth",
-  //   "listYear",
-  //   "listCustom",
-  // ];
-  // const otherViews = ["multiMonthYear", "timeGridWeek", "timeGridDay"];
-
-  // const allowedViews = [...listViews, ...gridViews, ...otherViews];
-
   const wantsToEnforceListviewOnMobile = pcemb_is_truthy(
     settings["enforce_listview_on_mobile"]
   );
 
-  // let initialView = "dayGridMonth";
-
-  // if (allowedViews.includes(settings["initial_view"])) {
-  //   initialView = settings["initial_view"];
-  // }
-
-  initialView = settings["initial_view"];
+  let initialView = settings["initial_view"];
 
   const viewsArray = pcemb_csv_to_array(settings["views"]);
   // Find the first list view in the user's configured views

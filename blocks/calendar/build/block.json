@@ -37,10 +37,6 @@
       "type": "string",
       "default": "en"
     },
-    "listType": {
-      "type": "string",
-      "default": "listMonth"
-    },
     "customListButton": {
       "type": "string",
       "default": "list"

@@ -19,7 +19,6 @@ function pcemb_shortcode($atts) {
     'ics'                        => "",
     'cal_ids'                    => "",
     'locale'                     => "en",
-    'list_type'                  => "listMonth",
     'custom_list_button'         => "list",
     'custom_days'                => "28",
     'views'                      => "dayGridMonth, listMonth",
@@ -30,6 +29,7 @@ function pcemb_shortcode($atts) {
     'show_title'                 => "true",
     'instance_id'                => pcemb_generate_unique_instance_id(),
     'use_tooltip'                => "true",
+    'no_link'                    => "false",
     'hide_past'                  => "false",
     'fc_args'                    => '{}',
   ));
@@ -53,9 +53,6 @@ function pcemb_shortcode($atts) {
   // Prepare settings from shortcode attributes
   $pcembSettings = $args;
   $pcembSettings["instance_id"] = preg_replace('/[\W]/', '', $pcembSettings["instance_id"]);
-
-  // Auto-resolve views based on user-provided attributes
-  $pcembSettings['views'] = pcemb_resolve_views($atts, $args);
 
   // Auto-resolve initial_view based on views (validate it's in the list, or pick smartly)
   $pcembSettings['initial_view'] = pcemb_resolve_initial_view($pcembSettings['views'], $pcembSettings['initial_view']);
@@ -145,15 +142,7 @@ function pcemb_shortcode($atts) {
    */
   do_action('pcemb_enqueue_scripts', $pcembSettings);
 
-  $script = "
-    document.addEventListener('DOMContentLoaded', function() {
-      function pcemb_inlineScript(settings) {
-        pcemb_render_calendar(settings);
-      }
-
-      pcemb_inlineScript(" . wp_json_encode($pcembSettings) . ");
-    });
-  ";
+  $script = "document.addEventListener('DOMContentLoaded', function() { pcemb_render_calendar(" . wp_json_encode($pcembSettings) . "); });";
   wp_add_inline_script('pcemb_loader', $script);
 
   /**

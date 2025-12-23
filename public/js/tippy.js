@@ -1,3 +1,13 @@
+/**
+ * Pretty Calendar Embeds - Tooltip Renderer
+ *
+ * Renders event tooltips using Tippy.js. Handles event details display
+ * including time, location, description, and action buttons.
+ *
+ * @package pretty-calendar-embeds
+ * @since 1.0.0
+ */
+
 function pcemb_tippyRender(info, currCal, pcembSettings) {
   // console.log(info.event); // DEBUG
   // console.table(info.event.extendedProps); // DEBUG

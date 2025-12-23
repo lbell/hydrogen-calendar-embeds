@@ -1,4 +1,12 @@
-// document.addEventListener("DOMContentLoaded", function () {
+/**
+ * Pretty Calendar Embeds - Main Calendar Renderer
+ *
+ * Initializes and renders FullCalendar instances with the plugin's
+ * configuration. Handles view resolution, event sources, and toolbar setup.
+ *
+ * @package pretty-calendar-embeds
+ * @since 1.0.0
+ */
 
 function pcemb_render_calendar(pcembSettings) {
   /**

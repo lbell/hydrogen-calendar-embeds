@@ -67,20 +67,18 @@ Defaults to numeric indexes (0, 1, 2, etc.)
 `locale="en"`
 Sets the locale for calendar. Defaults to "en".
 
-`list_type="listCustom"`
-Sets the list type. Options: `listDay`, `listWeek`, `listMonth`, `listYear`, and `listCustom`. (Also accepts day, week, month, year, and custom).
-Defaults to `listCustom` for backward compatibility.
+`views="dayGridMonth, listMonth"`
+Sets the view types available. If only one view is provided, no view switch buttons will be shown. Defaults to "dayGridMonth, listMonth".
 
-Note: `listCustom` allows you to set the number of days you want to display from the current date. Whereas listMonth shows all the events from this month (including past events), `list_type="custom" custom_days="28"` will show the next 28 days across months.
+Available views: `dayGridMonth` (monthly grid), `listDay`, `listWeek`, `listMonth`, `listYear` (list views), and `listCustom` (custom duration list).
+
+Tip: `listCustom` allows you to set the number of days you want to display from the current date. Whereas listMonth shows all events from this month (including past events), using `views="dayGridMonth, listCustom" custom_days="28"` will show the next 28 days across months.
 
 `custom_days="28"`
-Sets the number of days to show in the list tab. Defaults to 28. Only used with listCustom.
+Sets the number of days to show when using `listCustom` view. Defaults to "28".
 
 `custom_list_button="list"`
-Sets the label for the listCustom button. Defaults to "list".
-
-`views="dayGridMonth, listCustom"`
-Sets the view types available. If only one view is provided, no view switch buttons will be shown. Defaults to "dayGridMonth, listCustom".
+Sets the button label for the `listCustom` view. Defaults to "list".
 
 `initial_view="dayGridMonth"`
 Sets the default view to be displayed when opening the page. Defaults to "dayGridMonth". Note: If only one view is specified in "views", "initial_view" will automatically be set to that view and does not need to be specified.
@@ -119,6 +117,16 @@ Allows you to override or implement just about any FullCalendar argument (with s
 Example: `fc_args='{"eventSources":%5B"url"%5D}'` will be converted to `{"eventSources":["url"]}`
 
 Note: this is experimental - things may break.
+
+== Contributing ==
+
+Contributions are welcome! Please feel free to submit a Pull Request to the [GitHub repository](https://github.com/lbell/pretty-calendar-embeds).
+
+== Support ==
+
+For support, feature requests, or bug reports, please visit the [GitHub repository](https://github.com/lbell/pretty-calendar-embeds).
+
+You can also sponsor development at [GitHub Sponsors](https://github.com/sponsors/lbell).
 
 == Frequently Asked Questions ==
 
