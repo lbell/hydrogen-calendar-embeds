@@ -40,18 +40,6 @@ define('PCEMB_VER', '1.0.0');
 define('PCEMB_DIR', plugin_dir_path(__FILE__)); // Trailing slash
 define('PCEMB_URL', plugin_dir_url(__FILE__));
 
-/**
- * Load plugin textdomain for translations.
- */
-function pcemb_load_textdomain() {
-  load_plugin_textdomain(
-    'pretty-calendar-embeds',
-    false,
-    dirname(plugin_basename(__FILE__)) . '/languages'
-  );
-}
-add_action('init', 'pcemb_load_textdomain');
-
 require_once PCEMB_DIR . 'util/utils.php';
 require_once PCEMB_DIR . 'init/shortcode.php';
 require_once PCEMB_DIR . 'init/init.php';
