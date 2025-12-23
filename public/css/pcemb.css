@@ -1,0 +1,42 @@
+.pcemb-container {
+  --fc-event-text-color: inherit;
+}
+
+/* Remove empty bars above and below calendar */
+.pcemb-container table {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* .fc-day-past.fc-day-grid-event, */
+.fc-event-past {
+  opacity: 50%;
+}
+
+.fc-h-event .fc-event-main-frame {
+  display: block;
+}
+
+/* Remove <a underlining for day and day of week */
+.fc-col-header-cell-cushion,
+.fc-daygrid-day-number {
+  text-decoration: none !important;
+}
+
+/* Allows wrapping of titles */
+.fc-event-title {
+  white-space: normal;
+}
+
+.pcemb-branding {
+  color: grey;
+  font-size: 70%;
+  float: right;
+}
+
+@media (max-width: 767px) {
+  .fc-toolbar.fc-header-toolbar {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pcemb/calendar",
+  "version": "1.0.0",
+  "title": "Pretty Calendar Embeds",
+  "category": "embed",
+  "icon": "calendar-alt",
+  "description": "Embed iCalendar (ICS) feeds and Google Calendars with a beautiful, responsive calendar interface.",
+  "keywords": [
+    "calendar",
+    "ics",
+    "icalendar",
+    "google calendar",
+    "events",
+    "embed"
+  ],
+  "textdomain": "pretty-calendar-embeds",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "ics": {
+      "type": "string",
+      "default": ""
+    },
+    "calIds": {
+      "type": "string",
+      "default": ""
+    },
+    "locale": {
+      "type": "string",
+      "default": "en"
+    },
+    "listType": {
+      "type": "string",
+      "default": "listMonth"
+    },
+    "customListButton": {
+      "type": "string",
+      "default": "list"
+    },
+    "customDays": {
+      "type": "string",
+      "default": "28"
+    },
+    "views": {
+      "type": "string",
+      "default": "dayGridMonth, listMonth"
+    },
+    "initialView": {
+      "type": "string",
+      "default": "dayGridMonth"
+    },
+    "enforceListviewOnMobile": {
+      "type": "boolean",
+      "default": true
+    },
+    "mobileBreakpoint": {
+      "type": "string",
+      "default": "768"
+    },
+    "showTodayButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "useTooltip": {
+      "type": "boolean",
+      "default": true
+    },
+    "hidePast": {
+      "type": "boolean",
+      "default": false
+    },
+    "fcArgs": {
+      "type": "string",
+      "default": "{}"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

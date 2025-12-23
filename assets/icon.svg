@@ -1,0 +1,85 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 256 256"
+  role="img"
+  aria-label="Pretty Calendar Embeds logo"
+>
+
+  <!-- Back calendar (now white) -->
+  <rect x="44" y="44" width="168" height="168" rx="20"
+        fill="#ffffff" stroke="#c7ccd4" stroke-width="4"/>
+
+  <!-- Middle calendar -->
+  <rect x="32" y="32" width="168" height="168" rx="20"
+        fill="#ffffff" stroke="#c7ccd4" stroke-width="4"/>
+
+  <!-- Front calendar -->
+  <rect x="20" y="20" width="168" height="168" rx="20"
+        fill="#ffffff" stroke="#2f6fed" stroke-width="5"/>
+
+  <!-- Front header -->
+  <rect x="20" y="20" width="168" height="44" rx="20" fill="#2f6fed"/>
+  <rect x="20" y="44" width="168" height="20" fill="#2f6fed"/>
+
+  <!-- Binding dots lowered into blue header -->
+  <circle cx="68" cy="28" r="6" fill="#ffffff"/>
+  <circle cx="140" cy="28" r="6" fill="#ffffff"/>
+
+  <!-- ICS label dropped 4 pixels -->
+  <text
+    x="104"
+    y="46"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-size="22"
+    font-weight="600"
+    letter-spacing="1.5"
+    fill="#ffffff"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+  >
+    ICS
+  </text>
+
+  <!-- Calendar grid base (shifted right to center in white space) -->
+  <g fill="#c7ccd4">
+    <!-- Row 1 -->
+    <rect x="53"  y="76" width="24" height="22" rx="6"/>
+    <rect x="79"  y="76" width="24" height="22" rx="6"/>
+    <rect x="105" y="76" width="24" height="22" rx="6"/>
+    <rect x="131" y="76" width="24" height="22" rx="6"/>
+
+    <!-- Row 2 -->
+    <rect x="53"  y="100" width="24" height="22" rx="6"/>
+    <rect x="79"  y="100" width="24" height="22" rx="6"/>
+    <rect x="105" y="100" width="24" height="22" rx="6"/>
+    <rect x="131" y="100" width="24" height="22" rx="6"/>
+
+    <!-- Row 3 -->
+    <rect x="53"  y="124" width="24" height="22" rx="6"/>
+    <rect x="79"  y="124" width="24" height="22" rx="6"/>
+    <rect x="105" y="124" width="24" height="22" rx="6"/>
+    <rect x="131" y="124" width="24" height="22" rx="6"/>
+
+    <!-- Row 4 -->
+    <rect x="53"  y="148" width="24" height="22" rx="6"/>
+    <rect x="79"  y="148" width="24" height="22" rx="6"/>
+    <rect x="105" y="148" width="24" height="22" rx="6"/>
+    <rect x="131" y="148" width="24" height="22" rx="6"/>
+  </g>
+
+  <!-- Smiley highlights -->
+  <g fill="#2f6fed">
+    <!-- Row 1: eyes -->
+    <rect x="79"  y="76" width="24" height="22" rx="6"/>
+    <rect x="105" y="76" width="24" height="22" rx="6"/>
+
+    <!-- Row 3: cheeks -->
+    <rect x="53"  y="124" width="24" height="22" rx="6"/>
+    <rect x="131" y="124" width="24" height="22" rx="6"/>
+
+    <!-- Row 4: mouth -->
+    <rect x="79"  y="148" width="24" height="22" rx="6"/>
+    <rect x="105" y="148" width="24" height="22" rx="6"/>
+  </g>
+
+</svg>

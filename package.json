@@ -1,0 +1,41 @@
+{
+  "name": "pretty-calendar-embeds",
+  "version": "1.0.0",
+  "description": "Embed iCalendar (ICS) feeds and Google Calendars with a beautiful, responsive calendar interface.",
+  "author": "LBell",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wordpress",
+    "wordpress-plugin",
+    "gutenberg",
+    "block",
+    "calendar",
+    "ics",
+    "icalendar"
+  ],
+  "homepage": "https://github.com/lbell/pretty-calendar-embeds",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lbell/pretty-calendar-embeds.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lbell/pretty-calendar-embeds/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^28.0.0"
+  },
+  "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=blocks/calendar/src --output-path=blocks/calendar/build && cp blocks/calendar/block.json blocks/calendar/build/ && cp blocks/calendar/render.php blocks/calendar/build/",
+    "start": "wp-scripts start --webpack-src-dir=blocks/calendar/src --output-path=blocks/calendar/build",
+    "lint:js": "wp-scripts lint-js blocks/calendar/src",
+    "lint:css": "wp-scripts lint-style blocks/calendar/src",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.28.4"
+  }
+}

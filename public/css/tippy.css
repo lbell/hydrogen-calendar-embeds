@@ -1,0 +1,159 @@
+.toolloc {
+  text-align: center;
+  padding-top: 12px;
+}
+
+/* Tippy tooltip styling */
+.tippy-content {
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tooltip header section with event title and time */
+.pcemb-event-title {
+  margin: 0;
+  padding: 16px 48px 8px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.pcemb-event-time {
+  margin: 0;
+  padding: 0 20px 4px 20px;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  gap: 4px;
+}
+
+.pcemb-event-location {
+  margin: 0;
+  padding: 8px 20px 0 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+.pcemb-event-location-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0073aa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.pcemb-event-location-link:hover {
+  color: #005a87;
+  text-decoration: underline;
+}
+
+.pcemb-location-icon {
+  flex-shrink: 0;
+  color: #0073aa;
+  transition: color 0.2s ease;
+}
+
+.pcemb-event-location-link:hover .pcemb-location-icon {
+  color: #005a87;
+}
+
+/* Event description */
+.pcemb-event-description {
+  margin: 0;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+  border-top: 1px solid #e8e8e8;
+}
+
+.pcemb-event-description a {
+  color: #0073aa;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pcemb-event-description a:hover {
+  text-decoration: underline;
+}
+
+/* Action buttons */
+.pcemb-event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid #e8e8e8;
+  background-color: #fafafa;
+  justify-content: center;
+}
+
+.pcemb-event-actions .button {
+  margin: 0;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pcemb-event-actions .button:hover {
+  background-color: #f5f5f5;
+  border-color: #999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pcemb-event-actions .button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Specific button styling */
+.pcemb-map-button {
+  color: #d32f2f;
+}
+
+.pcemb-add-to-google-button {
+  color: #1f2937;
+}
+
+.pcemb-open-event-button {
+  color: #0073aa;
+}
+
+.pcemb-download-ics-button {
+  color: #16a34a;
+}
+
+/* Close button */
+.pcemb-tooltip-close {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.pcemb-tooltip-close:hover {
+  opacity: 1;
+}
+
+/* Light theme adjustments */
+.tippy-box[data-theme~="light"] {
+  background-color: #fff;
+  color: #1a1a1a;
+  border: 1px solid #e8e8e8;
+}
+
+.tippy-box[data-theme~="light"] > .tippy-arrow {
+  color: #fff;
+}
