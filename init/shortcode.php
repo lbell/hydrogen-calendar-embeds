@@ -32,6 +32,8 @@ function hycal_shortcode($atts) {
     'no_link'                    => "false",
     'hide_past'                  => "false",
     'fc_args'                    => '{}',
+    // Show us some love: display branding (default false)
+    'show_love'                  => "false",
   ));
 
   $args = shortcode_atts($defaults, $atts);
@@ -155,9 +157,14 @@ function hycal_shortcode($atts) {
   do_action('hycal_before_render', $hycalSettings);
 
   $shortcode_output = "
+  <!-- Powered by Hydrogen Calendar Embeds - https://wordpress.org/plugins/hydrogen-calendar-embeds/ -->
   <div id='hycal-" . esc_attr($hycalSettings["instance_id"]) . "' class='hycal-container'>" . esc_html__("loading...", "hydrogen-calendar-embeds") . "</div>
-  <div class='hycal-branding'>" . esc_html__("Powered by", "hydrogen-calendar-embeds") . " <a href='https://wordpress.org/plugins/hydrogen-calendar-embeds/'>Hydrogen Calendar Embeds</a></div>
   ";
+
+  // Optionally show branding if 'show_love' is true
+  if (isset($hycalSettings['show_love']) && $hycalSettings['show_love'] === 'true') {
+    $shortcode_output .= "<div class='hycal-branding'>" . esc_html__("Powered by", "hydrogen-calendar-embeds") . " <a href='https://wordpress.org/plugins/hydrogen-calendar-embeds/'>Hydrogen Calendar Embeds</a></div>";
+  }
 
   /**
    * Filters the calendar HTML output.
