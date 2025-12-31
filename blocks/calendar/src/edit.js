@@ -4,7 +4,7 @@
  * All settings are inline in the block preview for a streamlined experience.
  * No sidebar required - everything is front and center!
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  */
 
 import { __ } from "@wordpress/i18n";
@@ -398,7 +398,7 @@ export default function Edit({ attributes, setAttributes }) {
             />
           </svg>
           <span className="pcemb-inline-editor__title">
-            {__("Pretty Calendar Embeds", "pretty-calendar-embeds")}
+            {__("Pretty Calendar Embeds", "hydrogen-calendar-embeds")}
           </span>
         </div>
 
@@ -418,7 +418,7 @@ export default function Edit({ attributes, setAttributes }) {
               <path d="M16 2v4M8 2v4M3 10h18" />
             </svg>
             <span className="pcemb-inline-editor__section-title">
-              {__("Calendar Source", "pretty-calendar-embeds")}
+              {__("Calendar Source", "hydrogen-calendar-embeds")}
             </span>
           </div>
 
@@ -427,9 +427,9 @@ export default function Edit({ attributes, setAttributes }) {
               <>
                 <div className="pcemb-inline-editor__calendar-count">
                   {calendarCount === 1
-                    ? __("1 calendar configured", "pretty-calendar-embeds")
+                    ? __("1 calendar configured", "hydrogen-calendar-embeds")
                     : calendarCount +
-                      __(" calendars configured", "pretty-calendar-embeds")}
+                      __(" calendars configured", "hydrogen-calendar-embeds")}
                 </div>
                 <div className="pcemb-inline-editor__calendar-urls">
                   {ics
@@ -454,7 +454,7 @@ export default function Edit({ attributes, setAttributes }) {
               <div className="pcemb-inline-editor__no-source">
                 {__(
                   "No calendar source configured yet.",
-                  "pretty-calendar-embeds"
+                  "hydrogen-calendar-embeds"
                 )}
               </div>
             )}
@@ -464,8 +464,8 @@ export default function Edit({ attributes, setAttributes }) {
               className="pcemb-inline-editor__add-btn"
             >
               {hasSource
-                ? __("Edit Calendar URLs", "pretty-calendar-embeds")
-                : __("Add Calendar URLs", "pretty-calendar-embeds")}
+                ? __("Edit Calendar URLs", "hydrogen-calendar-embeds")
+                : __("Add Calendar URLs", "hydrogen-calendar-embeds")}
             </Button>
           </div>
         </div>
@@ -490,7 +490,7 @@ export default function Edit({ attributes, setAttributes }) {
               <circle cx="12" cy="12" r="3" />
             </svg>
             <span className="pcemb-inline-editor__section-title">
-              {__("Views", "pretty-calendar-embeds")}
+              {__("Views", "hydrogen-calendar-embeds")}
             </span>
             <span className="pcemb-inline-editor__section-summary">
               {selectedViews.length > 0
@@ -524,7 +524,7 @@ export default function Edit({ attributes, setAttributes }) {
 
               {selectedViews.length > 0 && (
                 <SelectControl
-                  label={__("Initial View", "pretty-calendar-embeds")}
+                  label={__("Initial View", "hydrogen-calendar-embeds")}
                   value={initialView}
                   options={allViewOptions.filter((o) =>
                     selectedViews.includes(o.value)
@@ -536,17 +536,17 @@ export default function Edit({ attributes, setAttributes }) {
               <ToggleControl
                 label={__(
                   "Force List View on Mobile",
-                  "pretty-calendar-embeds"
+                  "hydrogen-calendar-embeds"
                 )}
                 help={
                   !hasListView
                     ? __(
                         "Enable a list view above to use this feature.",
-                        "pretty-calendar-embeds"
+                        "hydrogen-calendar-embeds"
                       )
                     : __(
                         "Automatically switch to list view on mobile devices.",
-                        "pretty-calendar-embeds"
+                        "hydrogen-calendar-embeds"
                       )
                 }
                 checked={enforceListviewOnMobile}
@@ -558,10 +558,13 @@ export default function Edit({ attributes, setAttributes }) {
 
               {enforceListviewOnMobile && hasListView && (
                 <TextControl
-                  label={__("Mobile Breakpoint (px)", "pretty-calendar-embeds")}
+                  label={__(
+                    "Mobile Breakpoint (px)",
+                    "hydrogen-calendar-embeds"
+                  )}
                   help={__(
                     "Screen width at which list view is enforced.",
-                    "pretty-calendar-embeds"
+                    "hydrogen-calendar-embeds"
                   )}
                   value={mobileBreakpoint}
                   onChange={(value) =>
@@ -576,7 +579,7 @@ export default function Edit({ attributes, setAttributes }) {
               {selectedViews.includes("listCustom") && (
                 <div className="pcemb-inline-editor__custom-list">
                   <TextControl
-                    label={__("Custom List Days", "pretty-calendar-embeds")}
+                    label={__("Custom List Days", "hydrogen-calendar-embeds")}
                     value={customDays}
                     onChange={(value) => setAttributes({ customDays: value })}
                     type="number"
@@ -584,7 +587,7 @@ export default function Edit({ attributes, setAttributes }) {
                   <TextControl
                     label={__(
                       "Custom List Button Label",
-                      "pretty-calendar-embeds"
+                      "hydrogen-calendar-embeds"
                     )}
                     value={customListButton}
                     onChange={(value) =>
@@ -617,7 +620,7 @@ export default function Edit({ attributes, setAttributes }) {
               <path d="M2 17h20M6 21h12" />
             </svg>
             <span className="pcemb-inline-editor__section-title">
-              {__("Display", "pretty-calendar-embeds")}
+              {__("Display", "hydrogen-calendar-embeds")}
             </span>
             <span className="pcemb-inline-editor__section-summary">
               {localeOptions.find((l) => l.value === locale)?.label || locale}
@@ -634,28 +637,28 @@ export default function Edit({ attributes, setAttributes }) {
           {showDisplay && (
             <div className="pcemb-inline-editor__section-content">
               <SelectControl
-                label={__("Locale", "pretty-calendar-embeds")}
+                label={__("Locale", "hydrogen-calendar-embeds")}
                 value={locale}
                 options={localeOptions}
                 onChange={(value) => setAttributes({ locale: value })}
               />
               <ToggleControl
-                label={__("Show Title", "pretty-calendar-embeds")}
+                label={__("Show Title", "hydrogen-calendar-embeds")}
                 checked={showTitle}
                 onChange={(value) => setAttributes({ showTitle: value })}
               />
               <ToggleControl
-                label={__("Show Today Button", "pretty-calendar-embeds")}
+                label={__("Show Today Button", "hydrogen-calendar-embeds")}
                 checked={showTodayButton}
                 onChange={(value) => setAttributes({ showTodayButton: value })}
               />
               <ToggleControl
-                label={__("Show Tooltips", "pretty-calendar-embeds")}
+                label={__("Show Tooltips", "hydrogen-calendar-embeds")}
                 checked={useTooltip}
                 onChange={(value) => setAttributes({ useTooltip: value })}
               />
               <ToggleControl
-                label={__("Hide Past Events", "pretty-calendar-embeds")}
+                label={__("Hide Past Events", "hydrogen-calendar-embeds")}
                 checked={hidePast}
                 onChange={(value) => setAttributes({ hidePast: value })}
               />
@@ -682,7 +685,7 @@ export default function Edit({ attributes, setAttributes }) {
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 1 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
             </svg>
             <span className="pcemb-inline-editor__section-title">
-              {__("Advanced", "pretty-calendar-embeds")}
+              {__("Advanced", "hydrogen-calendar-embeds")}
             </span>
             <span className="pcemb-inline-editor__section-summary">
               {fcArgs && fcArgs !== "{}" ? "Custom JSON" : ""}
@@ -699,10 +702,10 @@ export default function Edit({ attributes, setAttributes }) {
           {showAdvanced && (
             <div className="pcemb-inline-editor__section-content">
               <TextControl
-                label={__("Calendar Identifiers", "pretty-calendar-embeds")}
+                label={__("Calendar Identifiers", "hydrogen-calendar-embeds")}
                 help={__(
                   "Comma-separated names for CSS styling (e.g., soccer, tennis)",
-                  "pretty-calendar-embeds"
+                  "hydrogen-calendar-embeds"
                 )}
                 value={calIds}
                 onChange={(value) => setAttributes({ calIds: value })}
@@ -713,7 +716,7 @@ export default function Edit({ attributes, setAttributes }) {
               {hasSource && (
                 <div className="pcemb-inline-editor__cal-ids-mapping">
                   <p className="components-base-control__label">
-                    {__("Calendar Prefix Mapping", "pretty-calendar-embeds")}
+                    {__("Calendar Prefix Mapping", "hydrogen-calendar-embeds")}
                   </p>
                   <div className="pcemb-inline-editor__cal-ids-list">
                     {ics
@@ -752,7 +755,10 @@ export default function Edit({ attributes, setAttributes }) {
 
               <div className="pcemb-inline-editor__fc-args">
                 <p className="components-base-control__label">
-                  {__("Custom FullCalendar Settings", "pretty-calendar-embeds")}
+                  {__(
+                    "Custom FullCalendar Settings",
+                    "hydrogen-calendar-embeds"
+                  )}
                 </p>
                 {fcArgs && fcArgs !== "{}" && (
                   <pre className="pcemb-inline-editor__fc-args-preview">
@@ -761,20 +767,20 @@ export default function Edit({ attributes, setAttributes }) {
                 )}
                 <Button variant="secondary" onClick={openFcArgsModal}>
                   {fcArgs && fcArgs !== "{}"
-                    ? __("Edit JSON Settings", "pretty-calendar-embeds")
-                    : __("Add JSON Settings", "pretty-calendar-embeds")}
+                    ? __("Edit JSON Settings", "hydrogen-calendar-embeds")
+                    : __("Add JSON Settings", "hydrogen-calendar-embeds")}
                 </Button>
               </div>
 
               {/* Copy Shortcode */}
               <div className="pcemb-inline-editor__copy-shortcode">
                 <p className="components-base-control__label">
-                  {__("Shortcode", "pretty-calendar-embeds")}
+                  {__("Shortcode", "hydrogen-calendar-embeds")}
                 </p>
                 <p className="components-base-control__help">
                   {__(
                     "Copy shortcode to use in Classic Editor or other contexts.",
-                    "pretty-calendar-embeds"
+                    "hydrogen-calendar-embeds"
                   )}
                 </p>
                 <Button
@@ -783,8 +789,8 @@ export default function Edit({ attributes, setAttributes }) {
                   disabled={!ics}
                 >
                   {shortcodeCopied
-                    ? __("Copied!", "pretty-calendar-embeds")
-                    : __("Copy Shortcode", "pretty-calendar-embeds")}
+                    ? __("Copied!", "hydrogen-calendar-embeds")
+                    : __("Copy Shortcode", "hydrogen-calendar-embeds")}
                 </Button>
               </div>
             </div>
@@ -796,7 +802,7 @@ export default function Edit({ attributes, setAttributes }) {
           <div className="pcemb-inline-editor__footer">
             {__(
               "Calendar will render on the frontend",
-              "pretty-calendar-embeds"
+              "hydrogen-calendar-embeds"
             )}
           </div>
         )}
@@ -805,7 +811,7 @@ export default function Edit({ attributes, setAttributes }) {
       {/* ICS Modal */}
       {isIcsModalOpen && (
         <Modal
-          title={__("ICS Calendar URLs", "pretty-calendar-embeds")}
+          title={__("ICS Calendar URLs", "hydrogen-calendar-embeds")}
           onRequestClose={() => setIsIcsModalOpen(false)}
           className="pcemb-modal"
         >
@@ -813,7 +819,7 @@ export default function Edit({ attributes, setAttributes }) {
             <p>
               {__(
                 "Enter one ICS calendar URL per line.",
-                "pretty-calendar-embeds"
+                "hydrogen-calendar-embeds"
               )}
             </p>
             <textarea
@@ -830,10 +836,10 @@ https://example.com/events.ics`}
                 variant="secondary"
                 onClick={() => setIsIcsModalOpen(false)}
               >
-                {__("Cancel", "pretty-calendar-embeds")}
+                {__("Cancel", "hydrogen-calendar-embeds")}
               </Button>
               <Button variant="primary" onClick={saveIcsModal}>
-                {__("Save", "pretty-calendar-embeds")}
+                {__("Save", "hydrogen-calendar-embeds")}
               </Button>
             </div>
           </div>
@@ -843,7 +849,7 @@ https://example.com/events.ics`}
       {/* FC Args Modal */}
       {isFcArgsModalOpen && (
         <Modal
-          title={__("Custom FullCalendar Settings", "pretty-calendar-embeds")}
+          title={__("Custom FullCalendar Settings", "hydrogen-calendar-embeds")}
           onRequestClose={() => setIsFcArgsModalOpen(false)}
           className="pcemb-modal pcemb-modal--large"
         >
@@ -851,7 +857,7 @@ https://example.com/events.ics`}
             <p>
               {__(
                 "Enter valid JSON to pass directly to FullCalendar.",
-                "pretty-calendar-embeds"
+                "hydrogen-calendar-embeds"
               )}
             </p>
             <textarea
@@ -875,10 +881,10 @@ https://example.com/events.ics`}
                 variant="secondary"
                 onClick={() => setIsFcArgsModalOpen(false)}
               >
-                {__("Cancel", "pretty-calendar-embeds")}
+                {__("Cancel", "hydrogen-calendar-embeds")}
               </Button>
               <Button variant="primary" onClick={saveFcArgsModal}>
-                {__("Save", "pretty-calendar-embeds")}
+                {__("Save", "hydrogen-calendar-embeds")}
               </Button>
             </div>
           </div>

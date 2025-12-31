@@ -4,5 +4,5 @@
  *
  * This file prevents directory listing for security.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  */

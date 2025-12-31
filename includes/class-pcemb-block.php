@@ -6,7 +6,7 @@
  * This file handles registering the Gutenberg block with WordPress.
  * It's the PHP counterpart to the JavaScript block registration.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  */
 
 // Prevent direct file access.
@@ -25,7 +25,7 @@ if (! defined('ABSPATH')) {
  *
  * @return void
  */
-function pcemb_register_block() {
+function hycal_register_block() {
   /**
    * register_block_type() registers a block type with WordPress.
    *
@@ -40,7 +40,7 @@ function pcemb_register_block() {
    *
    * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
    */
-  register_block_type(PCEMB_DIR . 'blocks/calendar/build');
+  register_block_type(HYCAL_DIR . 'blocks/calendar/build');
 }
 
 /**
@@ -53,4 +53,4 @@ function pcemb_register_block() {
  * Priority 10 (default) is fine here since we don't depend on other
  * plugins or need to run before/after anything specific.
  */
-add_action('init', 'pcemb_register_block');
+add_action('init', 'hycal_register_block');

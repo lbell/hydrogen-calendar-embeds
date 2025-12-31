@@ -4,11 +4,11 @@
  * Initializes and renders FullCalendar instances with the plugin's
  * configuration. Handles view resolution, event sources, and toolbar setup.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  * @since 1.0.0
  */
 
-function pcemb_render_calendar(pcembSettings) {
+function hycal_render_calendar(pcembSettings) {
   /**
    * Action: pcemb.beforeRender
    *
@@ -39,18 +39,18 @@ function pcemb_render_calendar(pcembSettings) {
   calendarEl.innerHTML = "";
   let width = window.innerWidth;
 
-  const views = pcemb_resolve_views(pcembSettings);
-  const calData = pcemb_resolve_cals(pcembSettings);
+  const views = hycal_resolve_views(pcembSettings);
+  const calData = hycal_resolve_cals(pcembSettings);
   const cals = calData.eventSources;
 
   // console.table(cals); // DEBUG
   // console.table(pcembSettings); // DEBUG
   // console.table(views); // DEBUG
 
-  const toolbarLeft = pcemb_is_truthy(pcembSettings["show_today_button"])
+  const toolbarLeft = hycal_is_truthy(pcembSettings["show_today_button"])
     ? "prev,next today"
     : "prev,next";
-  const toolbarCenter = pcemb_is_truthy(pcembSettings["show_title"])
+  const toolbarCenter = hycal_is_truthy(pcembSettings["show_title"])
     ? "title"
     : "";
   const toolbarRight = views.length > 1 ? views.all.join(",") : "";
@@ -101,12 +101,12 @@ function pcemb_render_calendar(pcembSettings) {
       if (!info.event.title || info.event.title === "undefined") {
         info.event.setProp(
           "title",
-          wp.i18n.__("Busy", "pretty-calendar-embeds")
+          wp.i18n.__("Busy", "hydrogen-calendar-embeds")
         );
       }
 
       if (pcembSettings["use_tooltip"] === "true") {
-        pcemb_tippyRender(info, currCal, pcembSettings);
+        hycal_tippyRender(info, currCal, pcembSettings);
       }
 
       /**
@@ -146,7 +146,7 @@ function pcemb_render_calendar(pcembSettings) {
         "color: #721c24; background: #f8d7da; padding: 12px; border-radius: 4px; margin: 8px 0;";
       errorMsg.textContent = wp.i18n.__(
         "Unable to load calendar data. Please try again later.",
-        "pretty-calendar-embeds"
+        "hydrogen-calendar-embeds"
       );
       // Only show one error message
       if (!calendarEl.querySelector(".pcemb-error")) {
@@ -166,7 +166,7 @@ function pcemb_render_calendar(pcembSettings) {
         const currentView = calendar.view.type;
         const isCurrentlyListView = currentView.toLowerCase().includes("list");
 
-        if (pcemb_is_mobile(views.mobileBreakpoint)) {
+        if (hycal_is_mobile(views.mobileBreakpoint)) {
           // Only switch to list view if not already on one
           if (!isCurrentlyListView) {
             calendar.changeView(views.listView);
@@ -185,7 +185,7 @@ function pcemb_render_calendar(pcembSettings) {
   };
 
   // Hide past events if requested
-  if (pcemb_is_truthy(pcembSettings["hide_past"])) {
+  if (hycal_is_truthy(pcembSettings["hide_past"])) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -203,7 +203,7 @@ function pcemb_render_calendar(pcembSettings) {
   } catch (e) {
     console.error("Pretty Calendar Embeds: Invalid JSON in fc_args", e);
   }
-  let pcembArgs = pcemb_argmerge(pcembDefaults, pcembOverrides);
+  let pcembArgs = hycal_argmerge(pcembDefaults, pcembOverrides);
 
   /**
    * Filter: pcemb.fullcalendarOptions

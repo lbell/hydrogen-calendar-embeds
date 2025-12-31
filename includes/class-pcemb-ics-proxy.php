@@ -16,11 +16,11 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Class PCEMB_ICS_Proxy
+ * Class HYCAL_ICS_Proxy
  *
  * Handles REST API endpoint for ICS feed proxying.
  */
-class PCEMB_ICS_Proxy {
+class HYCAL_ICS_Proxy {
 
   /**
    * REST API namespace.
@@ -54,7 +54,7 @@ class PCEMB_ICS_Proxy {
    * Blocked URL patterns for security (SSRF protection).
    * Prevents access to localhost, internal networks, and cloud metadata endpoints.
    *
-   * Can be modified using the 'pcemb_blocked_url_patterns' filter.
+   * Can be modified using the 'hycal_blocked_url_patterns' filter.
    *
    * @var array
    */
@@ -89,14 +89,14 @@ class PCEMB_ICS_Proxy {
           'url'      => array(
             'required'          => true,
             'type'              => 'string',
-            'description'       => __('The ICS feed URL to fetch.', 'pretty-calendar-embeds'),
+            'description'       => __('The ICS feed URL to fetch.', 'hydrogen-calendar-embeds'),
             'sanitize_callback' => 'esc_url_raw',
             'validate_callback' => array(__CLASS__, 'validate_ics_url'),
           ),
           'no_cache' => array(
             'required'          => false,
             'type'              => 'boolean',
-            'description'       => __('Bypass cache and fetch fresh data.', 'pretty-calendar-embeds'),
+            'description'       => __('Bypass cache and fetch fresh data.', 'hydrogen-calendar-embeds'),
             'default'           => false,
           ),
         ),
@@ -116,8 +116,8 @@ class PCEMB_ICS_Proxy {
   public static function validate_ics_url($url) {
     if (empty($url)) {
       return new WP_Error(
-        'pcemb_invalid_url',
-        __('ICS URL is required.', 'pretty-calendar-embeds'),
+        'hycal_invalid_url',
+        __('ICS URL is required.', 'hydrogen-calendar-embeds'),
         array('status' => 400)
       );
     }
@@ -125,8 +125,8 @@ class PCEMB_ICS_Proxy {
     // Limit URL length to prevent abuse
     if (strlen($url) > self::MAX_URL_LENGTH) {
       return new WP_Error(
-        'pcemb_url_too_long',
-        __('URL is too long.', 'pretty-calendar-embeds'),
+        'hycal_url_too_long',
+        __('URL is too long.', 'hydrogen-calendar-embeds'),
         array('status' => 400)
       );
     }
@@ -135,8 +135,8 @@ class PCEMB_ICS_Proxy {
     $parsed = wp_parse_url($url);
     if (! isset($parsed['scheme']) || $parsed['scheme'] !== 'https') {
       return new WP_Error(
-        'pcemb_insecure_url',
-        __('Only HTTPS URLs are allowed for security.', 'pretty-calendar-embeds'),
+        'hycal_insecure_url',
+        __('Only HTTPS URLs are allowed for security.', 'hydrogen-calendar-embeds'),
         array('status' => 400)
       );
     }
@@ -153,13 +153,13 @@ class PCEMB_ICS_Proxy {
      * @param array  $patterns Array of regex patterns to block.
      * @param string $url      The URL being validated.
      */
-    $blocked_patterns = apply_filters('pcemb_blocked_url_patterns', self::$blocked_url_patterns, $url);
+    $blocked_patterns = apply_filters('hycal_blocked_url_patterns', self::$blocked_url_patterns, $url);
 
     foreach ($blocked_patterns as $pattern) {
       if (preg_match($pattern, $url)) {
         return new WP_Error(
-          'pcemb_blocked_url',
-          __('This URL is not allowed for security reasons.', 'pretty-calendar-embeds'),
+          'hycal_blocked_url',
+          __('This URL is not allowed for security reasons.', 'hydrogen-calendar-embeds'),
           array('status' => 403)
         );
       }
@@ -171,8 +171,8 @@ class PCEMB_ICS_Proxy {
       if ($ip !== $parsed['host']) {
         if (self::is_private_ip($ip)) {
           return new WP_Error(
-            'pcemb_private_ip',
-            __('This URL resolves to a private IP address and is not allowed.', 'pretty-calendar-embeds'),
+            'hycal_private_ip',
+            __('This URL resolves to a private IP address and is not allowed.', 'hydrogen-calendar-embeds'),
             array('status' => 403)
           );
         }
@@ -191,7 +191,7 @@ class PCEMB_ICS_Proxy {
      *                             or WP_Error to reject with a custom message.
      * @param string        $url   The URL being validated.
      */
-    return apply_filters('pcemb_validate_ics_url', true, $url);
+    return apply_filters('hycal_validate_ics_url', true, $url);
   }
 
   /**
@@ -220,8 +220,8 @@ class PCEMB_ICS_Proxy {
     // Rate limiting check
     if (! self::check_rate_limit()) {
       return new WP_Error(
-        'pcemb_rate_limited',
-        __('Too many requests. Please try again later.', 'pretty-calendar-embeds'),
+        'hycal_rate_limited',
+        __('Too many requests. Please try again later.', 'hydrogen-calendar-embeds'),
         array('status' => 429)
       );
     }
@@ -230,7 +230,7 @@ class PCEMB_ICS_Proxy {
     $no_cache = $request->get_param('no_cache');
 
     // Generate cache key (just URL, no date range needed)
-    $cache_key = 'pcemb_ics_' . md5($url);
+    $cache_key = 'hycal_ics_' . md5($url);
 
     // Check cache first (unless bypassed)
     if (! $no_cache) {
@@ -246,7 +246,7 @@ class PCEMB_ICS_Proxy {
       $url,
       array(
         'timeout'    => 30,
-        'user-agent' => 'Pretty-Calendar-Embeds/' . PCEMB_VER . ' (WordPress Plugin)',
+        'user-agent' => 'hydrogen-calendar-embeds/' . HYCAL_VER . ' (WordPress Plugin)',
         'headers'    => array(
           'Accept' => 'text/calendar, application/calendar+json, */*',
         ),
@@ -255,10 +255,10 @@ class PCEMB_ICS_Proxy {
 
     if (is_wp_error($response)) {
       return new WP_Error(
-        'pcemb_fetch_failed',
+        'hycal_fetch_failed',
         sprintf(
           /* translators: %s: error message */
-          __('Failed to fetch ICS feed: %s', 'pretty-calendar-embeds'),
+          __('Failed to fetch ICS feed: %s', 'hydrogen-calendar-embeds'),
           $response->get_error_message()
         ),
         array('status' => 502)
@@ -268,10 +268,10 @@ class PCEMB_ICS_Proxy {
     $status_code = wp_remote_retrieve_response_code($response);
     if ($status_code !== 200) {
       return new WP_Error(
-        'pcemb_fetch_error',
+        'hycal_fetch_error',
         sprintf(
           /* translators: %d: HTTP status code */
-          __('ICS feed returned HTTP status %d.', 'pretty-calendar-embeds'),
+          __('ICS feed returned HTTP status %d.', 'hydrogen-calendar-embeds'),
           $status_code
         ),
         array('status' => 502)
@@ -282,8 +282,8 @@ class PCEMB_ICS_Proxy {
 
     if (empty($ics_content)) {
       return new WP_Error(
-        'pcemb_empty_response',
-        __('ICS feed returned empty content.', 'pretty-calendar-embeds'),
+        'hycal_empty_response',
+        __('ICS feed returned empty content.', 'hydrogen-calendar-embeds'),
         array('status' => 502)
       );
     }
@@ -291,8 +291,8 @@ class PCEMB_ICS_Proxy {
     // Check content size to prevent memory exhaustion
     if (strlen($ics_content) > self::MAX_ICS_SIZE) {
       return new WP_Error(
-        'pcemb_content_too_large',
-        __('ICS feed is too large to process.', 'pretty-calendar-embeds'),
+        'hycal_content_too_large',
+        __('ICS feed is too large to process.', 'hydrogen-calendar-embeds'),
         array('status' => 502)
       );
     }
@@ -300,8 +300,8 @@ class PCEMB_ICS_Proxy {
     // Basic validation - check if it looks like ICS content
     if (strpos($ics_content, 'BEGIN:VCALENDAR') === false) {
       return new WP_Error(
-        'pcemb_invalid_ics',
-        __('The URL did not return valid iCalendar data.', 'pretty-calendar-embeds'),
+        'hycal_invalid_ics',
+        __('The URL did not return valid iCalendar data.', 'hydrogen-calendar-embeds'),
         array('status' => 502)
       );
     }
@@ -317,7 +317,7 @@ class PCEMB_ICS_Proxy {
      * @param string $ics_content The raw ICS content.
      * @param string $url         The source URL of the ICS feed.
      */
-    $ics_content = apply_filters('pcemb_ics_content', $ics_content, $url);
+    $ics_content = apply_filters('hycal_ics_content', $ics_content, $url);
 
     // Cache the raw ICS content
     set_transient($cache_key, $ics_content, self::CACHE_DURATION);
@@ -391,7 +391,7 @@ class PCEMB_ICS_Proxy {
       $ip = 'global_unknown';
     }
 
-    $rate_key   = 'pcemb_rate_' . md5($ip);
+    $rate_key   = 'hycal_rate_' . md5($ip);
     $rate_limit = ($ip === 'global_unknown') ? 30 : 60; // Lower limit for unknown IPs
     $current    = get_transient($rate_key);
 
@@ -441,7 +441,7 @@ class PCEMB_ICS_Proxy {
     global $wpdb;
 
     if ($url) {
-      delete_transient('pcemb_ics_' . md5($url));
+      delete_transient('hycal_ics_' . md5($url));
     } else {
       // Clear all ICS cache transients.
       // Using $wpdb->prepare() with LIKE requires escaping % wildcards.
@@ -449,8 +449,8 @@ class PCEMB_ICS_Proxy {
       $wpdb->query(
         $wpdb->prepare(
           "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-          $wpdb->esc_like('_transient_pcemb_ics_') . '%',
-          $wpdb->esc_like('_transient_timeout_pcemb_ics_') . '%'
+          $wpdb->esc_like('_transient_hycal_ics_') . '%',
+          $wpdb->esc_like('_transient_timeout_hycal_ics_') . '%'
         )
       );
     }

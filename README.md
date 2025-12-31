@@ -32,7 +32,7 @@ Just pop in the address, and BAM! You now have a pretty calendar. Want to combin
 
 ## Installation
 
-1. Upload the `pretty-calendar-embeds` folder to the `/wp-content/plugins/` directory.
+1. Upload the `hydrogen-calendar-embeds` folder to the `/wp-content/plugins/` directory.
 2. Activate `Pretty Calendar Embeds` through the 'Plugins' menu in WordPress dashboard.
 3. Add the Pretty Calendar Embeds block to your page or post, or use the shortcode directly.
 
@@ -138,7 +138,6 @@ Example: `fc_args='{"eventSources":%5B"url"%5D}'` will be converted to `{"eventS
 
 > **Note:** This is experimental - things may break.
 
-
 ## Screenshots
 
 1. Pretty Calendar Embeds.
@@ -164,7 +163,6 @@ Example: `fc_args='{"eventSources":%5B"url"%5D}'` will be converted to `{"eventS
    <img src="assets/screenshot-4.png" height="200" />
 &nbsp;
 &nbsp;
-
 
 ## FAQ
 
@@ -218,6 +216,6 @@ This plugin is licensed under the GPLv2 or later. See [LICENSE](http://www.gnu.o
 
 ## Support
 
-For support, feature requests, or bug reports, please visit the [GitHub repository](https://github.com/lbell/pretty-calendar-embeds).
+For support, feature requests, or bug reports, please visit the [GitHub repository](https://github.com/lbell/hydrogen-calendar-embeds).
 
 You can also sponsor development at [GitHub Sponsors](https://github.com/sponsors/lbell).

@@ -1,5 +1,5 @@
 {
-  "name": "pretty-calendar-embeds",
+  "name": "hydrogen-calendar-embeds",
   "version": "1.0.0",
   "description": "Embed iCalendar (ICS) feeds and Google Calendars with a beautiful, responsive calendar interface.",
   "author": "LBell",
@@ -13,13 +13,13 @@
     "ics",
     "icalendar"
   ],
-  "homepage": "https://github.com/lbell/pretty-calendar-embeds",
+  "homepage": "https://github.com/lbell/hydrogen-calendar-embeds",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lbell/pretty-calendar-embeds.git"
+    "url": "https://github.com/lbell/hydrogen-calendar-embeds.git"
   },
   "bugs": {
-    "url": "https://github.com/lbell/pretty-calendar-embeds/issues"
+    "url": "https://github.com/lbell/hydrogen-calendar-embeds/issues"
   },
   "engines": {
     "node": ">=18.0.0",

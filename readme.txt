@@ -39,7 +39,7 @@ Just pop in the address, and BAM! You now have a pretty calendar. Want to combin
 
 == Installation ==
 
-1. Upload the `pretty-calendar-embeds` folder to the `/wp-content/plugins/` directory.
+1. Upload the `hydrogen-calendar-embeds` folder to the `/wp-content/plugins/` directory.
 2. Activate `Pretty Calendar Embeds` through the 'Plugins' menu in WordPress dashboard.
 3. Add the Pretty Calendar Embeds block to your page or post, or use the shortcode directly.
 
@@ -120,11 +120,11 @@ Note: this is experimental - things may break.
 
 == Contributing ==
 
-Contributions are welcome! Please feel free to submit a Pull Request to the [GitHub repository](https://github.com/lbell/pretty-calendar-embeds).
+Contributions are welcome! Please feel free to submit a Pull Request to the [GitHub repository](https://github.com/lbell/hydrogen-calendar-embeds).
 
 == Support ==
 
-For support, feature requests, or bug reports, please visit the [GitHub repository](https://github.com/lbell/pretty-calendar-embeds).
+For support, feature requests, or bug reports, please visit the [GitHub repository](https://github.com/lbell/hydrogen-calendar-embeds).
 
 You can also sponsor development at [GitHub Sponsors](https://github.com/sponsors/lbell).
 

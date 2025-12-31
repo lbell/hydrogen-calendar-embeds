@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Pretty Calendar Embeds
-Plugin URI: https://github.com/lbell/pretty-calendar-embeds
+Plugin URI: https://github.com/lbell/hydrogen-calendar-embeds
 Description: Embed iCalendar (ICS) feeds and Google Calendars with a beautiful, responsive calendar interface.
 Version: 1.0.0
 Author: LBell
 Author URI: https://lorenbell.com
-Text Domain: pretty-calendar-embeds
+Text Domain: hydrogen-calendar-embeds
 Domain Path: /languages
 Requires at least: 5.8
 Requires PHP: 7.4
@@ -36,20 +36,20 @@ if (! defined('ABSPATH')) {
   exit;
 }
 
-define('PCEMB_VER', '1.0.0');
-define('PCEMB_DIR', plugin_dir_path(__FILE__)); // Trailing slash
-define('PCEMB_URL', plugin_dir_url(__FILE__));
+define('HYCAL_VER', '1.0.0');
+define('HYCAL_DIR', plugin_dir_path(__FILE__)); // Trailing slash
+define('HYCAL_URL', plugin_dir_url(__FILE__));
 
-require_once PCEMB_DIR . 'util/utils.php';
-require_once PCEMB_DIR . 'init/shortcode.php';
-require_once PCEMB_DIR . 'init/init.php';
+require_once HYCAL_DIR . 'util/utils.php';
+require_once HYCAL_DIR . 'init/shortcode.php';
+require_once HYCAL_DIR . 'init/init.php';
 
 // ICS Proxy for CORS-free calendar fetching (REST API)
-require_once PCEMB_DIR . 'includes/class-pcemb-ics-proxy.php';
-PCEMB_ICS_Proxy::init();
+require_once HYCAL_DIR . 'includes/class-pcemb-ics-proxy.php';
+HYCAL_ICS_Proxy::init();
 
 // Gutenberg Block Registration
-require_once PCEMB_DIR . 'includes/class-pcemb-block.php';
+require_once HYCAL_DIR . 'includes/class-pcemb-block.php';
 
 /**
  * Fires after Pretty Calendar Embeds has fully loaded.
@@ -59,6 +59,6 @@ require_once PCEMB_DIR . 'includes/class-pcemb-block.php';
  *
  * @since 1.0.0
  *
- * @param string PCEMB_VER The current plugin version.
+ * @param string HYCAL_VER The current plugin version.
  */
-do_action('pcemb_loaded', PCEMB_VER);
+do_action('hycal_loaded', HYCAL_VER);

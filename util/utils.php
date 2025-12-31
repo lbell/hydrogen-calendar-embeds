@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
  *
  * @return string Unique hex ID hash
  */
-function pcemb_generate_unique_instance_id() {
+function hycal_generate_unique_instance_id() {
   static $instance_counter = 0;
   $instance_counter++;
 
@@ -41,7 +41,7 @@ function pcemb_generate_unique_instance_id() {
  * @param string $fc_args The fc_args JSON string with URL-encoded brackets
  * @return string The decoded fc_args JSON string with actual brackets
  */
-function pcemb_decode_fc_args_brackets($fc_args) {
+function hycal_decode_fc_args_brackets($fc_args) {
   if (empty($fc_args)) {
     return $fc_args;
   }
@@ -56,7 +56,7 @@ function pcemb_decode_fc_args_brackets($fc_args) {
 /**
  * Encode square brackets in fc_args to URL-encoded format.
  *
- * This is the inverse of pcemb_decode_fc_args_brackets(). Used by the block
+ * This is the inverse of hycal_decode_fc_args_brackets(). Used by the block
  * renderer to convert natural JSON (with []) to the encoded format (%5B/%5D)
  * before passing to the shortcode, which will then decode it.
  *
@@ -71,7 +71,7 @@ function pcemb_decode_fc_args_brackets($fc_args) {
  * @param string $fc_args The fc_args JSON string with actual brackets
  * @return string The encoded fc_args JSON string with URL-encoded brackets
  */
-function pcemb_encode_fc_args_brackets($fc_args) {
+function hycal_encode_fc_args_brackets($fc_args) {
   if (empty($fc_args)) {
     return $fc_args;
   }
@@ -96,7 +96,7 @@ function pcemb_encode_fc_args_brackets($fc_args) {
  * @param string $initial_view The currently set initial_view value (default or user-provided)
  * @return string The resolved initial_view
  */
-function pcemb_resolve_initial_view($views, $initial_view) {
+function hycal_resolve_initial_view($views, $initial_view) {
   // Parse views into individual view names
   $view_list = array_map('trim', explode(',', $views));
 

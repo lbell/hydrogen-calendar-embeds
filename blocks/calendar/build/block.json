@@ -15,7 +15,7 @@
     "events",
     "embed"
   ],
-  "textdomain": "pretty-calendar-embeds",
+  "textdomain": "hydrogen-calendar-embeds",
   "supports": {
     "html": false,
     "align": ["wide", "full"],

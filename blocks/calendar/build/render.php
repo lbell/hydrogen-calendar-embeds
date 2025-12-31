@@ -10,7 +10,7 @@
  * WordPress automatically calls this file when the block is
  * displayed on the frontend (as specified in block.json's "render" property).
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  *
  * Available variables from WordPress:
  * @var array    $attributes The block attributes (from block.json).
@@ -30,7 +30,7 @@ if (! defined('ABSPATH')) {
  * but the shortcode uses snake_case (PHP convention).
  * This mapping converts between the two formats.
  */
-$pcemb_shortcode_args = array(
+$hycal_shortcode_args = array(
   // Calendar source.
   'ics'                        => $attributes['ics'] ?? '',
   'cal_ids'                    => $attributes['calIds'] ?? '',
@@ -55,13 +55,13 @@ $pcemb_shortcode_args = array(
   // Advanced settings.
   // Encode square brackets so the shortcode's decoder handles them uniformly.
   // This allows block users to enter natural JSON with [] while shortcode users use %5B/%5D.
-  'fc_args'                    => pcemb_encode_fc_args_brackets($attributes['fcArgs'] ?? '{}'),
+  'fc_args'                    => hycal_encode_fc_args_brackets($attributes['fcArgs'] ?? '{}'),
 );
 
 /**
  * Generate the calendar output using the existing shortcode function.
  *
- * This reuses all the existing logic from pcemb_shortcode(), which handles:
+ * This reuses all the existing logic from hycal_shortcode(), which handles:
  * - Script/style enqueuing
  * - Settings processing
  * - HTML output generation
@@ -69,7 +69,7 @@ $pcemb_shortcode_args = array(
  * By reusing the shortcode function, we ensure the block and shortcode
  * behave identically and share the same codebase.
  */
-$pcemb_calendar_output = pcemb_shortcode($pcemb_shortcode_args);
+$hycal_calendar_output = hycal_shortcode($hycal_shortcode_args);
 
 /**
  * Get the wrapper attributes for the block.
@@ -79,7 +79,7 @@ $pcemb_calendar_output = pcemb_shortcode($pcemb_shortcode_args);
  * custom attributes. This ensures the block integrates properly
  * with WordPress's block system (spacing, alignment, etc.).
  */
-$pcemb_wrapper_attributes = get_block_wrapper_attributes();
+$hycal_wrapper_attributes = get_block_wrapper_attributes();
 
 /**
  * Output the block HTML.
@@ -89,11 +89,11 @@ $pcemb_wrapper_attributes = get_block_wrapper_attributes();
  * output unchanged.
  */
 ?>
-<div <?php echo $pcemb_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() returns escaped content. 
+<div <?php echo $hycal_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() returns escaped content. 
       ?>>
   <?php
   // Output the calendar HTML.
-  // This is already escaped by pcemb_shortcode().
-  echo $pcemb_calendar_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is escaped in pcemb_shortcode().
+  // This is already escaped by hycal_shortcode().
+  echo $hycal_calendar_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is escaped in hycal_shortcode().
   ?>
 </div>

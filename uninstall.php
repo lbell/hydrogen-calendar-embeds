@@ -6,7 +6,7 @@
  * Fired when the plugin is uninstalled.
  * Cleans up transients and any stored data.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  */
 
 // If uninstall not called from WordPress, exit.
@@ -21,8 +21,8 @@ global $wpdb;
 $wpdb->query(
   $wpdb->prepare(
     "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-    $wpdb->esc_like('_transient_pcemb_ics_') . '%',
-    $wpdb->esc_like('_transient_timeout_pcemb_ics_') . '%'
+    $wpdb->esc_like('_transient_hycal_ics_') . '%',
+    $wpdb->esc_like('_transient_timeout_hycal_ics_') . '%'
   )
 );
 
@@ -31,7 +31,7 @@ $wpdb->query(
 $wpdb->query(
   $wpdb->prepare(
     "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-    $wpdb->esc_like('_transient_pcemb_rate_') . '%',
-    $wpdb->esc_like('_transient_timeout_pcemb_rate_') . '%'
+    $wpdb->esc_like('_transient_hycal_rate_') . '%',
+    $wpdb->esc_like('_transient_timeout_hycal_rate_') . '%'
   )
 );

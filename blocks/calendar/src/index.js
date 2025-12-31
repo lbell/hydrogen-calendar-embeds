@@ -4,7 +4,7 @@
  * This is the main entry point for the block's JavaScript.
  * It registers the block with WordPress using the metadata from block.json.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  */
 
 /**

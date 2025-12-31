@@ -4,11 +4,11 @@
  * Renders event tooltips using Tippy.js. Handles event details display
  * including time, location, description, and action buttons.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  * @since 1.0.0
  */
 
-function pcemb_tippyRender(info, currCal, pcembSettings) {
+function hycal_tippyRender(info, currCal, pcembSettings) {
   // console.log(info.event); // DEBUG
   // console.table(info.event.extendedProps); // DEBUG
   // console.log(info.el.classList); // DEBUG
@@ -64,7 +64,7 @@ function pcemb_tippyRender(info, currCal, pcembSettings) {
   // Google Calendar API returns the string "undefined" for free/busy events
   const eventTitle =
     !info.event.title || info.event.title === "undefined"
-      ? wp.i18n.__("Busy", "pretty-calendar-embeds")
+      ? wp.i18n.__("Busy", "hydrogen-calendar-embeds")
       : info.event.title;
 
   /**
@@ -94,8 +94,8 @@ function pcemb_tippyRender(info, currCal, pcembSettings) {
 
   let toolContent = headerHtml;
 
-  const description = pcemb_breakify(
-    pcemb_urlify(info.event.extendedProps.description)
+  const description = hycal_breakify(
+    hycal_urlify(info.event.extendedProps.description)
   );
 
   /**
@@ -121,12 +121,12 @@ function pcemb_tippyRender(info, currCal, pcembSettings) {
 
   toolContent += descriptionHtml;
 
-  const mapHtml = location ? pcemb_mapify(location) : "";
+  const mapHtml = location ? hycal_mapify(location) : "";
   const addToGoogleHtml = info.event.url
-    ? pcemb_addToGoogle(info.event.url)
+    ? hycal_addToGoogle(info.event.url)
     : "";
-  const openEventHtml = pcemb_openEventLink(info.event);
-  const downloadICSHtml = pcemb_downloadEventICS(info.event);
+  const openEventHtml = hycal_openEventLink(info.event);
+  const downloadICSHtml = hycal_downloadEventICS(info.event);
 
   /**
    * Filter: pcemb.tooltipActions
@@ -194,8 +194,8 @@ function pcemb_tippyRender(info, currCal, pcembSettings) {
       content: toolContent,
       theme: "light",
       allowHTML: true,
-      placement: pcemb_is_mobile() ? "bottom" : "auto",
-      popperOptions: pcemb_is_mobile()
+      placement: hycal_is_mobile() ? "bottom" : "auto",
+      popperOptions: hycal_is_mobile()
         ? {
             modifiers: [
               {

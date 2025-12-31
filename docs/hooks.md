@@ -25,7 +25,7 @@ This document describes all available hooks (actions and filters) for extending 
 
 ### PHP Actions
 
-#### `pcemb_loaded`
+#### `hycal_loaded`
 
 Fires after Pretty Calendar Embeds has fully loaded. Use this to initialize your extension.
 
@@ -36,7 +36,7 @@ Fires after Pretty Calendar Embeds has fully loaded. Use this to initialize your
 **Example:**
 
 ```php
-add_action( 'pcemb_loaded', function( $version ) {
+add_action( 'hycal_loaded', function( $version ) {
     // Initialize your extension
     if ( version_compare( $version, '1.0.0', '>=' ) ) {
         // Your extension code here
@@ -46,7 +46,7 @@ add_action( 'pcemb_loaded', function( $version ) {
 
 ---
 
-#### `pcemb_before_enqueue_scripts`
+#### `hycal_before_enqueue_scripts`
 
 Fires before calendar scripts are enqueued. Use to enqueue your own dependencies.
 
@@ -57,14 +57,14 @@ Fires before calendar scripts are enqueued. Use to enqueue your own dependencies
 **Example:**
 
 ```php
-add_action( 'pcemb_before_enqueue_scripts', function( $settings ) {
+add_action( 'hycal_before_enqueue_scripts', function( $settings ) {
     wp_enqueue_script( 'my-extension-js', plugin_dir_url( __FILE__ ) . 'js/extension.js' );
 });
 ```
 
 ---
 
-#### `pcemb_enqueue_scripts`
+#### `hycal_enqueue_scripts`
 
 Fires after core calendar scripts and styles are enqueued.
 
@@ -75,14 +75,14 @@ Fires after core calendar scripts and styles are enqueued.
 **Example:**
 
 ```php
-add_action( 'pcemb_enqueue_scripts', function( $settings ) {
+add_action( 'hycal_enqueue_scripts', function( $settings ) {
     wp_enqueue_style( 'my-extension-css', plugin_dir_url( __FILE__ ) . 'css/extension.css' );
 });
 ```
 
 ---
 
-#### `pcemb_before_render`
+#### `hycal_before_render`
 
 Fires before the calendar HTML output is generated.
 
@@ -92,7 +92,7 @@ Fires before the calendar HTML output is generated.
 
 ---
 
-#### `pcemb_after_render`
+#### `hycal_after_render`
 
 Fires after the calendar HTML output is generated.
 
@@ -105,7 +105,7 @@ Fires after the calendar HTML output is generated.
 
 ### PHP Filters
 
-#### `pcemb_shortcode_defaults`
+#### `hycal_shortcode_defaults`
 
 Filter the default shortcode attributes. Add your own custom attributes here.
 
@@ -118,7 +118,7 @@ Filter the default shortcode attributes. Add your own custom attributes here.
 **Example:**
 
 ```php
-add_filter( 'pcemb_shortcode_defaults', function( $defaults ) {
+add_filter( 'hycal_shortcode_defaults', function( $defaults ) {
     $defaults['show_photos'] = 'false';
     $defaults['photo_size'] = 'thumbnail';
     return $defaults;
@@ -127,7 +127,7 @@ add_filter( 'pcemb_shortcode_defaults', function( $defaults ) {
 
 ---
 
-#### `pcemb_shortcode_attributes`
+#### `hycal_shortcode_attributes`
 
 Filter shortcode attributes after WordPress processing.
 
@@ -142,7 +142,7 @@ Filter shortcode attributes after WordPress processing.
 **Example:**
 
 ```php
-add_filter( 'pcemb_shortcode_attributes', function( $args, $atts, $defaults ) {
+add_filter( 'hycal_shortcode_attributes', function( $args, $atts, $defaults ) {
     // Force a specific locale for all calendars
     $args['locale'] = 'en';
     return $args;
@@ -151,7 +151,7 @@ add_filter( 'pcemb_shortcode_attributes', function( $args, $atts, $defaults ) {
 
 ---
 
-#### `pcemb_settings`
+#### `hycal_settings`
 
 Filter the calendar settings before rendering. This is the final opportunity to modify settings before they're passed to JavaScript.
 
@@ -165,7 +165,7 @@ Filter the calendar settings before rendering. This is the final opportunity to 
 **Example:**
 
 ```php
-add_filter( 'pcemb_settings', function( $settings, $args ) {
+add_filter( 'hycal_settings', function( $settings, $args ) {
     // Add custom data for JavaScript
     $settings['my_extension_data'] = array(
         'api_endpoint' => rest_url( 'my-extension/v1/photos' ),
@@ -176,7 +176,7 @@ add_filter( 'pcemb_settings', function( $settings, $args ) {
 
 ---
 
-#### `pcemb_shortcode_output`
+#### `hycal_shortcode_output`
 
 Filter the calendar HTML output.
 
@@ -190,7 +190,7 @@ Filter the calendar HTML output.
 **Example:**
 
 ```php
-add_filter( 'pcemb_shortcode_output', function( $output, $settings ) {
+add_filter( 'hycal_shortcode_output', function( $output, $settings ) {
     // Add a custom wrapper
     return '<div class="my-calendar-wrapper">' . $output . '</div>';
 }, 10, 2 );
@@ -198,20 +198,20 @@ add_filter( 'pcemb_shortcode_output', function( $output, $settings ) {
 
 ---
 
-#### `pcemb_block_shortcode_args`
+#### `hycal_block_shortcode_args`
 
 Filter block shortcode arguments before rendering.
 
 **Parameters:**
 
-- `$pcemb_shortcode_args` (array) - The shortcode arguments.
+- `$hycal_shortcode_args` (array) - The shortcode arguments.
 - `$attributes` (array) - The raw block attributes.
 
 **Returns:** (array) Modified shortcode arguments.
 
 ---
 
-#### `pcemb_blocked_url_patterns`
+#### `hycal_blocked_url_patterns`
 
 Filter the blocked URL patterns for SSRF protection.
 
@@ -226,7 +226,7 @@ Filter the blocked URL patterns for SSRF protection.
 
 ---
 
-#### `pcemb_validate_ics_url`
+#### `hycal_validate_ics_url`
 
 Custom validation for ICS URLs. Use to whitelist specific domains.
 
@@ -240,7 +240,7 @@ Custom validation for ICS URLs. Use to whitelist specific domains.
 **Example:**
 
 ```php
-add_filter( 'pcemb_validate_ics_url', function( $valid, $url ) {
+add_filter( 'hycal_validate_ics_url', function( $valid, $url ) {
     // Only allow URLs from specific domains
     $allowed_domains = array( 'calendar.google.com', 'outlook.office365.com' );
     $host = wp_parse_url( $url, PHP_URL_HOST );
@@ -251,13 +251,13 @@ add_filter( 'pcemb_validate_ics_url', function( $valid, $url ) {
         }
     }
 
-    return new WP_Error( 'pcemb_domain_not_allowed', 'This calendar domain is not allowed.' );
+    return new WP_Error( 'hycal_domain_not_allowed', 'This calendar domain is not allowed.' );
 }, 10, 2 );
 ```
 
 ---
 
-#### `pcemb_ics_content`
+#### `hycal_ics_content`
 
 Filter ICS content before caching and returning.
 
@@ -562,11 +562,11 @@ This example shows how to add photos to event tooltips using the description fie
  * Description: Adds photos to Pretty Calendar Embeds event popups
  */
 
-add_action( 'pcemb_enqueue_scripts', function( $settings ) {
+add_action( 'hycal_enqueue_scripts', function( $settings ) {
     wp_enqueue_script(
         'pcemb-photos',
         plugin_dir_url( __FILE__ ) . 'pcemb-photos.js',
-        array( 'pcemb_loader' ),
+        array( 'hycal_loader' ),
         '1.0.0',
         true
     );
@@ -665,7 +665,7 @@ pcembHooks.addFilter(
 );
 
 function createICSDataUrl(event) {
-  // Similar to pcemb_downloadEventICS but returns data URL
+  // Similar to hycal_downloadEventICS but returns data URL
   const ics = `BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
@@ -691,7 +691,7 @@ Here's a skeleton for a complete extension plugin:
  * Plugin Name: My PCEMB Extension
  * Description: Extends Pretty Calendar Embeds with custom features
  * Version: 1.0.0
- * Requires Plugins: pretty-calendar-embeds
+ * Requires Plugins: hydrogen-calendar-embeds
  */
 
 // Prevent direct access
@@ -699,7 +699,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class My_PCEMB_Extension {
+class My_HYCAL_Extension {
 
     private static $instance = null;
 
@@ -712,7 +712,7 @@ class My_PCEMB_Extension {
 
     private function __construct() {
         // Wait for PCEMB to load
-        add_action( 'pcemb_loaded', array( $this, 'init' ) );
+        add_action( 'hycal_loaded', array( $this, 'init' ) );
     }
 
     public function init( $version ) {
@@ -723,9 +723,9 @@ class My_PCEMB_Extension {
         }
 
         // Register hooks
-        add_filter( 'pcemb_shortcode_defaults', array( $this, 'add_defaults' ) );
-        add_filter( 'pcemb_settings', array( $this, 'add_settings' ), 10, 2 );
-        add_action( 'pcemb_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        add_filter( 'hycal_shortcode_defaults', array( $this, 'add_defaults' ) );
+        add_filter( 'hycal_settings', array( $this, 'add_settings' ), 10, 2 );
+        add_action( 'hycal_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
     }
 
     public function version_notice() {
@@ -751,7 +751,7 @@ class My_PCEMB_Extension {
         wp_enqueue_script(
             'my-pcemb-ext',
             plugin_dir_url( __FILE__ ) . 'assets/js/extension.js',
-            array( 'pcemb_helpers', 'pcemb_loader' ),
+            array( 'hycal_helpers', 'hycal_loader' ),
             '1.0.0',
             true
         );
@@ -759,7 +759,7 @@ class My_PCEMB_Extension {
 }
 
 // Initialize
-My_PCEMB_Extension::get_instance();
+My_HYCAL_Extension::get_instance();
 ```
 
 **JavaScript (assets/js/extension.js):**
@@ -793,8 +793,8 @@ Both PHP and JavaScript hooks support priority (default: 10). Lower numbers run 
 **PHP:**
 
 ```php
-add_filter( 'pcemb_settings', 'my_function', 5 ); // Runs early
-add_filter( 'pcemb_settings', 'my_other_function', 20 ); // Runs late
+add_filter( 'hycal_settings', 'my_function', 5 ); // Runs early
+add_filter( 'hycal_settings', 'my_other_function', 20 ); // Runs late
 ```
 
 **JavaScript:**
@@ -811,8 +811,8 @@ pcembHooks.addFilter("pcemb.settings", myOtherFunction, 20); // Runs late
 **PHP:**
 
 ```php
-remove_filter( 'pcemb_settings', 'function_to_remove' );
-remove_action( 'pcemb_after_render', 'function_to_remove' );
+remove_filter( 'hycal_settings', 'function_to_remove' );
+remove_action( 'hycal_after_render', 'function_to_remove' );
 ```
 
 **JavaScript:**
@@ -826,5 +826,5 @@ pcembHooks.removeAction("pcemb.afterRender", functionToRemove);
 
 ## Questions or Issues?
 
-- GitHub: https://github.com/lbell/pretty-calendar-embeds
+- GitHub: https://github.com/lbell/hydrogen-calendar-embeds
 - Submit issues for bugs or feature requests

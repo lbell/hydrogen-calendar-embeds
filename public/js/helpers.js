@@ -4,7 +4,7 @@
  * Utility functions for calendar rendering including view resolution,
  * ICS URL parsing, event source building, and tooltip content helpers.
  *
- * @package pretty-calendar-embeds
+ * @package hydrogen-calendar-embeds
  * @since 1.0.0
  */
 
@@ -15,7 +15,7 @@
  * @param {array} settings Settings received from shortcode parameters
  * @returns object with eventSources array and identifiers array
  */
-function pcemb_resolve_cals(settings) {
+function hycal_resolve_cals(settings) {
   let calArgs = [];
   let identifiers = [];
 
@@ -33,7 +33,7 @@ function pcemb_resolve_cals(settings) {
   // Handle ICS feeds (using REST API proxy)
   if (settings["ics"] && settings["rest_url"]) {
     // Split ICS URLs - be careful with URLs that might contain encoded commas (%2C)
-    const icsCals = pcemb_split_ics_urls(settings["ics"]);
+    const icsCals = hycal_split_ics_urls(settings["ics"]);
 
     for (var j = 0; j < icsCals.length; j++) {
       const identifier = customIds[calIndex] || calIndex;
@@ -64,7 +64,7 @@ function pcemb_resolve_cals(settings) {
  * @param {string} icsString The comma-separated ICS URL string
  * @returns {array} Array of ICS URLs
  */
-function pcemb_split_ics_urls(icsString) {
+function hycal_split_ics_urls(icsString) {
   if (!icsString) return [];
 
   // If there's only one URL (no comma followed by http), return it as-is
@@ -85,21 +85,21 @@ function pcemb_split_ics_urls(icsString) {
  * @param {array} settings Settings received from the shortcode parameters
  * @returns object
  */
-const pcemb_resolve_views = (settings) => {
-  const wantsToEnforceListviewOnMobile = pcemb_is_truthy(
+const hycal_resolve_views = (settings) => {
+  const wantsToEnforceListviewOnMobile = hycal_is_truthy(
     settings["enforce_listview_on_mobile"]
   );
 
   let initialView = settings["initial_view"];
 
-  const viewsArray = pcemb_csv_to_array(settings["views"]);
+  const viewsArray = hycal_csv_to_array(settings["views"]);
   // Find the first list view in the user's configured views
-  const listView = pcemb_get_item_by_fuzzy_value(viewsArray, "list");
+  const listView = hycal_get_item_by_fuzzy_value(viewsArray, "list");
 
   const mobileBreakpoint = settings["mobile_breakpoint"] || 768;
 
   if (
-    pcemb_is_mobile(mobileBreakpoint) &&
+    hycal_is_mobile(mobileBreakpoint) &&
     wantsToEnforceListviewOnMobile &&
     listView
   ) {
@@ -125,7 +125,7 @@ const pcemb_resolve_views = (settings) => {
  * @param {string} csv Array to be tested
  * @returns array
  */
-const pcemb_csv_to_array = (csv) => csv.split(",").map((view) => view.trim());
+const hycal_csv_to_array = (csv) => csv.split(",").map((view) => view.trim());
 
 /**
  * Tests if the given array has the value in any part of each item
@@ -134,7 +134,7 @@ const pcemb_csv_to_array = (csv) => csv.split(",").map((view) => view.trim());
  * @param {string} value String to be checked
  * @returns boolean
  */
-const pcemb_get_item_by_fuzzy_value = (array, value) => {
+const hycal_get_item_by_fuzzy_value = (array, value) => {
   if (!value) return undefined;
   return array.find((item) => item.toLowerCase().includes(value.toLowerCase()));
 };
@@ -145,7 +145,7 @@ const pcemb_get_item_by_fuzzy_value = (array, value) => {
  * @param {string} value String to be tested
  * @returns boolean
  */
-function pcemb_is_truthy(value) {
+function hycal_is_truthy(value) {
   const lowercaseValue =
     typeof value === "string" ? value.toLowerCase() : value;
   return ["true", "1", true, 1].includes(lowercaseValue);
@@ -157,7 +157,7 @@ function pcemb_is_truthy(value) {
  *
  * @returns boolean
  */
-function pcemb_is_mobile(width = 768) {
+function hycal_is_mobile(width = 768) {
   return window.innerWidth <= parseInt(width, 10);
 }
 
@@ -168,7 +168,7 @@ function pcemb_is_mobile(width = 768) {
  * @param {string} str String to escape
  * @returns {string} Escaped string safe for HTML attributes
  */
-function pcemb_escapeAttr(str) {
+function hycal_escapeAttr(str) {
   if (!str) return "";
   const div = document.createElement("div");
   div.textContent = str;
@@ -182,7 +182,7 @@ function pcemb_escapeAttr(str) {
  * @param {*} text
  * @returns
  */
-function pcemb_urlify(text) {
+function hycal_urlify(text) {
   const urlRegex = /<a[\s>].*?<\/a>|https?:\/\/[^\s]+[?!.]*\/?\b/g;
   if (text) {
     return text.replace(urlRegex, function (m) {
@@ -199,8 +199,8 @@ function pcemb_urlify(text) {
 
           if (punctuation) {
             const cleanedURL = url.replace(/[?!.]*$/, "");
-            const safeURL = pcemb_escapeAttr(cleanedURL);
-            const safeLinkText = pcemb_escapeAttr(cleanedURL);
+            const safeURL = hycal_escapeAttr(cleanedURL);
+            const safeLinkText = hycal_escapeAttr(cleanedURL);
             return (
               '<a target="_blank" rel="noopener noreferrer" href="' +
               safeURL +
@@ -211,7 +211,7 @@ function pcemb_urlify(text) {
             );
           } else {
             // If no punctuation found, treat the whole URL as the link text
-            const safeURL = pcemb_escapeAttr(url);
+            const safeURL = hycal_escapeAttr(url);
             return (
               '<a target="_blank" rel="noopener noreferrer" href="' +
               safeURL +
@@ -235,7 +235,7 @@ function pcemb_urlify(text) {
  * @param {string} text
  * @returns
  */
-function pcemb_breakify(text) {
+function hycal_breakify(text) {
   if (text) {
     return text.replace(/(?:\r\n|\r|\n)/g, "<br />");
   }
@@ -248,8 +248,8 @@ function pcemb_breakify(text) {
  * @param {string} text Text of map link
  * @returns Formatted map button
  */
-function pcemb_mapify(text) {
-  const buttonLabel = wp.i18n.__("Map", "pretty-calendar-embeds");
+function hycal_mapify(text) {
+  const buttonLabel = wp.i18n.__("Map", "hydrogen-calendar-embeds");
   let footer = "";
   if (text) {
     footer += `<br /><a class="button pcemb-map-button" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURI(
@@ -265,8 +265,8 @@ function pcemb_mapify(text) {
  * @param {string} url
  * @returns formatted HTML url
  */
-function pcemb_addToGoogle(url) {
-  const buttonLabel = wp.i18n.__("Add to Google", "pretty-calendar-embeds");
+function hycal_addToGoogle(url) {
+  const buttonLabel = wp.i18n.__("Add to Google", "hydrogen-calendar-embeds");
   if (url) {
     return `<a class="button pcemb-add-to-google-button" href="${url}" target="_blank">${buttonLabel}</a>`;
   }
@@ -279,7 +279,7 @@ function pcemb_addToGoogle(url) {
  * @param {object} event FullCalendar event object
  * @returns {string} HTML with open event link, or empty string if no URL
  */
-function pcemb_openEventLink(event) {
+function hycal_openEventLink(event) {
   // Check for URL in event properties
   // ICS events may have URL in extendedProps or as event.url
   const eventUrl = event.extendedProps?.url || event.url;
@@ -289,8 +289,8 @@ function pcemb_openEventLink(event) {
     return "";
   }
 
-  const buttonLabel = wp.i18n.__("Open Event", "pretty-calendar-embeds");
-  const safeUrl = pcemb_escapeAttr(eventUrl);
+  const buttonLabel = wp.i18n.__("Open Event", "hydrogen-calendar-embeds");
+  const safeUrl = hycal_escapeAttr(eventUrl);
   return `<a class="button pcemb-open-event-button" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a>`;
 }
 
@@ -300,7 +300,7 @@ function pcemb_openEventLink(event) {
  * @param {object} event FullCalendar event object
  * @returns {string} HTML with download link
  */
-function pcemb_downloadEventICS(event) {
+function hycal_downloadEventICS(event) {
   // Sanitize text for iCalendar format
   const sanitize = (str) => {
     if (!str) return "";
@@ -334,7 +334,7 @@ function pcemb_downloadEventICS(event) {
   const endDate = event.endStr
     ? formatICSDate(event.endStr, event.allDay)
     : startDate;
-  const uid = `${event.id || "event"}@pretty-calendar-embeds`;
+  const uid = `${event.id || "event"}@hydrogen-calendar-embeds`;
 
   let ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Pretty Calendar Embeds//EN\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${formatICSDate(
     new Date().toISOString(),
@@ -357,7 +357,7 @@ function pcemb_downloadEventICS(event) {
   const filename = `${event.title || "event"}.ics`;
   const downloadLink = `data:text/calendar;charset=utf-8,${encodedICS}`;
 
-  const label = wp.i18n.__("Download (.ics)", "pretty-calendar-embeds");
+  const label = wp.i18n.__("Download (.ics)", "hydrogen-calendar-embeds");
   return `<a class="button pcemb-download-ics-button" href="${downloadLink}" download="${filename}">${label}</a>`;
 }
 
@@ -365,7 +365,7 @@ function pcemb_downloadEventICS(event) {
  * Merge arrays overriding arguments
  *
  */
-function pcemb_argmerge(defaults, override) {
+function hycal_argmerge(defaults, override) {
   // override = Array.isArray(atts) ? override : Object.assign({}, override);
   const out = {};
 
