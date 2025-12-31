@@ -27,7 +27,7 @@ class HYCAL_ICS_Proxy {
    *
    * @var string
    */
-  const REST_NAMESPACE = 'pcemb/v1';
+  const REST_NAMESPACE = 'hycal/v1';
 
   /**
    * Cache duration in seconds (15 minutes).

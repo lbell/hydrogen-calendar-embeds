@@ -1,9 +1,9 @@
-.pcemb-container {
+.hycal-container {
   --fc-event-text-color: inherit;
 }
 
 /* Remove empty bars above and below calendar */
-.pcemb-container table {
+.hycal-container table {
   margin: 0px;
   padding: 0px;
 }
@@ -28,7 +28,7 @@
   white-space: normal;
 }
 
-.pcemb-branding {
+.hycal-branding {
   color: grey;
   font-size: 70%;
   float: right;

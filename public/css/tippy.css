@@ -12,7 +12,7 @@
 }
 
 /* Tooltip header section with event title and time */
-.pcemb-event-title {
+.hycal-event-title {
   margin: 0;
   padding: 16px 48px 8px 20px;
   font-size: 16px;
@@ -22,7 +22,7 @@
   word-break: break-word;
 }
 
-.pcemb-event-time {
+.hycal-event-time {
   margin: 0;
   padding: 0 20px 4px 20px;
   font-size: 13px;
@@ -31,14 +31,14 @@
   gap: 4px;
 }
 
-.pcemb-event-location {
+.hycal-event-location {
   margin: 0;
   padding: 8px 20px 0 20px;
   font-size: 13px;
   color: #888;
 }
 
-.pcemb-event-location-link {
+.hycal-event-location-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -48,23 +48,23 @@
   transition: color 0.2s ease;
 }
 
-.pcemb-event-location-link:hover {
+.hycal-event-location-link:hover {
   color: #005a87;
   text-decoration: underline;
 }
 
-.pcemb-location-icon {
+.hycal-location-icon {
   flex-shrink: 0;
   color: #0073aa;
   transition: color 0.2s ease;
 }
 
-.pcemb-event-location-link:hover .pcemb-location-icon {
+.hycal-event-location-link:hover .hycal-location-icon {
   color: #005a87;
 }
 
 /* Event description */
-.pcemb-event-description {
+.hycal-event-description {
   margin: 0;
   padding: 12px 20px;
   font-size: 14px;
@@ -73,18 +73,18 @@
   border-top: 1px solid #e8e8e8;
 }
 
-.pcemb-event-description a {
+.hycal-event-description a {
   color: #0073aa;
   text-decoration: none;
   font-weight: 500;
 }
 
-.pcemb-event-description a:hover {
+.hycal-event-description a:hover {
   text-decoration: underline;
 }
 
 /* Action buttons */
-.pcemb-event-actions {
+.hycal-event-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -94,7 +94,7 @@
   justify-content: center;
 }
 
-.pcemb-event-actions .button {
+.hycal-event-actions .button {
   margin: 0;
   padding: 8px 16px;
   font-size: 13px;
@@ -109,41 +109,41 @@
   white-space: nowrap;
 }
 
-.pcemb-event-actions .button:hover {
+.hycal-event-actions .button:hover {
   background-color: #f5f5f5;
   border-color: #999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.pcemb-event-actions .button:active {
+.hycal-event-actions .button:active {
   transform: translateY(1px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* Specific button styling */
-.pcemb-map-button {
+.hycal-map-button {
   color: #d32f2f;
 }
 
-.pcemb-add-to-google-button {
+.hycal-add-to-google-button {
   color: #1f2937;
 }
 
-.pcemb-open-event-button {
+.hycal-open-event-button {
   color: #0073aa;
 }
 
-.pcemb-download-ics-button {
+.hycal-download-ics-button {
   color: #16a34a;
 }
 
 /* Close button */
-.pcemb-tooltip-close {
+.hycal-tooltip-close {
   opacity: 0.6;
   transition: opacity 0.2s ease;
 }
 
-.pcemb-tooltip-close:hover {
+.hycal-tooltip-close:hover {
   opacity: 1;
 }
 

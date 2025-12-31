@@ -52,7 +52,7 @@ Fires before calendar scripts are enqueued. Use to enqueue your own dependencies
 
 **Parameters:**
 
-- `$pcembSettings` (array) - The calendar settings array.
+- `$hycalSettings` (array) - The calendar settings array.
 
 **Example:**
 
@@ -70,7 +70,7 @@ Fires after core calendar scripts and styles are enqueued.
 
 **Parameters:**
 
-- `$pcembSettings` (array) - The calendar settings array.
+- `$hycalSettings` (array) - The calendar settings array.
 
 **Example:**
 
@@ -88,7 +88,7 @@ Fires before the calendar HTML output is generated.
 
 **Parameters:**
 
-- `$pcembSettings` (array) - The calendar settings array.
+- `$hycalSettings` (array) - The calendar settings array.
 
 ---
 
@@ -99,7 +99,7 @@ Fires after the calendar HTML output is generated.
 **Parameters:**
 
 - `$shortcode_output` (string) - The HTML output.
-- `$pcembSettings` (array) - The calendar settings array.
+- `$hycalSettings` (array) - The calendar settings array.
 
 ---
 
@@ -157,7 +157,7 @@ Filter the calendar settings before rendering. This is the final opportunity to 
 
 **Parameters:**
 
-- `$pcembSettings` (array) - The calendar settings array.
+- `$hycalSettings` (array) - The calendar settings array.
 - `$args` (array) - The processed shortcode attributes.
 
 **Returns:** (array) Modified settings.
@@ -183,7 +183,7 @@ Filter the calendar HTML output.
 **Parameters:**
 
 - `$shortcode_output` (string) - The HTML output.
-- `$pcembSettings` (array) - The calendar settings array.
+- `$hycalSettings` (array) - The calendar settings array.
 
 **Returns:** (string) Modified HTML output.
 
@@ -272,42 +272,42 @@ Filter ICS content before caching and returning.
 
 ## JavaScript Hooks
 
-The JavaScript hooks system is available via the global `pcembHooks` object.
+The JavaScript hooks system is available via the global `hycalHooks` object.
 
 ### JS Actions
 
-#### `pcemb.beforeRender`
+#### `hycal.beforeRender`
 
 Fires before the calendar starts rendering.
 
 **Parameters:**
 
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Example:**
 
 ```javascript
-pcembHooks.addAction("pcemb.beforeRender", function (settings) {
+hycalHooks.addAction("hycal.beforeRender", function (settings) {
   console.log("Calendar about to render:", settings.instance_id);
 });
 ```
 
 ---
 
-#### `pcemb.afterRender`
+#### `hycal.afterRender`
 
 Fires after the calendar has rendered. Use to access the FullCalendar instance.
 
 **Parameters:**
 
 - `calendar` (object) - The FullCalendar instance.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 - `calendarEl` (Element) - The calendar DOM element.
 
 **Example:**
 
 ```javascript
-pcembHooks.addAction("pcemb.afterRender", function (calendar, settings, el) {
+hycalHooks.addAction("hycal.afterRender", function (calendar, settings, el) {
   // Store reference for later use
   window.myCalendar = calendar;
 
@@ -320,20 +320,20 @@ pcembHooks.addAction("pcemb.afterRender", function (calendar, settings, el) {
 
 ---
 
-#### `pcemb.eventDidMount`
+#### `hycal.eventDidMount`
 
 Fires after each event element is added to the DOM.
 
 **Parameters:**
 
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 - `currCal` (string) - The calendar container ID.
 
 **Example:**
 
 ```javascript
-pcembHooks.addAction("pcemb.eventDidMount", function (info, settings, calId) {
+hycalHooks.addAction("hycal.eventDidMount", function (info, settings, calId) {
   // Add custom data attribute
   info.el.dataset.eventId = info.event.id;
 
@@ -346,7 +346,7 @@ pcembHooks.addAction("pcemb.eventDidMount", function (info, settings, calId) {
 
 ---
 
-#### `pcemb.tooltipShow`
+#### `hycal.tooltipShow`
 
 Fires when a tooltip is shown.
 
@@ -354,12 +354,12 @@ Fires when a tooltip is shown.
 
 - `instance` (object) - The Tippy.js instance.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Example:**
 
 ```javascript
-pcembHooks.addAction("pcemb.tooltipShow", function (instance, info, settings) {
+hycalHooks.addAction("hycal.tooltipShow", function (instance, info, settings) {
   // Track tooltip views
   console.log("Tooltip shown for event:", info.event.title);
 });
@@ -367,7 +367,7 @@ pcembHooks.addAction("pcemb.tooltipShow", function (instance, info, settings) {
 
 ---
 
-#### `pcemb.tooltipHide`
+#### `hycal.tooltipHide`
 
 Fires when a tooltip is hidden.
 
@@ -375,26 +375,26 @@ Fires when a tooltip is hidden.
 
 - `instance` (object) - The Tippy.js instance.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 ---
 
 ### JS Filters
 
-#### `pcemb.settings`
+#### `hycal.settings`
 
 Filter the calendar settings before processing.
 
 **Parameters:**
 
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Returns:** (object) Modified settings.
 
 **Example:**
 
 ```javascript
-pcembHooks.addFilter("pcemb.settings", function (settings) {
+hycalHooks.addFilter("hycal.settings", function (settings) {
   // Modify settings
   settings.customOption = "value";
   return settings;
@@ -403,23 +403,23 @@ pcembHooks.addFilter("pcemb.settings", function (settings) {
 
 ---
 
-#### `pcemb.fullcalendarOptions`
+#### `hycal.fullcalendarOptions`
 
 Filter the FullCalendar options before initialization.
 
 **Parameters:**
 
-- `pcembArgs` (object) - The merged FullCalendar options.
-- `pcembSettings` (object) - The calendar settings.
-- `pcembDefaults` (object) - The default options.
+- `hycalArgs` (object) - The merged FullCalendar options.
+- `hycalSettings` (object) - The calendar settings.
+- `hycalDefaults` (object) - The default options.
 
 **Returns:** (object) Modified FullCalendar options.
 
 **Example:**
 
 ```javascript
-pcembHooks.addFilter(
-  "pcemb.fullcalendarOptions",
+hycalHooks.addFilter(
+  "hycal.fullcalendarOptions",
   function (options, settings, defaults) {
     // Add custom event rendering
     options.eventContent = function (arg) {
@@ -432,7 +432,7 @@ pcembHooks.addFilter(
 
 ---
 
-#### `pcemb.tooltipHeader`
+#### `hycal.tooltipHeader`
 
 Filter the tooltip header HTML (title, time, location).
 
@@ -440,13 +440,13 @@ Filter the tooltip header HTML (title, time, location).
 
 - `headerHtml` (string) - The header HTML.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Returns:** (string) Modified header HTML.
 
 ---
 
-#### `pcemb.tooltipDescription`
+#### `hycal.tooltipDescription`
 
 Filter the tooltip description HTML.
 
@@ -454,13 +454,13 @@ Filter the tooltip description HTML.
 
 - `descriptionHtml` (string) - The description HTML.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Returns:** (string) Modified description HTML.
 
 ---
 
-#### `pcemb.tooltipActions`
+#### `hycal.tooltipActions`
 
 Filter the array of action buttons in the tooltip.
 
@@ -468,15 +468,15 @@ Filter the array of action buttons in the tooltip.
 
 - `actions` (array) - Array of HTML strings for action buttons.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Returns:** (array) Modified array of action HTML strings.
 
 **Example:**
 
 ```javascript
-pcembHooks.addFilter(
-  "pcemb.tooltipActions",
+hycalHooks.addFilter(
+  "hycal.tooltipActions",
   function (actions, info, settings) {
     // Add a custom button
     actions.push(
@@ -491,7 +491,7 @@ pcembHooks.addFilter(
 
 ---
 
-#### `pcemb.tooltipContent`
+#### `hycal.tooltipContent`
 
 Filter the complete tooltip content before rendering. This is the final filter for tooltip HTML.
 
@@ -499,15 +499,15 @@ Filter the complete tooltip content before rendering. This is the final filter f
 
 - `toolContent` (string) - The complete tooltip HTML.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Returns:** (string) Modified tooltip HTML.
 
 **Example:**
 
 ```javascript
-pcembHooks.addFilter(
-  "pcemb.tooltipContent",
+hycalHooks.addFilter(
+  "hycal.tooltipContent",
   function (content, info, settings) {
     // Add a photo section
     const photoUrl = info.event.extendedProps.photoUrl;
@@ -521,7 +521,7 @@ pcembHooks.addFilter(
 
 ---
 
-#### `pcemb.tippyOptions`
+#### `hycal.tippyOptions`
 
 Filter the Tippy.js options before creating the tooltip.
 
@@ -529,14 +529,14 @@ Filter the Tippy.js options before creating the tooltip.
 
 - `options` (object) - The Tippy.js options object.
 - `info` (object) - FullCalendar event info object.
-- `pcembSettings` (object) - The calendar settings.
+- `hycalSettings` (object) - The calendar settings.
 
 **Returns:** (object) Modified Tippy.js options.
 
 **Example:**
 
 ```javascript
-pcembHooks.addFilter("pcemb.tippyOptions", function (options, info, settings) {
+hycalHooks.addFilter("hycal.tippyOptions", function (options, info, settings) {
   // Change tooltip theme based on event type
   if (info.event.extendedProps.type === "holiday") {
     options.theme = "holiday";
@@ -564,28 +564,28 @@ This example shows how to add photos to event tooltips using the description fie
 
 add_action( 'hycal_enqueue_scripts', function( $settings ) {
     wp_enqueue_script(
-        'pcemb-photos',
-        plugin_dir_url( __FILE__ ) . 'pcemb-photos.js',
+        'hycal-photos',
+        plugin_dir_url( __FILE__ ) . 'hycal-photos.js',
         array( 'hycal_loader' ),
         '1.0.0',
         true
     );
 
     wp_enqueue_style(
-        'pcemb-photos',
-        plugin_dir_url( __FILE__ ) . 'pcemb-photos.css',
+        'hycal-photos',
+        plugin_dir_url( __FILE__ ) . 'hycal-photos.css',
         array(),
         '1.0.0'
     );
 });
 ```
 
-**JavaScript (pcemb-photos.js):**
+**JavaScript (hycal-photos.js):**
 
 ```javascript
 // Add photo to tooltip content
-pcembHooks.addFilter(
-  "pcemb.tooltipContent",
+hycalHooks.addFilter(
+  "hycal.tooltipContent",
   function (content, info, settings) {
     // Look for image URL in description (format: [photo:URL])
     const desc = info.event.extendedProps.description || "";
@@ -594,7 +594,7 @@ pcembHooks.addFilter(
     if (photoMatch) {
       const photoUrl = photoMatch[1];
       const photoHtml =
-        '<div class="pcemb-event-photo"><img src="' +
+        '<div class="hycal-event-photo"><img src="' +
         photoUrl +
         '" alt="Event photo" /></div>';
 
@@ -608,13 +608,13 @@ pcembHooks.addFilter(
 );
 ```
 
-**CSS (pcemb-photos.css):**
+**CSS (hycal-photos.css):**
 
 ```css
-.pcemb-event-photo {
+.hycal-event-photo {
   margin: 10px 0;
 }
-.pcemb-event-photo img {
+.hycal-event-photo img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
@@ -628,14 +628,14 @@ pcembHooks.addFilter(
 This example adds Apple Calendar and Outlook download options.
 
 ```javascript
-pcembHooks.addFilter(
-  "pcemb.tooltipActions",
+hycalHooks.addFilter(
+  "hycal.tooltipActions",
   function (actions, info, settings) {
     const event = info.event;
 
     // Create Apple Calendar link (uses same ICS format)
     const appleCalHtml =
-      '<a class="button pcemb-apple-cal" href="' +
+      '<a class="button hycal-apple-cal" href="' +
       createICSDataUrl(event) +
       '" download="' +
       event.title +
@@ -652,7 +652,7 @@ pcembHooks.addFilter(
       (event.endStr || event.startStr);
 
     const outlookHtml =
-      '<a class="button pcemb-outlook" href="' +
+      '<a class="button hycal-outlook" href="' +
       outlookUrl +
       '" target="_blank">Outlook</a>';
 
@@ -730,7 +730,7 @@ class My_HYCAL_Extension {
 
     public function version_notice() {
         echo '<div class="notice notice-error"><p>';
-        echo esc_html__( 'My PCEMB Extension requires Pretty Calendar Embeds 1.0.0 or higher.', 'my-pcemb-ext' );
+        echo esc_html__( 'My PCEMB Extension requires Pretty Calendar Embeds 1.0.0 or higher.', 'my-hycal-ext' );
         echo '</p></div>';
     }
 
@@ -749,7 +749,7 @@ class My_HYCAL_Extension {
 
     public function enqueue_scripts( $settings ) {
         wp_enqueue_script(
-            'my-pcemb-ext',
+            'my-hycal-ext',
             plugin_dir_url( __FILE__ ) . 'assets/js/extension.js',
             array( 'hycal_helpers', 'hycal_loader' ),
             '1.0.0',
@@ -769,13 +769,13 @@ My_HYCAL_Extension::get_instance();
   "use strict";
 
   // Check if hooks system is available
-  if (typeof pcembHooks === "undefined") {
+  if (typeof hycalHooks === "undefined") {
     console.error("PCEMB hooks system not available");
     return;
   }
 
   // Your extension code
-  pcembHooks.addAction("pcemb.afterRender", function (calendar, settings, el) {
+  hycalHooks.addAction("hycal.afterRender", function (calendar, settings, el) {
     if (settings.my_extension && settings.my_extension.enabled) {
       // Extension functionality here
       console.log("My extension is active!");
@@ -800,8 +800,8 @@ add_filter( 'hycal_settings', 'my_other_function', 20 ); // Runs late
 **JavaScript:**
 
 ```javascript
-pcembHooks.addFilter("pcemb.settings", myFunction, 5); // Runs early
-pcembHooks.addFilter("pcemb.settings", myOtherFunction, 20); // Runs late
+hycalHooks.addFilter("hycal.settings", myFunction, 5); // Runs early
+hycalHooks.addFilter("hycal.settings", myOtherFunction, 20); // Runs late
 ```
 
 ---
@@ -818,8 +818,8 @@ remove_action( 'hycal_after_render', 'function_to_remove' );
 **JavaScript:**
 
 ```javascript
-pcembHooks.removeFilter("pcemb.settings", functionToRemove);
-pcembHooks.removeAction("pcemb.afterRender", functionToRemove);
+hycalHooks.removeFilter("hycal.settings", functionToRemove);
+hycalHooks.removeAction("hycal.afterRender", functionToRemove);
 ```
 
 ---

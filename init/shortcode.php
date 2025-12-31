@@ -51,25 +51,25 @@ function hycal_shortcode($atts) {
   $args = apply_filters('hycal_shortcode_attributes', $args, $atts, $defaults);
 
   // Prepare settings from shortcode attributes
-  $pcembSettings = $args;
-  $pcembSettings["instance_id"] = preg_replace('/[\W]/', '', $pcembSettings["instance_id"]);
+  $hycalSettings = $args;
+  $hycalSettings["instance_id"] = preg_replace('/[\W]/', '', $hycalSettings["instance_id"]);
 
   // Auto-resolve initial_view based on views (validate it's in the list, or pick smartly)
-  $pcembSettings['initial_view'] = hycal_resolve_initial_view($pcembSettings['views'], $pcembSettings['initial_view']);
+  $hycalSettings['initial_view'] = hycal_resolve_initial_view($hycalSettings['views'], $hycalSettings['initial_view']);
 
   // Sanitize ICS URLs if provided (basic cleanup, server validates fully)
-  if (!empty($pcembSettings['ics'])) {
+  if (!empty($hycalSettings['ics'])) {
     // Remove any leading/trailing whitespace and extra commas
-    $pcembSettings['ics'] = preg_replace('/,\s*,/', ',', trim($pcembSettings['ics'], ", \t\n\r"));
+    $hycalSettings['ics'] = preg_replace('/,\s*,/', ',', trim($hycalSettings['ics'], ", \t\n\r"));
   }
 
   // Decode fc_args bracket placeholders to allow square brackets in JSON
-  if (!empty($pcembSettings['fc_args']) && $pcembSettings['fc_args'] !== '{}') {
-    $pcembSettings['fc_args'] = hycal_decode_fc_args_brackets($pcembSettings['fc_args']);
+  if (!empty($hycalSettings['fc_args']) && $hycalSettings['fc_args'] !== '{}') {
+    $hycalSettings['fc_args'] = hycal_decode_fc_args_brackets($hycalSettings['fc_args']);
   }
 
   // Provide REST API URL for ICS proxy
-  $pcembSettings['rest_url'] = esc_url_raw(rest_url('pcemb/v1/ics-proxy'));
+  $hycalSettings['rest_url'] = esc_url_raw(rest_url('hycal/v1/ics-proxy'));
 
   /**
    * Filters the calendar settings before rendering.
@@ -80,10 +80,10 @@ function hycal_shortcode($atts) {
    *
    * @since 1.0.0
    *
-   * @param array $pcembSettings The calendar settings array.
+   * @param array $hycalSettings The calendar settings array.
    * @param array $args          The processed shortcode attributes.
    */
-  $pcembSettings = apply_filters('hycal_settings', $pcembSettings, $args);
+  $hycalSettings = apply_filters('hycal_settings', $hycalSettings, $args);
 
   /**
    * Fires before calendar scripts are enqueued.
@@ -93,9 +93,9 @@ function hycal_shortcode($atts) {
    *
    * @since 1.0.0
    *
-   * @param array $pcembSettings The calendar settings array.
+   * @param array $hycalSettings The calendar settings array.
    */
-  do_action('hycal_before_enqueue_scripts', $pcembSettings);
+  do_action('hycal_before_enqueue_scripts', $hycalSettings);
 
   // Load hooks system first (required by other scripts)
   wp_enqueue_script('hycal_hooks');
@@ -103,16 +103,16 @@ function hycal_shortcode($atts) {
   wp_enqueue_script('fullcalendar');
 
   // Load iCalendar plugin if using ics attribute
-  if (!empty($pcembSettings['ics'])) {
+  if (!empty($hycalSettings['ics'])) {
     wp_enqueue_script('ical_js');
     wp_enqueue_script('fc_icalendar');
   }
 
-  if ($pcembSettings['locale'] !== "en") {
+  if ($hycalSettings['locale'] !== "en") {
     wp_enqueue_script('fc_locales');
   }
 
-  if ($pcembSettings['use_tooltip'] === "true") {
+  if ($hycalSettings['use_tooltip'] === "true") {
     wp_enqueue_script('popper');
     wp_enqueue_script('tippy');
     wp_enqueue_script('hycal_tippy');
@@ -138,11 +138,11 @@ function hycal_shortcode($atts) {
    *
    * @since 1.0.0
    *
-   * @param array $pcembSettings The calendar settings array.
+   * @param array $hycalSettings The calendar settings array.
    */
-  do_action('hycal_enqueue_scripts', $pcembSettings);
+  do_action('hycal_enqueue_scripts', $hycalSettings);
 
-  $script = "document.addEventListener('DOMContentLoaded', function() { hycal_render_calendar(" . wp_json_encode($pcembSettings) . "); });";
+  $script = "document.addEventListener('DOMContentLoaded', function() { hycal_render_calendar(" . wp_json_encode($hycalSettings) . "); });";
   wp_add_inline_script('hycal_loader', $script);
 
   /**
@@ -150,13 +150,13 @@ function hycal_shortcode($atts) {
    *
    * @since 1.0.0
    *
-   * @param array $pcembSettings The calendar settings array.
+   * @param array $hycalSettings The calendar settings array.
    */
-  do_action('hycal_before_render', $pcembSettings);
+  do_action('hycal_before_render', $hycalSettings);
 
   $shortcode_output = "
-  <div id='pcemb-" . esc_attr($pcembSettings["instance_id"]) . "' class='pcemb-container'>" . esc_html__("loading...", "hydrogen-calendar-embeds") . "</div>
-  <div class='pcemb-branding'>" . esc_html__("Powered by", "hydrogen-calendar-embeds") . " <a href='https://wordpress.org/plugins/hydrogen-calendar-embeds/'>Pretty Calendar Embeds</a></div>
+  <div id='hycal-" . esc_attr($hycalSettings["instance_id"]) . "' class='hycal-container'>" . esc_html__("loading...", "hydrogen-calendar-embeds") . "</div>
+  <div class='hycal-branding'>" . esc_html__("Powered by", "hydrogen-calendar-embeds") . " <a href='https://wordpress.org/plugins/hydrogen-calendar-embeds/'>Pretty Calendar Embeds</a></div>
   ";
 
   /**
@@ -167,9 +167,9 @@ function hycal_shortcode($atts) {
    * @since 1.0.0
    *
    * @param string $shortcode_output The HTML output.
-   * @param array  $pcembSettings    The calendar settings array.
+   * @param array  $hycalSettings    The calendar settings array.
    */
-  $shortcode_output = apply_filters('hycal_shortcode_output', $shortcode_output, $pcembSettings);
+  $shortcode_output = apply_filters('hycal_shortcode_output', $shortcode_output, $hycalSettings);
 
   /**
    * Fires after the calendar HTML output is generated.
@@ -177,9 +177,9 @@ function hycal_shortcode($atts) {
    * @since 1.0.0
    *
    * @param string $shortcode_output The HTML output.
-   * @param array  $pcembSettings    The calendar settings array.
+   * @param array  $hycalSettings    The calendar settings array.
    */
-  do_action('hycal_after_render', $shortcode_output, $pcembSettings);
+  do_action('hycal_after_render', $shortcode_output, $hycalSettings);
 
   return $shortcode_output;
 }

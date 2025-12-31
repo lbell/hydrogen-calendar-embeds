@@ -48,7 +48,7 @@ function hycal_resolve_cals(settings) {
       calArgs.push({
         url: proxyUrl,
         format: "ics",
-        className: `pcemb-event-${identifier} pcemb-calendar-${identifier}-event pcemb-ics-event`,
+        className: `hycal-event-${identifier} hycal-calendar-${identifier}-event hycal-ics-event`,
       });
       calIndex++;
     }
@@ -252,7 +252,7 @@ function hycal_mapify(text) {
   const buttonLabel = wp.i18n.__("Map", "hydrogen-calendar-embeds");
   let footer = "";
   if (text) {
-    footer += `<br /><a class="button pcemb-map-button" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURI(
+    footer += `<br /><a class="button hycal-map-button" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURI(
       text
     )}">${buttonLabel}</a>`;
   }
@@ -268,7 +268,7 @@ function hycal_mapify(text) {
 function hycal_addToGoogle(url) {
   const buttonLabel = wp.i18n.__("Add to Google", "hydrogen-calendar-embeds");
   if (url) {
-    return `<a class="button pcemb-add-to-google-button" href="${url}" target="_blank">${buttonLabel}</a>`;
+    return `<a class="button hycal-add-to-google-button" href="${url}" target="_blank">${buttonLabel}</a>`;
   }
 }
 
@@ -291,7 +291,7 @@ function hycal_openEventLink(event) {
 
   const buttonLabel = wp.i18n.__("Open Event", "hydrogen-calendar-embeds");
   const safeUrl = hycal_escapeAttr(eventUrl);
-  return `<a class="button pcemb-open-event-button" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a>`;
+  return `<a class="button hycal-open-event-button" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a>`;
 }
 
 /**
@@ -358,7 +358,7 @@ function hycal_downloadEventICS(event) {
   const downloadLink = `data:text/calendar;charset=utf-8,${encodedICS}`;
 
   const label = wp.i18n.__("Download (.ics)", "hydrogen-calendar-embeds");
-  return `<a class="button pcemb-download-ics-button" href="${downloadLink}" download="${filename}">${label}</a>`;
+  return `<a class="button hycal-download-ics-button" href="${downloadLink}" download="${filename}">${label}</a>`;
 }
 
 /**

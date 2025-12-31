@@ -338,11 +338,11 @@ export default function Edit({ attributes, setAttributes }) {
 
   return (
     <div {...blockProps}>
-      <div className="pcemb-inline-editor">
+      <div className="hycal-inline-editor">
         {/* Header */}
-        <div className="pcemb-inline-editor__header">
+        <div className="hycal-inline-editor__header">
           <svg
-            className="pcemb-inline-editor__header-icon"
+            className="hycal-inline-editor__header-icon"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -397,16 +397,16 @@ export default function Edit({ attributes, setAttributes }) {
               fill="currentColor"
             />
           </svg>
-          <span className="pcemb-inline-editor__title">
+          <span className="hycal-inline-editor__title">
             {__("Pretty Calendar Embeds", "hydrogen-calendar-embeds")}
           </span>
         </div>
 
         {/* Calendar Source - Always visible and prominent */}
-        <div className="pcemb-inline-editor__section pcemb-inline-editor__section--primary">
-          <div className="pcemb-inline-editor__section-header">
+        <div className="hycal-inline-editor__section hycal-inline-editor__section--primary">
+          <div className="hycal-inline-editor__section-header">
             <svg
-              className="pcemb-inline-editor__section-icon"
+              className="hycal-inline-editor__section-icon"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -417,21 +417,21 @@ export default function Edit({ attributes, setAttributes }) {
               <rect x="3" y="4" width="18" height="18" rx="2" />
               <path d="M16 2v4M8 2v4M3 10h18" />
             </svg>
-            <span className="pcemb-inline-editor__section-title">
+            <span className="hycal-inline-editor__section-title">
               {__("Calendar Source", "hydrogen-calendar-embeds")}
             </span>
           </div>
 
-          <div className="pcemb-inline-editor__calendars">
+          <div className="hycal-inline-editor__calendars">
             {hasSource ? (
               <>
-                <div className="pcemb-inline-editor__calendar-count">
+                <div className="hycal-inline-editor__calendar-count">
                   {calendarCount === 1
                     ? __("1 calendar configured", "hydrogen-calendar-embeds")
                     : calendarCount +
                       __(" calendars configured", "hydrogen-calendar-embeds")}
                 </div>
-                <div className="pcemb-inline-editor__calendar-urls">
+                <div className="hycal-inline-editor__calendar-urls">
                   {ics
                     .split(",")
                     .map((url) => url.trim())
@@ -439,7 +439,7 @@ export default function Edit({ attributes, setAttributes }) {
                     .map((url, index) => (
                       <div
                         key={index}
-                        className="pcemb-inline-editor__calendar-url"
+                        className="hycal-inline-editor__calendar-url"
                       >
                         {url.length > 60
                           ? url.substring(0, 30) +
@@ -451,7 +451,7 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
               </>
             ) : (
-              <div className="pcemb-inline-editor__no-source">
+              <div className="hycal-inline-editor__no-source">
                 {__(
                   "No calendar source configured yet.",
                   "hydrogen-calendar-embeds"
@@ -461,7 +461,7 @@ export default function Edit({ attributes, setAttributes }) {
             <Button
               variant={hasSource ? "secondary" : "primary"}
               onClick={openIcsModal}
-              className="pcemb-inline-editor__add-btn"
+              className="hycal-inline-editor__add-btn"
             >
               {hasSource
                 ? __("Edit Calendar URLs", "hydrogen-calendar-embeds")
@@ -471,14 +471,14 @@ export default function Edit({ attributes, setAttributes }) {
         </div>
 
         {/* Views Section - Collapsible */}
-        <div className="pcemb-inline-editor__section">
+        <div className="hycal-inline-editor__section">
           <button
-            className="pcemb-inline-editor__section-toggle"
+            className="hycal-inline-editor__section-toggle"
             onClick={() => setShowViews(!showViews)}
             type="button"
           >
             <svg
-              className="pcemb-inline-editor__section-icon"
+              className="hycal-inline-editor__section-icon"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -489,18 +489,18 @@ export default function Edit({ attributes, setAttributes }) {
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
               <circle cx="12" cy="12" r="3" />
             </svg>
-            <span className="pcemb-inline-editor__section-title">
+            <span className="hycal-inline-editor__section-title">
               {__("Views", "hydrogen-calendar-embeds")}
             </span>
-            <span className="pcemb-inline-editor__section-summary">
+            <span className="hycal-inline-editor__section-summary">
               {selectedViews.length > 0
                 ? selectedViews.length +
                   (selectedViews.length === 1 ? " view" : " views")
                 : "Default"}
             </span>
             <span
-              className={`pcemb-inline-editor__chevron ${
-                showViews ? "pcemb-inline-editor__chevron--open" : ""
+              className={`hycal-inline-editor__chevron ${
+                showViews ? "hycal-inline-editor__chevron--open" : ""
               }`}
             >
               ▶
@@ -508,8 +508,8 @@ export default function Edit({ attributes, setAttributes }) {
           </button>
 
           {showViews && (
-            <div className="pcemb-inline-editor__section-content">
-              <div className="pcemb-inline-editor__views-grid">
+            <div className="hycal-inline-editor__section-content">
+              <div className="hycal-inline-editor__views-grid">
                 {allViewOptions.map((option) => (
                   <CheckboxControl
                     key={option.value}
@@ -577,7 +577,7 @@ export default function Edit({ attributes, setAttributes }) {
               )}
 
               {selectedViews.includes("listCustom") && (
-                <div className="pcemb-inline-editor__custom-list">
+                <div className="hycal-inline-editor__custom-list">
                   <TextControl
                     label={__("Custom List Days", "hydrogen-calendar-embeds")}
                     value={customDays}
@@ -601,14 +601,14 @@ export default function Edit({ attributes, setAttributes }) {
         </div>
 
         {/* Display Settings - Collapsible */}
-        <div className="pcemb-inline-editor__section">
+        <div className="hycal-inline-editor__section">
           <button
-            className="pcemb-inline-editor__section-toggle"
+            className="hycal-inline-editor__section-toggle"
             onClick={() => setShowDisplay(!showDisplay)}
             type="button"
           >
             <svg
-              className="pcemb-inline-editor__section-icon"
+              className="hycal-inline-editor__section-icon"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -619,15 +619,15 @@ export default function Edit({ attributes, setAttributes }) {
               <rect x="2" y="3" width="20" height="14" rx="2" />
               <path d="M2 17h20M6 21h12" />
             </svg>
-            <span className="pcemb-inline-editor__section-title">
+            <span className="hycal-inline-editor__section-title">
               {__("Display", "hydrogen-calendar-embeds")}
             </span>
-            <span className="pcemb-inline-editor__section-summary">
+            <span className="hycal-inline-editor__section-summary">
               {localeOptions.find((l) => l.value === locale)?.label || locale}
             </span>
             <span
-              className={`pcemb-inline-editor__chevron ${
-                showDisplay ? "pcemb-inline-editor__chevron--open" : ""
+              className={`hycal-inline-editor__chevron ${
+                showDisplay ? "hycal-inline-editor__chevron--open" : ""
               }`}
             >
               ▶
@@ -635,7 +635,7 @@ export default function Edit({ attributes, setAttributes }) {
           </button>
 
           {showDisplay && (
-            <div className="pcemb-inline-editor__section-content">
+            <div className="hycal-inline-editor__section-content">
               <SelectControl
                 label={__("Locale", "hydrogen-calendar-embeds")}
                 value={locale}
@@ -667,14 +667,14 @@ export default function Edit({ attributes, setAttributes }) {
         </div>
 
         {/* Advanced / Developer - Collapsible */}
-        <div className="pcemb-inline-editor__section">
+        <div className="hycal-inline-editor__section">
           <button
-            className="pcemb-inline-editor__section-toggle"
+            className="hycal-inline-editor__section-toggle"
             onClick={() => setShowAdvanced(!showAdvanced)}
             type="button"
           >
             <svg
-              className="pcemb-inline-editor__section-icon"
+              className="hycal-inline-editor__section-icon"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -684,15 +684,15 @@ export default function Edit({ attributes, setAttributes }) {
             >
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 1 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
             </svg>
-            <span className="pcemb-inline-editor__section-title">
+            <span className="hycal-inline-editor__section-title">
               {__("Advanced", "hydrogen-calendar-embeds")}
             </span>
-            <span className="pcemb-inline-editor__section-summary">
+            <span className="hycal-inline-editor__section-summary">
               {fcArgs && fcArgs !== "{}" ? "Custom JSON" : ""}
             </span>
             <span
-              className={`pcemb-inline-editor__chevron ${
-                showAdvanced ? "pcemb-inline-editor__chevron--open" : ""
+              className={`hycal-inline-editor__chevron ${
+                showAdvanced ? "hycal-inline-editor__chevron--open" : ""
               }`}
             >
               ▶
@@ -700,7 +700,7 @@ export default function Edit({ attributes, setAttributes }) {
           </button>
 
           {showAdvanced && (
-            <div className="pcemb-inline-editor__section-content">
+            <div className="hycal-inline-editor__section-content">
               <TextControl
                 label={__("Calendar Identifiers", "hydrogen-calendar-embeds")}
                 help={__(
@@ -714,11 +714,11 @@ export default function Edit({ attributes, setAttributes }) {
 
               {/* Display cal_id mappings */}
               {hasSource && (
-                <div className="pcemb-inline-editor__cal-ids-mapping">
+                <div className="hycal-inline-editor__cal-ids-mapping">
                   <p className="components-base-control__label">
                     {__("Calendar Prefix Mapping", "hydrogen-calendar-embeds")}
                   </p>
-                  <div className="pcemb-inline-editor__cal-ids-list">
+                  <div className="hycal-inline-editor__cal-ids-list">
                     {ics
                       .split(",")
                       .map((url) => url.trim())
@@ -734,12 +734,12 @@ export default function Edit({ attributes, setAttributes }) {
                         return (
                           <div
                             key={index}
-                            className="pcemb-inline-editor__cal-id-item"
+                            className="hycal-inline-editor__cal-id-item"
                           >
-                            <span className="pcemb-inline-editor__cal-id-prefix">
+                            <span className="hycal-inline-editor__cal-id-prefix">
                               {calId}
                             </span>
-                            <span className="pcemb-inline-editor__cal-id-url">
+                            <span className="hycal-inline-editor__cal-id-url">
                               {url.length > 50
                                 ? url.substring(0, 25) +
                                   "…" +
@@ -753,7 +753,7 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
               )}
 
-              <div className="pcemb-inline-editor__fc-args">
+              <div className="hycal-inline-editor__fc-args">
                 <p className="components-base-control__label">
                   {__(
                     "Custom FullCalendar Settings",
@@ -761,7 +761,7 @@ export default function Edit({ attributes, setAttributes }) {
                   )}
                 </p>
                 {fcArgs && fcArgs !== "{}" && (
-                  <pre className="pcemb-inline-editor__fc-args-preview">
+                  <pre className="hycal-inline-editor__fc-args-preview">
                     {formatJsonForDisplay(fcArgs)}
                   </pre>
                 )}
@@ -773,7 +773,7 @@ export default function Edit({ attributes, setAttributes }) {
               </div>
 
               {/* Copy Shortcode */}
-              <div className="pcemb-inline-editor__copy-shortcode">
+              <div className="hycal-inline-editor__copy-shortcode">
                 <p className="components-base-control__label">
                   {__("Shortcode", "hydrogen-calendar-embeds")}
                 </p>
@@ -799,7 +799,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         {/* Footer info */}
         {hasSource && (
-          <div className="pcemb-inline-editor__footer">
+          <div className="hycal-inline-editor__footer">
             {__(
               "Calendar will render on the frontend",
               "hydrogen-calendar-embeds"
@@ -813,9 +813,9 @@ export default function Edit({ attributes, setAttributes }) {
         <Modal
           title={__("ICS Calendar URLs", "hydrogen-calendar-embeds")}
           onRequestClose={() => setIsIcsModalOpen(false)}
-          className="pcemb-modal"
+          className="hycal-modal"
         >
-          <div className="pcemb-modal__content">
+          <div className="hycal-modal__content">
             <p>
               {__(
                 "Enter one ICS calendar URL per line.",
@@ -823,7 +823,7 @@ export default function Edit({ attributes, setAttributes }) {
               )}
             </p>
             <textarea
-              className="pcemb-modal__textarea"
+              className="hycal-modal__textarea"
               value={icsEditorValue}
               onChange={(e) => setIcsEditorValue(e.target.value)}
               placeholder={`https://calendar.google.com/calendar/ical/example/public/basic.ics
@@ -831,7 +831,7 @@ https://example.com/events.ics`}
               rows={8}
               spellCheck={false}
             />
-            <div className="pcemb-modal__actions">
+            <div className="hycal-modal__actions">
               <Button
                 variant="secondary"
                 onClick={() => setIsIcsModalOpen(false)}
@@ -851,9 +851,9 @@ https://example.com/events.ics`}
         <Modal
           title={__("Custom FullCalendar Settings", "hydrogen-calendar-embeds")}
           onRequestClose={() => setIsFcArgsModalOpen(false)}
-          className="pcemb-modal pcemb-modal--large"
+          className="hycal-modal hycal-modal--large"
         >
-          <div className="pcemb-modal__content">
+          <div className="hycal-modal__content">
             <p>
               {__(
                 "Enter valid JSON to pass directly to FullCalendar.",
@@ -861,7 +861,7 @@ https://example.com/events.ics`}
               )}
             </p>
             <textarea
-              className="pcemb-modal__textarea pcemb-modal__textarea--code"
+              className="hycal-modal__textarea hycal-modal__textarea--code"
               value={fcArgsEditorValue}
               onChange={(e) => setFcArgsEditorValue(e.target.value)}
               placeholder={`{
@@ -876,7 +876,7 @@ https://example.com/events.ics`}
               rows={15}
               spellCheck={false}
             />
-            <div className="pcemb-modal__actions">
+            <div className="hycal-modal__actions">
               <Button
                 variant="secondary"
                 onClick={() => setIsFcArgsModalOpen(false)}

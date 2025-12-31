@@ -61,7 +61,7 @@ Examples:
 - Any ICS: `[pretty_calendar_embeds ics="https://example.com/events.ics"]`
 
 `cal_ids="identifier,identifier"`
-Optional custom CSS identifiers for each calendar. Allows using meaningful names instead of numeric indexes for styling. Example: `cal_ids="soccer,baseball"` generates classes like `.pcemb-calendar-soccer` and `.pcemb-calendar-baseball`. Identifiers should be lowercase alphanumeric with hyphens.
+Optional custom CSS identifiers for each calendar. Allows using meaningful names instead of numeric indexes for styling. Example: `cal_ids="soccer,baseball"` generates classes like `.hycal-calendar-soccer` and `.hycal-calendar-baseball`. Identifiers should be lowercase alphanumeric with hyphens.
 Defaults to numeric indexes (0, 1, 2, etc.)
 
 `locale="en"`
@@ -140,13 +140,13 @@ No. All calendar events are maintained via your calendar source (Google Calendar
 
 = How do I style multiple calendars? =
 
-Each calendar gets its own CSS selector: `pcemb-event-#` where the # is the order of the listed calendar (starting with 0). So if you have two calendars in one, you can use `pcemb-event-0` to style the first, and `pcemb-event-1` to style the second calendar.
+Each calendar gets its own CSS selector: `hycal-event-#` where the # is the order of the listed calendar (starting with 0). So if you have two calendars in one, you can use `hycal-event-0` to style the first, and `hycal-event-1` to style the second calendar.
 
 If you use the `cal_ids` argument to set custom identifiers, those will be used instead of numeric indexes.
 
-For example, if you set `cal_ids="soccer,baseball"`, you can use `.pcemb-calendar-soccer-event` and `.pcemb-calendar-baseball-event` to style each calendar's events specifically.
+For example, if you set `cal_ids="soccer,baseball"`, you can use `.hycal-calendar-soccer-event` and `.hycal-calendar-baseball-event` to style each calendar's events specifically.
 
-Event pop-up tooltips also have calendar-specific classes: `pcemb-calendar-0-event-popup` for easier styling of event pop-ups per calendar.
+Event pop-up tooltips also have calendar-specific classes: `hycal-calendar-0-event-popup` for easier styling of event pop-ups per calendar.
 
 = How do I theme the calendar? =
 

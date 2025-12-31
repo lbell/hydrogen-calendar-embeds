@@ -45,11 +45,11 @@ require_once HYCAL_DIR . 'init/shortcode.php';
 require_once HYCAL_DIR . 'init/init.php';
 
 // ICS Proxy for CORS-free calendar fetching (REST API)
-require_once HYCAL_DIR . 'includes/class-pcemb-ics-proxy.php';
+require_once HYCAL_DIR . 'includes/class-hycal-ics-proxy.php';
 HYCAL_ICS_Proxy::init();
 
 // Gutenberg Block Registration
-require_once HYCAL_DIR . 'includes/class-pcemb-block.php';
+require_once HYCAL_DIR . 'includes/class-hycal-block.php';
 
 /**
  * Fires after Pretty Calendar Embeds has fully loaded.

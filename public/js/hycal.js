@@ -8,57 +8,57 @@
  * @since 1.0.0
  */
 
-function hycal_render_calendar(pcembSettings) {
+function hycal_render_calendar(hycalSettings) {
   /**
-   * Action: pcemb.beforeRender
+   * Action: hycal.beforeRender
    *
    * Fires before the calendar starts rendering.
    * Use this to perform setup tasks or modify the DOM.
    *
    * @since 1.0.0
    *
-   * @param {object} pcembSettings The calendar settings.
+   * @param {object} hycalSettings The calendar settings.
    */
-  pcembHooks.doAction("pcemb.beforeRender", pcembSettings);
+  hycalHooks.doAction("hycal.beforeRender", hycalSettings);
 
   /**
-   * Filter: pcemb.settings
+   * Filter: hycal.settings
    *
    * Filter the calendar settings before processing.
    * Use this to modify or add custom settings.
    *
    * @since 1.0.0
    *
-   * @param {object} pcembSettings The calendar settings.
+   * @param {object} hycalSettings The calendar settings.
    * @returns {object} Modified settings.
    */
-  pcembSettings = pcembHooks.applyFilters("pcemb.settings", pcembSettings);
+  hycalSettings = hycalHooks.applyFilters("hycal.settings", hycalSettings);
 
-  const currCal = `pcemb-${pcembSettings["instance_id"]}`;
+  const currCal = `hycal-${hycalSettings["instance_id"]}`;
   const calendarEl = document.getElementById(currCal);
   calendarEl.innerHTML = "";
   let width = window.innerWidth;
 
-  const views = hycal_resolve_views(pcembSettings);
-  const calData = hycal_resolve_cals(pcembSettings);
+  const views = hycal_resolve_views(hycalSettings);
+  const calData = hycal_resolve_cals(hycalSettings);
   const cals = calData.eventSources;
 
   // console.table(cals); // DEBUG
-  // console.table(pcembSettings); // DEBUG
+  // console.table(hycalSettings); // DEBUG
   // console.table(views); // DEBUG
 
-  const toolbarLeft = hycal_is_truthy(pcembSettings["show_today_button"])
+  const toolbarLeft = hycal_is_truthy(hycalSettings["show_today_button"])
     ? "prev,next today"
     : "prev,next";
-  const toolbarCenter = hycal_is_truthy(pcembSettings["show_title"])
+  const toolbarCenter = hycal_is_truthy(hycalSettings["show_title"])
     ? "title"
     : "";
   const toolbarRight = views.length > 1 ? views.all.join(",") : "";
 
   let selectedView = views.initial;
 
-  const pcembDefaults = {
-    locale: pcembSettings["locale"],
+  const hycalDefaults = {
+    locale: hycalSettings["locale"],
 
     eventSources: cals,
 
@@ -74,8 +74,8 @@ function hycal_render_calendar(pcembSettings) {
       // Custom List View - only custom one needs definition
       listCustom: {
         type: "list",
-        duration: { days: parseInt(pcembSettings["custom_days"]) },
-        buttonText: pcembSettings["custom_list_button"],
+        duration: { days: parseInt(hycalSettings["custom_days"]) },
+        buttonText: hycalSettings["custom_list_button"],
       },
     },
 
@@ -105,12 +105,12 @@ function hycal_render_calendar(pcembSettings) {
         );
       }
 
-      if (pcembSettings["use_tooltip"] === "true") {
-        hycal_tippyRender(info, currCal, pcembSettings);
+      if (hycalSettings["use_tooltip"] === "true") {
+        hycal_tippyRender(info, currCal, hycalSettings);
       }
 
       /**
-       * Action: pcemb.eventDidMount
+       * Action: hycal.eventDidMount
        *
        * Fires after each event element is added to the DOM.
        * Use this to add custom attributes, styles, or behaviors to events.
@@ -118,16 +118,16 @@ function hycal_render_calendar(pcembSettings) {
        * @since 1.0.0
        *
        * @param {object} info          FullCalendar event info object.
-       * @param {object} pcembSettings The calendar settings.
+       * @param {object} hycalSettings The calendar settings.
        * @param {string} currCal       The calendar container ID.
        */
-      pcembHooks.doAction("pcemb.eventDidMount", info, pcembSettings, currCal);
+      hycalHooks.doAction("hycal.eventDidMount", info, hycalSettings, currCal);
     },
 
     eventClick: function (info) {
       if (
-        pcembSettings["use_tooltip"] === "true" ||
-        pcembSettings["no_link"] === "true"
+        hycalSettings["use_tooltip"] === "true" ||
+        hycalSettings["no_link"] === "true"
       ) {
         info.jsEvent.preventDefault(); // Prevent following link
       }
@@ -141,7 +141,7 @@ function hycal_render_calendar(pcembSettings) {
       );
       // Display user-friendly message in calendar container
       const errorMsg = document.createElement("div");
-      errorMsg.className = "pcemb-error";
+      errorMsg.className = "hycal-error";
       errorMsg.style.cssText =
         "color: #721c24; background: #f8d7da; padding: 12px; border-radius: 4px; margin: 8px 0;";
       errorMsg.textContent = wp.i18n.__(
@@ -149,7 +149,7 @@ function hycal_render_calendar(pcembSettings) {
         "hydrogen-calendar-embeds"
       );
       // Only show one error message
-      if (!calendarEl.querySelector(".pcemb-error")) {
+      if (!calendarEl.querySelector(".hycal-error")) {
         calendarEl.insertBefore(errorMsg, calendarEl.firstChild);
       }
     },
@@ -185,55 +185,55 @@ function hycal_render_calendar(pcembSettings) {
   };
 
   // Hide past events if requested
-  if (hycal_is_truthy(pcembSettings["hide_past"])) {
+  if (hycal_is_truthy(hycalSettings["hide_past"])) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
     const todayString = `${year}-${month}-${day}`;
 
-    pcembDefaults.validRange = {
+    hycalDefaults.validRange = {
       start: todayString,
     };
   }
 
-  let pcembOverrides = {};
+  let hycalOverrides = {};
   try {
-    pcembOverrides = JSON.parse(pcembSettings["fc_args"]);
+    hycalOverrides = JSON.parse(hycalSettings["fc_args"]);
   } catch (e) {
     console.error("Pretty Calendar Embeds: Invalid JSON in fc_args", e);
   }
-  let pcembArgs = hycal_argmerge(pcembDefaults, pcembOverrides);
+  let hycalArgs = hycal_argmerge(hycalDefaults, hycalOverrides);
 
   /**
-   * Filter: pcemb.fullcalendarOptions
+   * Filter: hycal.fullcalendarOptions
    *
    * Filter the FullCalendar options before initialization.
    * Use this to modify any FullCalendar configuration.
    *
    * @since 1.0.0
    *
-   * @param {object} pcembArgs      The merged FullCalendar options.
-   * @param {object} pcembSettings  The calendar settings.
-   * @param {object} pcembDefaults  The default options.
+   * @param {object} hycalArgs      The merged FullCalendar options.
+   * @param {object} hycalSettings  The calendar settings.
+   * @param {object} hycalDefaults  The default options.
    * @returns {object} Modified FullCalendar options.
    */
-  pcembArgs = pcembHooks.applyFilters(
-    "pcemb.fullcalendarOptions",
-    pcembArgs,
-    pcembSettings,
-    pcembDefaults
+  hycalArgs = hycalHooks.applyFilters(
+    "hycal.fullcalendarOptions",
+    hycalArgs,
+    hycalSettings,
+    hycalDefaults
   );
 
-  // console.log(pcembSettings["fc_args"]); // DEBUG
-  // console.log(JSON.stringify(pcembDefaults, null, 2)); // DEBUG
-  // console.log(JSON.stringify(pcembArgs, null, 2)); // DEBUG
+  // console.log(hycalSettings["fc_args"]); // DEBUG
+  // console.log(JSON.stringify(hycalDefaults, null, 2)); // DEBUG
+  // console.log(JSON.stringify(hycalArgs, null, 2)); // DEBUG
 
-  const calendar = new FullCalendar.Calendar(calendarEl, pcembArgs);
+  const calendar = new FullCalendar.Calendar(calendarEl, hycalArgs);
   calendar.render();
 
   /**
-   * Action: pcemb.afterRender
+   * Action: hycal.afterRender
    *
    * Fires after the calendar has rendered.
    * Use this to access the FullCalendar instance or modify the rendered calendar.
@@ -241,8 +241,8 @@ function hycal_render_calendar(pcembSettings) {
    * @since 1.0.0
    *
    * @param {object} calendar       The FullCalendar instance.
-   * @param {object} pcembSettings  The calendar settings.
+   * @param {object} hycalSettings  The calendar settings.
    * @param {Element} calendarEl    The calendar DOM element.
    */
-  pcembHooks.doAction("pcemb.afterRender", calendar, pcembSettings, calendarEl);
+  hycalHooks.doAction("hycal.afterRender", calendar, hycalSettings, calendarEl);
 }

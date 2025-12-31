@@ -8,16 +8,16 @@
  *
  * Usage:
  *   // Add a filter
- *   pcembHooks.addFilter('pcemb.tooltipContent', function(content, event) {
+ *   hycalHooks.addFilter('hycal.tooltipContent', function(content, event) {
  *     return content + '<p>Custom content</p>';
  *   });
  *
  *   // Add an action
- *   pcembHooks.addAction('pcemb.afterRender', function(calendar, settings) {
+ *   hycalHooks.addAction('hycal.afterRender', function(calendar, settings) {
  *     console.log('Calendar rendered!');
  *   });
  */
-const pcembHooks = (function () {
+const hycalHooks = (function () {
   // Storage for registered hooks
   const filters = {};
   const actions = {};
@@ -153,4 +153,4 @@ const pcembHooks = (function () {
 })();
 
 // Make hooks available globally for extensions
-window.pcembHooks = pcembHooks;
+window.hycalHooks = hycalHooks;

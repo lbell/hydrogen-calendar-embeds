@@ -10,7 +10,7 @@
    Main Container
    ======================================== */
 
-.pcemb-inline-editor {
+.hycal-inline-editor {
   background: #2563eb;
   border-radius: 8px;
   padding: 20px;
@@ -22,7 +22,7 @@
    Header
    ======================================== */
 
-.pcemb-inline-editor__header {
+.hycal-inline-editor__header {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -30,7 +30,7 @@
   color: #fff;
 }
 
-.pcemb-inline-editor__header-icon {
+.hycal-inline-editor__header-icon {
   width: 28px;
   height: 28px;
   flex-shrink: 0;
@@ -38,11 +38,11 @@
   stroke: #fff;
 }
 
-.pcemb-inline-editor__header .components-icon {
+.hycal-inline-editor__header .components-icon {
   fill: #fff;
 }
 
-.pcemb-inline-editor__title {
+.hycal-inline-editor__title {
   font-size: 18px;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -53,7 +53,7 @@
    Sections - All White Background
    ======================================== */
 
-.pcemb-inline-editor__section {
+.hycal-inline-editor__section {
   background: #fff;
   border-radius: 6px;
   margin-bottom: 8px;
@@ -61,11 +61,11 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.pcemb-inline-editor__section--primary {
+.hycal-inline-editor__section--primary {
   background: #fff;
 }
 
-.pcemb-inline-editor__section-header {
+.hycal-inline-editor__section-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -77,14 +77,14 @@
     "Helvetica Neue", sans-serif;
 }
 
-.pcemb-inline-editor__section-icon {
+.hycal-inline-editor__section-icon {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
   color: currentColor;
 }
 
-.pcemb-inline-editor__section-title {
+.hycal-inline-editor__section-title {
   flex: 1;
   color: #1e293b;
 }
@@ -93,7 +93,7 @@
    Collapsible Section Toggle
    ======================================== */
 
-.pcemb-inline-editor__section-toggle {
+.hycal-inline-editor__section-toggle {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -111,24 +111,24 @@
     "Helvetica Neue", sans-serif;
 }
 
-.pcemb-inline-editor__section-toggle:hover {
+.hycal-inline-editor__section-toggle:hover {
   background: #f8fafc;
 }
 
-.pcemb-inline-editor__section-summary {
+.hycal-inline-editor__section-summary {
   margin-left: auto;
   font-weight: 400;
   color: #6b7280;
   font-size: 13px;
 }
 
-.pcemb-inline-editor__chevron {
+.hycal-inline-editor__chevron {
   font-size: 10px;
   transition: transform 0.2s ease;
   color: #9ca3af;
 }
 
-.pcemb-inline-editor__chevron--open {
+.hycal-inline-editor__chevron--open {
   transform: rotate(90deg);
 }
 
@@ -136,64 +136,64 @@
    Section Content
    ======================================== */
 
-.pcemb-inline-editor__section-content {
+.hycal-inline-editor__section-content {
   padding: 16px;
   border-top: 1px solid #e5e7eb;
 }
 
 /* Override WordPress component styles */
-.pcemb-inline-editor__section-content .components-base-control {
+.hycal-inline-editor__section-content .components-base-control {
   margin-bottom: 12px;
 }
 
-.pcemb-inline-editor__section-content .components-base-control__label {
+.hycal-inline-editor__section-content .components-base-control__label {
   color: #374151;
   font-weight: 500;
   margin-bottom: 6px;
 }
 
-.pcemb-inline-editor__section-content .components-base-control__help {
+.hycal-inline-editor__section-content .components-base-control__help {
   color: #6b7280;
   font-size: 12px;
 }
 
-.pcemb-inline-editor__section-content .components-toggle-control[disabled],
-.pcemb-inline-editor__section-content .components-toggle-control.is-disabled {
+.hycal-inline-editor__section-content .components-toggle-control[disabled],
+.hycal-inline-editor__section-content .components-toggle-control.is-disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.pcemb-inline-editor__section-content
+.hycal-inline-editor__section-content
   .components-base-control:has(.components-toggle-control[disabled])
   .components-toggle-control__label {
   color: #9ca3af;
 }
 
-.pcemb-inline-editor__section-content .components-text-control__input,
-.pcemb-inline-editor__section-content .components-select-control__input {
+.hycal-inline-editor__section-content .components-text-control__input,
+.hycal-inline-editor__section-content .components-select-control__input {
   background: #fff;
   border: 1px solid #d1d5db;
   border-radius: 4px;
   color: #1e293b;
 }
 
-.pcemb-inline-editor__section-content .components-text-control__input:focus,
-.pcemb-inline-editor__section-content .components-select-control__input:focus {
+.hycal-inline-editor__section-content .components-text-control__input:focus,
+.hycal-inline-editor__section-content .components-select-control__input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 1px #2563eb;
 }
 
-.pcemb-inline-editor__section-content
+.hycal-inline-editor__section-content
   .components-toggle-control
   .components-base-control__field {
   margin-bottom: 0;
 }
 
-.pcemb-inline-editor__section-content .components-toggle-control__label {
+.hycal-inline-editor__section-content .components-toggle-control__label {
   color: #374151;
 }
 
-.pcemb-inline-editor__section-content .components-checkbox-control__label {
+.hycal-inline-editor__section-content .components-checkbox-control__label {
   color: #374151;
 }
 
@@ -201,36 +201,36 @@
    Primary Section (Calendar Source)
    ======================================== */
 
-.pcemb-inline-editor__section--primary .components-base-control__label {
+.hycal-inline-editor__section--primary .components-base-control__label {
   color: #374151;
 }
 
-.pcemb-inline-editor__section--primary .components-base-control__help {
+.hycal-inline-editor__section--primary .components-base-control__help {
   color: #6b7280;
 }
 
-.pcemb-inline-editor__section--primary .components-toggle-control__label {
+.hycal-inline-editor__section--primary .components-toggle-control__label {
   color: #374151;
 }
 
-.pcemb-inline-editor__calendars {
+.hycal-inline-editor__calendars {
   padding: 16px;
 }
 
-.pcemb-inline-editor__calendar-count {
+.hycal-inline-editor__calendar-count {
   font-weight: 600;
   color: #059669;
   margin-bottom: 8px;
 }
 
-.pcemb-inline-editor__calendar-urls {
+.hycal-inline-editor__calendar-urls {
   background: #f3f4f6;
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 12px;
 }
 
-.pcemb-inline-editor__calendar-url {
+.hycal-inline-editor__calendar-url {
   font-family: monospace;
   font-size: 11px;
   color: #4b5563;
@@ -239,21 +239,21 @@
   word-break: break-all;
 }
 
-.pcemb-inline-editor__calendar-url:last-child {
+.hycal-inline-editor__calendar-url:last-child {
   border-bottom: none;
 }
 
-.pcemb-inline-editor__no-source {
+.hycal-inline-editor__no-source {
   color: #6b7280;
   font-style: italic;
   margin-bottom: 12px;
 }
 
-.pcemb-inline-editor__add-btn {
+.hycal-inline-editor__add-btn {
   margin-bottom: 0 !important;
 }
 
-.pcemb-inline-editor__quick-toggles {
+.hycal-inline-editor__quick-toggles {
   padding: 12px 16px;
   background: #f9fafb;
   border-top: 1px solid #e5e7eb;
@@ -261,11 +261,11 @@
   gap: 24px;
 }
 
-.pcemb-inline-editor__quick-toggles .components-toggle-control {
+.hycal-inline-editor__quick-toggles .components-toggle-control {
   margin: 0;
 }
 
-.pcemb-inline-editor__quick-toggles .components-base-control__field {
+.hycal-inline-editor__quick-toggles .components-base-control__field {
   margin-bottom: 0;
 }
 
@@ -273,18 +273,18 @@
    Views Grid
    ======================================== */
 
-.pcemb-inline-editor__views-grid {
+.hycal-inline-editor__views-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4px 16px;
   margin-bottom: 16px;
 }
 
-.pcemb-inline-editor__views-grid .components-checkbox-control {
+.hycal-inline-editor__views-grid .components-checkbox-control {
   margin: 0;
 }
 
-.pcemb-inline-editor__custom-list {
+.hycal-inline-editor__custom-list {
   margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid #e5e7eb;
@@ -297,15 +297,15 @@
    FC Args (Advanced)
    ======================================== */
 
-.pcemb-inline-editor__fc-args {
+.hycal-inline-editor__fc-args {
   margin-top: 12px;
 }
 
-.pcemb-inline-editor__fc-args .components-base-control__label {
+.hycal-inline-editor__fc-args .components-base-control__label {
   color: #374151;
 }
 
-.pcemb-inline-editor__fc-args-preview {
+.hycal-inline-editor__fc-args-preview {
   background: #1e293b;
   border-radius: 4px;
   padding: 12px;
@@ -324,7 +324,7 @@
    Footer
    ======================================== */
 
-.pcemb-inline-editor__footer {
+.hycal-inline-editor__footer {
   text-align: center;
   padding-top: 12px;
   margin-top: 4px;
@@ -336,22 +336,22 @@
    Modals
    ======================================== */
 
-.pcemb-modal {
+.hycal-modal {
   min-width: 500px;
   max-width: 600px;
 }
 
-.pcemb-modal--large {
+.hycal-modal--large {
   max-width: 700px;
 }
 
-.pcemb-modal__content p {
+.hycal-modal__content p {
   margin: 0 0 12px 0;
   color: #666;
   font-size: 13px;
 }
 
-.pcemb-modal__textarea {
+.hycal-modal__textarea {
   width: 100%;
   min-height: 180px;
   padding: 12px;
@@ -363,23 +363,23 @@
   resize: vertical;
 }
 
-.pcemb-modal__textarea--code {
+.hycal-modal__textarea--code {
   min-height: 300px;
   tab-size: 2;
   line-height: 1.5;
 }
 
-.pcemb-modal__textarea:focus {
+.hycal-modal__textarea:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 1px #2563eb;
   outline: none;
 }
 
-.pcemb-modal__textarea::placeholder {
+.hycal-modal__textarea::placeholder {
   color: #999;
 }
 
-.pcemb-modal__actions {
+.hycal-modal__actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -391,19 +391,19 @@
    Calendar Identifiers (cal_ids) Mapping
    ======================================== */
 
-.pcemb-inline-editor__cal-ids-mapping {
+.hycal-inline-editor__cal-ids-mapping {
   margin-top: 20px;
   padding-top: 16px;
   border-top: 1px solid #e0e0e0;
 }
 
-.pcemb-inline-editor__cal-ids-mapping .components-base-control__label {
+.hycal-inline-editor__cal-ids-mapping .components-base-control__label {
   font-weight: 500;
   color: #333;
   margin: 0 0 12px;
 }
 
-.pcemb-inline-editor__cal-ids-list {
+.hycal-inline-editor__cal-ids-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -413,7 +413,7 @@
   border: 1px solid #e0e0e0;
 }
 
-.pcemb-inline-editor__cal-id-item {
+.hycal-inline-editor__cal-id-item {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -424,7 +424,7 @@
   font-size: 13px;
 }
 
-.pcemb-inline-editor__cal-id-prefix {
+.hycal-inline-editor__cal-id-prefix {
   font-weight: 600;
   color: #2563eb;
   padding: 4px 8px;
@@ -434,7 +434,7 @@
   font-family: monospace;
 }
 
-.pcemb-inline-editor__cal-id-url {
+.hycal-inline-editor__cal-id-url {
   color: #666;
   word-break: break-all;
   flex: 1;
@@ -446,12 +446,12 @@
    Locale Code Styling
    ======================================== */
 
-.pcemb-inline-editor__section-content .components-select-control__input {
+.hycal-inline-editor__section-content .components-select-control__input {
   font-size: 13px;
 }
 
 /* Style for locale options in the dropdown */
-.pcemb-inline-editor__section-content .components-select-control__input option {
+.hycal-inline-editor__section-content .components-select-control__input option {
   padding: 8px 12px;
 }
 

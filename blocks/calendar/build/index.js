@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   const e = window.wp.blocks,
-    l = JSON.parse('{"UU":"pcemb/calendar"}'),
+    l = JSON.parse('{"UU":"hycal/calendar"}'),
     a = window.wp.i18n,
     i = window.wp.element,
     n = window.wp.blockEditor,
@@ -195,13 +195,13 @@
         ...U,
         children: [
           (0, t.jsxs)("div", {
-            className: "pcemb-inline-editor",
+            className: "hycal-inline-editor",
             children: [
               (0, t.jsxs)("div", {
-                className: "pcemb-inline-editor__header",
+                className: "hycal-inline-editor__header",
                 children: [
                   (0, t.jsxs)("svg", {
-                    className: "pcemb-inline-editor__header-icon",
+                    className: "hycal-inline-editor__header-icon",
                     viewBox: "0 0 24 24",
                     fill: "none",
                     stroke: "currentColor",
@@ -280,7 +280,7 @@
                     ],
                   }),
                   (0, t.jsx)("span", {
-                    className: "pcemb-inline-editor__title",
+                    className: "hycal-inline-editor__title",
                     children: (0, a.__)(
                       "Pretty Calendar Embeds",
                       "hydrogen-calendar-embeds"
@@ -290,13 +290,13 @@
               }),
               (0, t.jsxs)("div", {
                 className:
-                  "pcemb-inline-editor__section pcemb-inline-editor__section--primary",
+                  "hycal-inline-editor__section hycal-inline-editor__section--primary",
                 children: [
                   (0, t.jsxs)("div", {
-                    className: "pcemb-inline-editor__section-header",
+                    className: "hycal-inline-editor__section-header",
                     children: [
                       (0, t.jsxs)("svg", {
-                        className: "pcemb-inline-editor__section-icon",
+                        className: "hycal-inline-editor__section-icon",
                         viewBox: "0 0 24 24",
                         fill: "none",
                         stroke: "currentColor",
@@ -315,7 +315,7 @@
                         ],
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-title",
+                        className: "hycal-inline-editor__section-title",
                         children: (0, a.__)(
                           "Calendar Source",
                           "hydrogen-calendar-embeds"
@@ -324,14 +324,14 @@
                     ],
                   }),
                   (0, t.jsxs)("div", {
-                    className: "pcemb-inline-editor__calendars",
+                    className: "hycal-inline-editor__calendars",
                     children: [
                       R
                         ? (0, t.jsxs)(t.Fragment, {
                             children: [
                               (0, t.jsx)("div", {
                                 className:
-                                  "pcemb-inline-editor__calendar-count",
+                                  "hycal-inline-editor__calendar-count",
                                 children:
                                   1 === K
                                     ? (0, a.__)(
@@ -345,7 +345,7 @@
                                       ),
                               }),
                               (0, t.jsx)("div", {
-                                className: "pcemb-inline-editor__calendar-urls",
+                                className: "hycal-inline-editor__calendar-urls",
                                 children: r
                                   .split(",")
                                   .map((e) => e.trim())
@@ -355,7 +355,7 @@
                                       "div",
                                       {
                                         className:
-                                          "pcemb-inline-editor__calendar-url",
+                                          "hycal-inline-editor__calendar-url",
                                         children:
                                           e.length > 60
                                             ? e.substring(0, 30) +
@@ -370,7 +370,7 @@
                             ],
                           })
                         : (0, t.jsx)("div", {
-                            className: "pcemb-inline-editor__no-source",
+                            className: "hycal-inline-editor__no-source",
                             children: (0, a.__)(
                               "No calendar source configured yet.",
                               "hydrogen-calendar-embeds"
@@ -391,7 +391,7 @@
                           ),
                             k(!0);
                         },
-                        className: "pcemb-inline-editor__add-btn",
+                        className: "hycal-inline-editor__add-btn",
                         children: R
                           ? (0, a.__)(
                               "Edit Calendar URLs",
@@ -407,15 +407,15 @@
                 ],
               }),
               (0, t.jsxs)("div", {
-                className: "pcemb-inline-editor__section",
+                className: "hycal-inline-editor__section",
                 children: [
                   (0, t.jsxs)("button", {
-                    className: "pcemb-inline-editor__section-toggle",
+                    className: "hycal-inline-editor__section-toggle",
                     onClick: () => B(!T),
                     type: "button",
                     children: [
                       (0, t.jsxs)("svg", {
-                        className: "pcemb-inline-editor__section-icon",
+                        className: "hycal-inline-editor__section-icon",
                         viewBox: "0 0 24 24",
                         fill: "none",
                         stroke: "currentColor",
@@ -430,14 +430,14 @@
                         ],
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-title",
+                        className: "hycal-inline-editor__section-title",
                         children: (0, a.__)(
                           "Views",
                           "hydrogen-calendar-embeds"
                         ),
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-summary",
+                        className: "hycal-inline-editor__section-summary",
                         children:
                           J.length > 0
                             ? J.length + (1 === J.length ? " view" : " views")
@@ -445,18 +445,18 @@
                       }),
                       (0, t.jsx)("span", {
                         className:
-                          "pcemb-inline-editor__chevron " +
-                          (T ? "pcemb-inline-editor__chevron--open" : ""),
+                          "hycal-inline-editor__chevron " +
+                          (T ? "hycal-inline-editor__chevron--open" : ""),
                         children: "▶",
                       }),
                     ],
                   }),
                   T &&
                     (0, t.jsxs)("div", {
-                      className: "pcemb-inline-editor__section-content",
+                      className: "hycal-inline-editor__section-content",
                       children: [
                         (0, t.jsx)("div", {
-                          className: "pcemb-inline-editor__views-grid",
+                          className: "hycal-inline-editor__views-grid",
                           children: F.map((e) =>
                             (0, t.jsx)(
                               s.CheckboxControl,
@@ -534,7 +534,7 @@
                           }),
                         J.includes("listCustom") &&
                           (0, t.jsxs)("div", {
-                            className: "pcemb-inline-editor__custom-list",
+                            className: "hycal-inline-editor__custom-list",
                             children: [
                               (0, t.jsx)(s.TextControl, {
                                 label: (0, a.__)(
@@ -560,15 +560,15 @@
                 ],
               }),
               (0, t.jsxs)("div", {
-                className: "pcemb-inline-editor__section",
+                className: "hycal-inline-editor__section",
                 children: [
                   (0, t.jsxs)("button", {
-                    className: "pcemb-inline-editor__section-toggle",
+                    className: "hycal-inline-editor__section-toggle",
                     onClick: () => z(!M),
                     type: "button",
                     children: [
                       (0, t.jsxs)("svg", {
-                        className: "pcemb-inline-editor__section-icon",
+                        className: "hycal-inline-editor__section-icon",
                         viewBox: "0 0 24 24",
                         fill: "none",
                         stroke: "currentColor",
@@ -587,27 +587,27 @@
                         ],
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-title",
+                        className: "hycal-inline-editor__section-title",
                         children: (0, a.__)(
                           "Display",
                           "hydrogen-calendar-embeds"
                         ),
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-summary",
+                        className: "hycal-inline-editor__section-summary",
                         children: O.find((e) => e.value === o)?.label || o,
                       }),
                       (0, t.jsx)("span", {
                         className:
-                          "pcemb-inline-editor__chevron " +
-                          (M ? "pcemb-inline-editor__chevron--open" : ""),
+                          "hycal-inline-editor__chevron " +
+                          (M ? "hycal-inline-editor__chevron--open" : ""),
                         children: "▶",
                       }),
                     ],
                   }),
                   M &&
                     (0, t.jsxs)("div", {
-                      className: "pcemb-inline-editor__section-content",
+                      className: "hycal-inline-editor__section-content",
                       children: [
                         (0, t.jsx)(s.SelectControl, {
                           label: (0, a.__)(
@@ -655,15 +655,15 @@
                 ],
               }),
               (0, t.jsxs)("div", {
-                className: "pcemb-inline-editor__section",
+                className: "hycal-inline-editor__section",
                 children: [
                   (0, t.jsxs)("button", {
-                    className: "pcemb-inline-editor__section-toggle",
+                    className: "hycal-inline-editor__section-toggle",
                     onClick: () => G(!A),
                     type: "button",
                     children: [
                       (0, t.jsx)("svg", {
-                        className: "pcemb-inline-editor__section-icon",
+                        className: "hycal-inline-editor__section-icon",
                         viewBox: "0 0 24 24",
                         fill: "none",
                         stroke: "currentColor",
@@ -675,27 +675,27 @@
                         }),
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-title",
+                        className: "hycal-inline-editor__section-title",
                         children: (0, a.__)(
                           "Advanced",
                           "hydrogen-calendar-embeds"
                         ),
                       }),
                       (0, t.jsx)("span", {
-                        className: "pcemb-inline-editor__section-summary",
+                        className: "hycal-inline-editor__section-summary",
                         children: g && "{}" !== g ? "Custom JSON" : "",
                       }),
                       (0, t.jsx)("span", {
                         className:
-                          "pcemb-inline-editor__chevron " +
-                          (A ? "pcemb-inline-editor__chevron--open" : ""),
+                          "hycal-inline-editor__chevron " +
+                          (A ? "hycal-inline-editor__chevron--open" : ""),
                         children: "▶",
                       }),
                     ],
                   }),
                   A &&
                     (0, t.jsxs)("div", {
-                      className: "pcemb-inline-editor__section-content",
+                      className: "hycal-inline-editor__section-content",
                       children: [
                         (0, t.jsx)(s.TextControl, {
                           label: (0, a.__)(
@@ -712,7 +712,7 @@
                         }),
                         R &&
                           (0, t.jsxs)("div", {
-                            className: "pcemb-inline-editor__cal-ids-mapping",
+                            className: "hycal-inline-editor__cal-ids-mapping",
                             children: [
                               (0, t.jsx)("p", {
                                 className: "components-base-control__label",
@@ -722,7 +722,7 @@
                                 ),
                               }),
                               (0, t.jsx)("div", {
-                                className: "pcemb-inline-editor__cal-ids-list",
+                                className: "hycal-inline-editor__cal-ids-list",
                                 children: r
                                   .split(",")
                                   .map((e) => e.trim())
@@ -739,16 +739,16 @@
                                       "div",
                                       {
                                         className:
-                                          "pcemb-inline-editor__cal-id-item",
+                                          "hycal-inline-editor__cal-id-item",
                                         children: [
                                           (0, t.jsx)("span", {
                                             className:
-                                              "pcemb-inline-editor__cal-id-prefix",
+                                              "hycal-inline-editor__cal-id-prefix",
                                             children: a,
                                           }),
                                           (0, t.jsx)("span", {
                                             className:
-                                              "pcemb-inline-editor__cal-id-url",
+                                              "hycal-inline-editor__cal-id-url",
                                             children:
                                               e.length > 50
                                                 ? e.substring(0, 25) +
@@ -765,7 +765,7 @@
                             ],
                           }),
                         (0, t.jsxs)("div", {
-                          className: "pcemb-inline-editor__fc-args",
+                          className: "hycal-inline-editor__fc-args",
                           children: [
                             (0, t.jsx)("p", {
                               className: "components-base-control__label",
@@ -778,7 +778,7 @@
                               "{}" !== g &&
                               (0, t.jsx)("pre", {
                                 className:
-                                  "pcemb-inline-editor__fc-args-preview",
+                                  "hycal-inline-editor__fc-args-preview",
                                 children: W(g),
                               }),
                             (0, t.jsx)(s.Button, {
@@ -800,7 +800,7 @@
                           ],
                         }),
                         (0, t.jsxs)("div", {
-                          className: "pcemb-inline-editor__copy-shortcode",
+                          className: "hycal-inline-editor__copy-shortcode",
                           children: [
                             (0, t.jsx)("p", {
                               className: "components-base-control__label",
@@ -876,7 +876,7 @@
               }),
               R &&
                 (0, t.jsx)("div", {
-                  className: "pcemb-inline-editor__footer",
+                  className: "hycal-inline-editor__footer",
                   children: (0, a.__)(
                     "Calendar will render on the frontend",
                     "hydrogen-calendar-embeds"
@@ -888,9 +888,9 @@
             (0, t.jsx)(s.Modal, {
               title: (0, a.__)("ICS Calendar URLs", "hydrogen-calendar-embeds"),
               onRequestClose: () => k(!1),
-              className: "pcemb-modal",
+              className: "hycal-modal",
               children: (0, t.jsxs)("div", {
-                className: "pcemb-modal__content",
+                className: "hycal-modal__content",
                 children: [
                   (0, t.jsx)("p", {
                     children: (0, a.__)(
@@ -899,7 +899,7 @@
                     ),
                   }),
                   (0, t.jsx)("textarea", {
-                    className: "pcemb-modal__textarea",
+                    className: "hycal-modal__textarea",
                     value: C,
                     onChange: (e) => w(e.target.value),
                     placeholder:
@@ -908,7 +908,7 @@
                     spellCheck: !1,
                   }),
                   (0, t.jsxs)("div", {
-                    className: "pcemb-modal__actions",
+                    className: "hycal-modal__actions",
                     children: [
                       (0, t.jsx)(s.Button, {
                         variant: "secondary",
@@ -949,9 +949,9 @@
                 "hydrogen-calendar-embeds"
               ),
               onRequestClose: () => N(!1),
-              className: "pcemb-modal pcemb-modal--large",
+              className: "hycal-modal hycal-modal--large",
               children: (0, t.jsxs)("div", {
-                className: "pcemb-modal__content",
+                className: "hycal-modal__content",
                 children: [
                   (0, t.jsx)("p", {
                     children: (0, a.__)(
@@ -961,7 +961,7 @@
                   }),
                   (0, t.jsx)("textarea", {
                     className:
-                      "pcemb-modal__textarea pcemb-modal__textarea--code",
+                      "hycal-modal__textarea hycal-modal__textarea--code",
                     value: S,
                     onChange: (e) => L(e.target.value),
                     placeholder:
@@ -970,7 +970,7 @@
                     spellCheck: !1,
                   }),
                   (0, t.jsxs)("div", {
-                    className: "pcemb-modal__actions",
+                    className: "hycal-modal__actions",
                     children: [
                       (0, t.jsx)(s.Button, {
                         variant: "secondary",

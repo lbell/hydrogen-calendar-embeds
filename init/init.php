@@ -25,7 +25,7 @@ function hycal_register_frontend_css() {
   wp_register_style('tippy_light', HYCAL_URL . 'public/lib/tippy/light.css', null, HYCAL_VER);
 
   // Local
-  wp_register_style('hycal_css', HYCAL_URL . 'public/css/pcemb.css', null, HYCAL_VER);
+  wp_register_style('hycal_css', HYCAL_URL . 'public/css/hycal.css', null, HYCAL_VER);
   wp_register_style('hycal_tippy', HYCAL_URL . 'public/css/tippy.css', null, HYCAL_VER);
 }
 
@@ -47,10 +47,10 @@ function hycal_register_frontend_js() {
   wp_register_script('popper', HYCAL_URL . 'public/lib/popper/popper.min.js', null, HYCAL_VER, true);
   wp_register_script('tippy', HYCAL_URL . 'public/lib/tippy/tippy.min.js', null, HYCAL_VER, true);
 
-  // Plugin scripts - hooks must load first as other scripts depend on pcembHooks
+  // Plugin scripts - hooks must load first as other scripts depend on hycalHooks
   wp_register_script('hycal_hooks', HYCAL_URL . 'public/js/hooks.js', [], HYCAL_VER, true);
   wp_register_script('hycal_helpers', HYCAL_URL . 'public/js/helpers.js', ['wp-i18n', 'hycal_hooks'], HYCAL_VER, true);
-  wp_register_script('hycal_loader', HYCAL_URL . 'public/js/pcemb.js', ['wp-i18n', 'hycal_hooks'], HYCAL_VER, true);
+  wp_register_script('hycal_loader', HYCAL_URL . 'public/js/hycal.js', ['wp-i18n', 'hycal_hooks'], HYCAL_VER, true);
   wp_register_script('hycal_tippy', HYCAL_URL . 'public/js/tippy.js', ['wp-i18n', 'hycal_hooks'], HYCAL_VER, true);
 
   wp_set_script_translations('hycal_helpers', 'hydrogen-calendar-embeds');
