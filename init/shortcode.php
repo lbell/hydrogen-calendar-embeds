@@ -156,7 +156,7 @@ function hycal_shortcode($atts) {
 
   $shortcode_output = "
   <div id='hycal-" . esc_attr($hycalSettings["instance_id"]) . "' class='hycal-container'>" . esc_html__("loading...", "hydrogen-calendar-embeds") . "</div>
-  <div class='hycal-branding'>" . esc_html__("Powered by", "hydrogen-calendar-embeds") . " <a href='https://wordpress.org/plugins/hydrogen-calendar-embeds/'>Pretty Calendar Embeds</a></div>
+  <div class='hycal-branding'>" . esc_html__("Powered by", "hydrogen-calendar-embeds") . " <a href='https://wordpress.org/plugins/hydrogen-calendar-embeds/'>Hydrogen Calendar Embeds</a></div>
   ";
 
   /**

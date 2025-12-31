@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "hycal/calendar",
   "version": "1.0.0",
-  "title": "Pretty Calendar Embeds",
+  "title": "Hydrogen Calendar Embeds",
   "category": "embed",
   "icon": "calendar-alt",
   "description": "Embed iCalendar (ICS) feeds and Google Calendars with a beautiful, responsive calendar interface.",

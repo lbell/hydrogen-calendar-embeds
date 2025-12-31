@@ -1,4 +1,4 @@
-# Pretty Calendar Embeds
+# Hydrogen Calendar Embeds
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![WordPress](https://img.shields.io/badge/WordPress-3.0%2B-blue)
@@ -33,15 +33,15 @@ Just pop in the address, and BAM! You now have a pretty calendar. Want to combin
 ## Installation
 
 1. Upload the `hydrogen-calendar-embeds` folder to the `/wp-content/plugins/` directory.
-2. Activate `Pretty Calendar Embeds` through the 'Plugins' menu in WordPress dashboard.
-3. Add the Pretty Calendar Embeds block to your page or post, or use the shortcode directly.
+2. Activate `Hydrogen Calendar Embeds` through the 'Plugins' menu in WordPress dashboard.
+3. Add the Hydrogen Calendar Embeds block to your page or post, or use the shortcode directly.
 
 ## Shortcode Options
 
 Shortcode format is:
 
 ```
-[pretty_calendar_embeds ics="ICS_URL, ICS_URL, ..." other_option="value" ... ]
+[hydrogen_calendar_embeds ics="ICS_URL, ICS_URL, ..." other_option="value" ... ]
 ```
 
 ### Available Options
@@ -52,10 +52,10 @@ Public ICS/iCal feed URL(s). Works with any standard ICS feed: Google Calendar, 
 
 **Examples:**
 
-- Google Calendar: `[pretty_calendar_embeds ics="https://calendar.google.com/calendar/ical/YOUR_ID/public/basic.ics"]`
-- iCloud: `[pretty_calendar_embeds ics="https://p123-caldav.icloud.com/published/2/YOUR_ID"]`
-- Outlook: `[pretty_calendar_embeds ics="https://outlook.live.com/owa/calendar/YOUR_ID/calendar.ics"]`
-- Any ICS: `[pretty_calendar_embeds ics="https://example.com/events.ics"]`
+- Google Calendar: `[hydrogen_calendar_embeds ics="https://calendar.google.com/calendar/ical/YOUR_ID/public/basic.ics"]`
+- iCloud: `[hydrogen_calendar_embeds ics="https://p123-caldav.icloud.com/published/2/YOUR_ID"]`
+- Outlook: `[hydrogen_calendar_embeds ics="https://outlook.live.com/owa/calendar/YOUR_ID/calendar.ics"]`
+- Any ICS: `[hydrogen_calendar_embeds ics="https://example.com/events.ics"]`
 
 #### `cal_ids="identifier,identifier"`
 
@@ -140,7 +140,7 @@ Example: `fc_args='{"eventSources":%5B"url"%5D}'` will be converted to `{"eventS
 
 ## Screenshots
 
-1. Pretty Calendar Embeds.
+1. Hydrogen Calendar Embeds.
 
    <img src="assets/screenshot-1.png" height="400" />
 &nbsp;
@@ -168,7 +168,7 @@ Example: `fc_args='{"eventSources":%5B"url"%5D}'` will be converted to `{"eventS
 
 ### What sorcery is this?!
 
-Pretty Calendar Embeds implements the excellent [Full Calendar](https://fullcalendar.io/) for you, and tosses in a little [Tippy.js](https://atomiks.github.io/tippyjs/) and [Popper](https://popper.js.org/) to make things... well... pop.
+Hydrogen Calendar Embeds implements the excellent [Full Calendar](https://fullcalendar.io/) for you, and tosses in a little [Tippy.js](https://atomiks.github.io/tippyjs/) and [Popper](https://popper.js.org/) to make things... well... pop.
 
 ### Can I use this to manage a calendar?
 

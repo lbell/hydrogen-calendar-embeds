@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Pretty Calendar Embeds Uninstall
+ * Hydrogen Calendar Embeds Uninstall
  *
  * Fired when the plugin is uninstalled.
  * Cleans up transients and any stored data.

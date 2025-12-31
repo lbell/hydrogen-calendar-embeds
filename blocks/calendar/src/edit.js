@@ -1,5 +1,5 @@
 /**
- * Pretty Calendar Embeds - Block Editor Component (Edit)
+ * Hydrogen Calendar Embeds - Block Editor Component (Edit)
  *
  * All settings are inline in the block preview for a streamlined experience.
  * No sidebar required - everything is front and center!
@@ -117,7 +117,7 @@ export default function Edit({ attributes, setAttributes }) {
    * Only includes non-default values to keep shortcode concise.
    */
   const generateShortcode = () => {
-    const parts = ["[pretty_calendar_embeds"];
+    const parts = ["[hydrogen_calendar_embeds"];
 
     // Required: ICS URLs
     if (ics) {
@@ -398,7 +398,7 @@ export default function Edit({ attributes, setAttributes }) {
             />
           </svg>
           <span className="hycal-inline-editor__title">
-            {__("Pretty Calendar Embeds", "hydrogen-calendar-embeds")}
+            {__("Hydrogen Calendar Embeds", "hydrogen-calendar-embeds")}
           </span>
         </div>
 

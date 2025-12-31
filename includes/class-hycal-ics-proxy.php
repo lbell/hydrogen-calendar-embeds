@@ -1,13 +1,13 @@
 <?php
 
 /**
- * ICS Proxy REST API for Pretty Calendar Embeds
+ * ICS Proxy REST API for Hydrogen Calendar Embeds
  *
  * Provides a REST API endpoint to fetch ICS feeds server-side,
  * avoiding CORS restrictions that prevent direct browser access.
  * FullCalendar's iCalendar plugin handles all the parsing.
  *
- * @package Pretty_Calendar_Embeds
+ * @package Hydrogen_Calendar_Embeds
  * @since   1.0.0
  */
 
@@ -338,7 +338,7 @@ class HYCAL_ICS_Proxy {
     $response->set_headers(
       array(
         'Content-Type'               => 'text/calendar; charset=utf-8',
-        'X-PCEMB-Cached'             => ($from_cache ? 'true' : 'false'),
+        'X-HYCAL-Cached'             => ($from_cache ? 'true' : 'false'),
         'Access-Control-Allow-Origin' => esc_url_raw($allowed_origin),
         'Cache-Control'              => 'max-age=900',
       )

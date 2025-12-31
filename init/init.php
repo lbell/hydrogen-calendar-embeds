@@ -11,7 +11,7 @@ if (! defined('ABSPATH')) {
  * @return void
  */
 function hycal_register_shortcodes() {
-  add_shortcode('pretty_calendar_embeds', 'hycal_shortcode');
+  add_shortcode('hydrogen_calendar_embeds', 'hycal_shortcode');
 }
 
 

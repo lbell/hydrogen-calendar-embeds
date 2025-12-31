@@ -282,7 +282,7 @@
                   (0, t.jsx)("span", {
                     className: "hycal-inline-editor__title",
                     children: (0, a.__)(
-                      "Pretty Calendar Embeds",
+                      "Hydrogen Calendar Embeds",
                       "hydrogen-calendar-embeds"
                     ),
                   }),
@@ -820,7 +820,7 @@
                               variant: "secondary",
                               onClick: () => {
                                 const e = (() => {
-                                  const e = ["[pretty_calendar_embeds"];
+                                  const e = ["[hydrogen_calendar_embeds"];
                                   if (
                                     (r && e.push(`ics="${r}"`),
                                     c && e.push(`cal_ids="${c}"`),

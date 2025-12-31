@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Pretty Calendar Embeds - Block Registration
+ * Hydrogen Calendar Embeds - Block Registration
  *
  * This file handles registering the Gutenberg block with WordPress.
  * It's the PHP counterpart to the JavaScript block registration.
@@ -15,7 +15,7 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Register the Pretty Calendar block.
+ * Register the Hydrogen Calendar block.
  *
  * This function registers our custom block with WordPress using
  * the block.json metadata file. WordPress reads block.json to understand:

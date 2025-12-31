@@ -1,5 +1,5 @@
 /**
- * Pretty Calendar Embeds - Block Entry Point
+ * Hydrogen Calendar Embeds - Block Entry Point
  *
  * This is the main entry point for the block's JavaScript.
  * It registers the block with WordPress using the metadata from block.json.

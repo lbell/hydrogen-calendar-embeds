@@ -1,6 +1,6 @@
-# Pretty Calendar Embeds - Developer Hooks Reference
+# Hydrogen Calendar Embeds - Developer Hooks Reference
 
-This document describes all available hooks (actions and filters) for extending Pretty Calendar Embeds. Use these hooks to customize behavior, add features, or build add-on plugins.
+This document describes all available hooks (actions and filters) for extending Hydrogen Calendar Embeds. Use these hooks to customize behavior, add features, or build add-on plugins.
 
 **Version:** 1.1.0+
 
@@ -27,7 +27,7 @@ This document describes all available hooks (actions and filters) for extending 
 
 #### `hycal_loaded`
 
-Fires after Pretty Calendar Embeds has fully loaded. Use this to initialize your extension.
+Fires after Hydrogen Calendar Embeds has fully loaded. Use this to initialize your extension.
 
 **Parameters:**
 
@@ -558,8 +558,8 @@ This example shows how to add photos to event tooltips using the description fie
 ```php
 <?php
 /**
- * Plugin Name: PCEMB Photo Extension
- * Description: Adds photos to Pretty Calendar Embeds event popups
+ * Plugin Name: HYCAL Photo Extension
+ * Description: Adds photos to Hydrogen Calendar Embeds event popups
  */
 
 add_action( 'hycal_enqueue_scripts', function( $settings ) {
@@ -688,8 +688,8 @@ Here's a skeleton for a complete extension plugin:
 ```php
 <?php
 /**
- * Plugin Name: My PCEMB Extension
- * Description: Extends Pretty Calendar Embeds with custom features
+ * Plugin Name: My HYCAL Extension
+ * Description: Extends Hydrogen Calendar Embeds with custom features
  * Version: 1.0.0
  * Requires Plugins: hydrogen-calendar-embeds
  */
@@ -711,7 +711,7 @@ class My_HYCAL_Extension {
     }
 
     private function __construct() {
-        // Wait for PCEMB to load
+        // Wait for HYCAL to load
         add_action( 'hycal_loaded', array( $this, 'init' ) );
     }
 
@@ -730,7 +730,7 @@ class My_HYCAL_Extension {
 
     public function version_notice() {
         echo '<div class="notice notice-error"><p>';
-        echo esc_html__( 'My PCEMB Extension requires Pretty Calendar Embeds 1.0.0 or higher.', 'my-hycal-ext' );
+        echo esc_html__( 'My HYCAL Extension requires Hydrogen Calendar Embeds 1.0.0 or higher.', 'my-hycal-ext' );
         echo '</p></div>';
     }
 
@@ -770,7 +770,7 @@ My_HYCAL_Extension::get_instance();
 
   // Check if hooks system is available
   if (typeof hycalHooks === "undefined") {
-    console.error("PCEMB hooks system not available");
+    console.error("HYCAL hooks system not available");
     return;
   }
 

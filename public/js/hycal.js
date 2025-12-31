@@ -1,5 +1,5 @@
 /**
- * Pretty Calendar Embeds - Main Calendar Renderer
+ * Hydrogen Calendar Embeds - Main Calendar Renderer
  *
  * Initializes and renders FullCalendar instances with the plugin's
  * configuration. Handles view resolution, event sources, and toolbar setup.
@@ -136,7 +136,7 @@ function hycal_render_calendar(hycalSettings) {
     // Handle calendar source loading errors (ICS fetch failures, etc.)
     eventSourceFailure: function (error) {
       console.error(
-        "Pretty Calendar Embeds: Failed to load event source",
+        "Hydrogen Calendar Embeds: Failed to load event source",
         error
       );
       // Display user-friendly message in calendar container
@@ -201,7 +201,7 @@ function hycal_render_calendar(hycalSettings) {
   try {
     hycalOverrides = JSON.parse(hycalSettings["fc_args"]);
   } catch (e) {
-    console.error("Pretty Calendar Embeds: Invalid JSON in fc_args", e);
+    console.error("Hydrogen Calendar Embeds: Invalid JSON in fc_args", e);
   }
   let hycalArgs = hycal_argmerge(hycalDefaults, hycalOverrides);
 

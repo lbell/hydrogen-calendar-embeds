@@ -1,5 +1,5 @@
 /**
- * Pretty Calendar Embeds - Hooks System
+ * Hydrogen Calendar Embeds - Hooks System
  *
  * A lightweight WordPress-style hooks system for JavaScript.
  * Allows extensions to modify behavior via filters and actions.

@@ -1,5 +1,5 @@
 /**
- * Pretty Calendar Embeds - Helper Functions
+ * Hydrogen Calendar Embeds - Helper Functions
  *
  * Utility functions for calendar rendering including view resolution,
  * ICS URL parsing, event source building, and tooltip content helpers.
@@ -336,7 +336,7 @@ function hycal_downloadEventICS(event) {
     : startDate;
   const uid = `${event.id || "event"}@hydrogen-calendar-embeds`;
 
-  let ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Pretty Calendar Embeds//EN\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${formatICSDate(
+  let ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Hydrogen Calendar Embeds//EN\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${formatICSDate(
     new Date().toISOString(),
     false
   )}\nDTSTART${event.allDay ? ";VALUE=DATE" : ""}:${startDate}\nDTEND${

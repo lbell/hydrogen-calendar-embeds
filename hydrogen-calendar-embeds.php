@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Pretty Calendar Embeds
+Plugin Name: Hydrogen Calendar Embeds
 Plugin URI: https://github.com/lbell/hydrogen-calendar-embeds
-Description: Embed iCalendar (ICS) feeds and Google Calendars with a beautiful, responsive calendar interface.
+Description: Embed any existing iCalendar (ICS) source into your WordPress site using Gutenberg blocks or shortcodes.
 Version: 1.0.0
 Author: LBell
 Author URI: https://lorenbell.com
@@ -52,7 +52,7 @@ HYCAL_ICS_Proxy::init();
 require_once HYCAL_DIR . 'includes/class-hycal-block.php';
 
 /**
- * Fires after Pretty Calendar Embeds has fully loaded.
+ * Fires after Hydrogen Calendar Embeds has fully loaded.
  *
  * Use this hook to initialize your extension after all plugin
  * files have been included and the plugin is ready.

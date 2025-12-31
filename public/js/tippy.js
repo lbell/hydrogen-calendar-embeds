@@ -1,5 +1,5 @@
 /**
- * Pretty Calendar Embeds - Tooltip Renderer
+ * Hydrogen Calendar Embeds - Tooltip Renderer
  *
  * Renders event tooltips using Tippy.js. Handles event details display
  * including time, location, description, and action buttons.

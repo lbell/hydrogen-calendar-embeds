@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Pretty Calendar Embeds - Block Server-Side Render
+ * Hydrogen Calendar Embeds - Block Server-Side Render
  *
  * This file handles rendering the block on the frontend.
  * It converts the block attributes into the format expected
