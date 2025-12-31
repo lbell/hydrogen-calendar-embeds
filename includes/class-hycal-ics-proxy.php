@@ -165,10 +165,37 @@ class HYCAL_ICS_Proxy {
       }
     }
 
-    // Resolve hostname to check for DNS rebinding to internal IPs
+    // Resolve hostname to check for DNS rebinding to internal IPs (check A and AAAA)
     if (isset($parsed['host'])) {
-      $ip = gethostbyname($parsed['host']);
-      if ($ip !== $parsed['host']) {
+      $host = $parsed['host'];
+
+      $resolved_ips = array();
+
+      // Try dns_get_record to fetch A and AAAA records (covers IPv4 and IPv6)
+      if (function_exists('dns_get_record')) {
+        $records = @dns_get_record($host, DNS_A + DNS_AAAA);
+        if (is_array($records)) {
+          foreach ($records as $rec) {
+            if (! empty($rec['ip'])) {
+              $resolved_ips[] = $rec['ip'];
+            }
+            if (! empty($rec['ipv6'])) {
+              $resolved_ips[] = $rec['ipv6'];
+            }
+          }
+        }
+      }
+
+      // Fallback to gethostbyname() for environments where dns_get_record is unavailable
+      if (empty($resolved_ips)) {
+        $fallback = gethostbyname($host);
+        if ($fallback && $fallback !== $host) {
+          $resolved_ips[] = $fallback;
+        }
+      }
+
+      // Check each resolved IP for private/internal ranges
+      foreach ($resolved_ips as $ip) {
         if (self::is_private_ip($ip)) {
           return new WP_Error(
             'hycal_private_ip',
