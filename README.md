@@ -3,15 +3,22 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![WordPress](https://img.shields.io/badge/WordPress-3.0%2B-blue)
 
-Embedded calendars that don't suck.
+The free, simple, lightweight way to embed beautiful, fully customizable ICS calendars into your WordPress site.
 
 ## Description
 
-Dead simple, extremely light-weight, FREE way to embed **ANY** iCal (.ics) formatted calendar into your WordPress site.
+This completely free, extremely light-weight plugin with explosive potential embeds **ANY** iCal (.ics) calendar into your WordPress site using the beautiful, time-tested FullCalendar library.
 
-Just pop in the address, and BAM! You now have a pretty calendar. Want to combine two calendars in one? No problem. Need two calendars on one page? Easy peasy. Prefer a different color? Go nuts. We got you.
+Nothing is hidden behind a "pro" upgrade. All features are free.
 
-## Highlights
+Just add block, pop in your ical address(s), and BAM! a modern, responsive, beautiful calendar.
+
+- Need two calendars in one? We got you. 
+- Need multiple different calendars on the page? Easy peasy. 
+- Prefer another color or style? We've got CSS classes for days.
+- Need different functionality? It's developer friendly, completely extendable, and customizable.
+
+**Highlights:**
 
 - Manage events using any external calendar of your choice
 - Works with any public ICS/iCal feed:
@@ -24,7 +31,7 @@ Just pop in the address, and BAM! You now have a pretty calendar. Want to combin
 - Embed multiple calendars on one page
 - Lots of view options (Grid, Month List, Day List, Year List)
 - Locale support
-- Hide past events
+- Lots of customization options (and ability to add more)
 - Lightweight and fast
 - Responsive design
 - Easy setup using WordPress Block or Shortcodes
@@ -32,20 +39,16 @@ Just pop in the address, and BAM! You now have a pretty calendar. Want to combin
 
 ## Installation
 
-1. Upload the `hydrogen-calendar-embeds` folder to the `/wp-content/plugins/` directory.
-2. Activate `Hydrogen Calendar Embeds` through the 'Plugins' menu in WordPress dashboard.
-3. Add the Hydrogen Calendar Embeds block to your page or post, or use the shortcode directly.
+1. Upload the `hydrogen-calendar-embeds` folder to the `/wp-content/plugins/` directory
+2. Activate `Hydrogen Calendar Embeds` through the 'Plugins' menu in WordPress dashboard
+3. Add the Hydrogen Calendar Embeds block to your page or post
+4. Or use the shortcode directly
 
-## Shortcode Options
-
-Shortcode format is:
-
+### Shortcode Options (Advanced - Block Recommended)
+Use the following shortcode format to embed a calendar with custom options:
 ```
 [hydrogen_calendar_embeds ics="ICS_URL, ICS_URL, ..." other_option="value" ... ]
 ```
-
-### Available Options
-
 #### `ics="https://example.com/calendar.ics"`
 
 Public ICS/iCal feed URL(s). Works with any standard ICS feed: Google Calendar, iCloud, Outlook, Nextcloud, Teamup, corporate Exchange servers, and more. Multiple ICS feeds can be comma-separated. The plugin fetches the ICS data server-side to avoid CORS issues.
