@@ -49,6 +49,7 @@ $hycal_shortcode_args = array(
   'mobile_breakpoint'          => $attributes['mobileBreakpoint'] ?? '768',
   'show_today_button'          => ($attributes['showTodayButton'] ?? true) ? 'true' : 'false',
   'show_title'                 => ($attributes['showTitle'] ?? true) ? 'true' : 'false',
+  'show_love'                  => ($attributes['showLove'] ?? false) ? 'true' : 'false',
   'use_tooltip'                => ($attributes['useTooltip'] ?? true) ? 'true' : 'false',
   'hide_past'                  => ($attributes['hidePast'] ?? false) ? 'true' : 'false',
 

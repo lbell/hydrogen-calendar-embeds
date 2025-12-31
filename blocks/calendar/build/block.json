@@ -65,6 +65,10 @@
       "type": "boolean",
       "default": true
     },
+    "showLove": {
+      "type": "boolean",
+      "default": false
+    },
     "showTitle": {
       "type": "boolean",
       "default": true

@@ -34,6 +34,7 @@ export default function Edit({ attributes, setAttributes }) {
     enforceListviewOnMobile,
     mobileBreakpoint,
     showTodayButton,
+    showLove,
     showTitle,
     useTooltip,
     hidePast,
@@ -135,6 +136,7 @@ export default function Edit({ attributes, setAttributes }) {
     if (mobileBreakpoint !== "768")
       parts.push(`mobile_breakpoint="${mobileBreakpoint}"`);
     if (!showTodayButton) parts.push(`show_today_button="false"`);
+    if (!showLove) parts.push(`show_love="false"`);
     if (!showTitle) parts.push(`show_title="false"`);
     if (!useTooltip) parts.push(`use_tooltip="false"`);
     if (hidePast) parts.push(`hide_past="true"`);
@@ -652,7 +654,7 @@ export default function Edit({ attributes, setAttributes }) {
                 checked={showTodayButton}
                 onChange={(value) => setAttributes({ showTodayButton: value })}
               />
-              <ToggleControl
+             <ToggleControl
                 label={__("Show Tooltips", "hydrogen-calendar-embeds")}
                 checked={useTooltip}
                 onChange={(value) => setAttributes({ useTooltip: value })}
@@ -661,6 +663,16 @@ export default function Edit({ attributes, setAttributes }) {
                 label={__("Hide Past Events", "hydrogen-calendar-embeds")}
                 checked={hidePast}
                 onChange={(value) => setAttributes({ hidePast: value })}
+              />
+              <br />
+               <ToggleControl
+                label={__("Show some love!", "hydrogen-calendar-embeds")}
+                help={__(
+                  "Show the small 'Powered by' credit below the calendar. Or, if you really love the plugin, buy me a coffee! https://github.com/sponsors/lbell",
+                  "hydrogen-calendar-embeds"
+                )}
+                checked={showLove}
+                onChange={(value) => setAttributes({ showLove: value })}
               />
             </div>
           )}
