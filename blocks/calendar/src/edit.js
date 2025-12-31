@@ -654,7 +654,7 @@ export default function Edit({ attributes, setAttributes }) {
                 checked={showTodayButton}
                 onChange={(value) => setAttributes({ showTodayButton: value })}
               />
-             <ToggleControl
+              <ToggleControl
                 label={__("Show Tooltips", "hydrogen-calendar-embeds")}
                 checked={useTooltip}
                 onChange={(value) => setAttributes({ useTooltip: value })}
@@ -665,12 +665,24 @@ export default function Edit({ attributes, setAttributes }) {
                 onChange={(value) => setAttributes({ hidePast: value })}
               />
               <br />
-               <ToggleControl
+
+              <ToggleControl
                 label={__("Show some love!", "hydrogen-calendar-embeds")}
-                help={__(
-                  "Show the small 'Powered by' credit below the calendar. Or, if you really love the plugin, buy me a coffee! https://github.com/sponsors/lbell",
-                  "hydrogen-calendar-embeds"
-                )}
+                help={
+                  <>
+                    {__(
+                      "Show the small 'Powered by' credit below the calendar. Or, if you really love the plugin, buy me a coffee!",
+                      "hydrogen-calendar-embeds"
+                    )}{" "}
+                    <a
+                      href="https://github.com/sponsors/lbell"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://github.com/sponsors/lbell
+                    </a>
+                  </>
+                }
                 checked={showLove}
                 onChange={(value) => setAttributes({ showLove: value })}
               />
