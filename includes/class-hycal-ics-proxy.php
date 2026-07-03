@@ -133,13 +133,32 @@ class HYCAL_ICS_Proxy {
 
     // Check URL scheme - HTTPS required
     $parsed = wp_parse_url($url);
-    if (! isset($parsed['scheme']) || $parsed['scheme'] !== 'https') {
+    if (false === $parsed || ! isset($parsed['scheme']) || $parsed['scheme'] !== 'https') {
       return new WP_Error(
         'hycal_insecure_url',
         __('Only HTTPS URLs are allowed for security.', 'hydrogen-calendar-embeds'),
         array('status' => 400)
       );
     }
+
+    // Reject URLs containing embedded credentials to prevent userinfo-based SSRF bypasses.
+    if (isset($parsed['user']) || isset($parsed['pass'])) {
+      return new WP_Error(
+        'hycal_userinfo_url',
+        __('URLs containing embedded credentials are not allowed.', 'hydrogen-calendar-embeds'),
+        array('status' => 400)
+      );
+    }
+
+    if (empty($parsed['host'])) {
+      return new WP_Error(
+        'hycal_invalid_url',
+        __('ICS URL must include a hostname.', 'hydrogen-calendar-embeds'),
+        array('status' => 400)
+      );
+    }
+
+    $host_url = sprintf('%s://%s', $parsed['scheme'], $parsed['host']);
 
     // Block internal/private networks (SSRF protection)
     /**
@@ -156,7 +175,7 @@ class HYCAL_ICS_Proxy {
     $blocked_patterns = apply_filters('hycal_blocked_url_patterns', self::$blocked_url_patterns, $url);
 
     foreach ($blocked_patterns as $pattern) {
-      if (preg_match($pattern, $url)) {
+      if (preg_match($pattern, $host_url)) {
         return new WP_Error(
           'hycal_blocked_url',
           __('This URL is not allowed for security reasons.', 'hydrogen-calendar-embeds'),
