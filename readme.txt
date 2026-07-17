@@ -4,7 +4,7 @@ Contributors: LBell
 Donate link: https://github.com/sponsors/lbell
 Tags: calendar, ics, embed, google-calendar, events
 Requires at least: 5.8
-Tested up to: 7.0
+Tested up to: 7.0.2
 Requires PHP: 7.4
 Stable tag: 3.0.3
 License: GPLv2 or later
@@ -183,8 +183,8 @@ Contact me for requests for additional functionality, and let's see what we can 
 
 == Changelog ==
 = 3.0.3 =
-* Security Fix
-* Better error message for ICS feed fetching issues
+* Fixed potential issue with ICS feed fetching on some servers
+* Added better error message for ICS feed fetching issues
 
 = 3.0.2 =
 * Fixed ICS feed cache
