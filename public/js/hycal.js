@@ -101,7 +101,7 @@ function hycal_render_calendar(hycalSettings) {
       if (!info.event.title || info.event.title === "undefined") {
         info.event.setProp(
           "title",
-          wp.i18n.__("Busy", "hydrogen-calendar-embeds")
+          wp.i18n.__("Busy", "hydrogen-calendar-embeds"),
         );
       }
 
@@ -135,10 +135,75 @@ function hycal_render_calendar(hycalSettings) {
 
     // Handle calendar source loading errors (ICS fetch failures, etc.)
     eventSourceFailure: function (error) {
+      const details = [];
+      const failureTypes = [];
+      const normalizedError = error || {};
+
+      if (normalizedError.message) {
+        details.push(normalizedError.message);
+
+        const lowerMessage = normalizedError.message.toLowerCase();
+        if (
+          /(failed to fetch|network error|networkerror|dns|socket|timed out|timeout)/.test(
+            lowerMessage,
+          )
+        ) {
+          failureTypes.push("ICS address is unreachable");
+        }
+        if (
+          /malformed|invalid ical|invalid icalendar|parser error|parse error|unable to parse|missing begin:vcalendar/.test(
+            lowerMessage,
+          )
+        ) {
+          failureTypes.push("Malformed ICS feed");
+        }
+        if (/403|unauthorized|forbidden|401|404|not found/.test(lowerMessage)) {
+          failureTypes.push(
+            "REST API endpoint is not public or the remote feed returned an HTTP error",
+          );
+        }
+      }
+
+      if (normalizedError.response) {
+        const code = normalizedError.response.status;
+        const statusText = normalizedError.response.statusText || "";
+        if (code) {
+          details.push(`HTTP ${code}${statusText ? ` ${statusText}` : ""}`);
+          if (code === 401 || code === 403) {
+            failureTypes.push(
+              "REST API endpoint is not public or access is blocked",
+            );
+          } else if (code === 404) {
+            failureTypes.push("REST API endpoint or ICS URL not found");
+          } else if (code >= 500) {
+            failureTypes.push(
+              "Remote calendar service returned a server error",
+            );
+          }
+        }
+      }
+
+      if (normalizedError.error) {
+        details.push(normalizedError.error);
+      }
+
+      if (normalizedError.source && normalizedError.source.url) {
+        details.push(`Source URL: ${normalizedError.source.url}`);
+      }
+
+      const consoleData = {
+        reason: failureTypes.length
+          ? failureTypes.join(" | ")
+          : "Unable to determine failure reason",
+        details: details.length ? details.join(" | ") : "No details available",
+        error: normalizedError,
+      };
+
       console.error(
-        "Hydrogen Calendar Embeds: Failed to load event source",
-        error
+        "Hydrogen Calendar Embeds: Failed to load event source.",
+        consoleData,
       );
+
       // Display user-friendly message in calendar container
       const errorMsg = document.createElement("div");
       errorMsg.className = "hycal-error";
@@ -146,42 +211,42 @@ function hycal_render_calendar(hycalSettings) {
         "color: #721c24; background: #f8d7da; padding: 12px; border-radius: 4px; margin: 8px 0;";
       errorMsg.textContent = wp.i18n.__(
         "Unable to load calendar data. Please try again later.",
-        "hydrogen-calendar-embeds"
+        "hydrogen-calendar-embeds",
       );
       // Only show one error message
       if (!calendarEl.querySelector(".hycal-error")) {
         calendarEl.insertBefore(errorMsg, calendarEl.firstChild);
       }
-    }
+    },
 
-  //   // Change view on window resize
-  //   windowResize: function (view) {
-  //     // Catch mobile chrome, which changes window size as nav bar appears
-  //     // so only fire if width has changed.
-  //     if (
-  //       window.innerWidth !== width &&
-  //       views.hasList &&
-  //       views.wantsToEnforceListviewOnMobile
-  //     ) {
-  //       const currentView = calendar.view.type;
-  //       const isCurrentlyListView = currentView.toLowerCase().includes("list");
+    //   // Change view on window resize
+    //   windowResize: function (view) {
+    //     // Catch mobile chrome, which changes window size as nav bar appears
+    //     // so only fire if width has changed.
+    //     if (
+    //       window.innerWidth !== width &&
+    //       views.hasList &&
+    //       views.wantsToEnforceListviewOnMobile
+    //     ) {
+    //       const currentView = calendar.view.type;
+    //       const isCurrentlyListView = currentView.toLowerCase().includes("list");
 
-  //       if (hycal_is_mobile(views.mobileBreakpoint)) {
-  //         // Only switch to list view if not already on one
-  //         if (!isCurrentlyListView) {
-  //           calendar.changeView(views.listView);
-  //         }
-  //       } else {
-  //         // Only switch away from list view if we enforced it
-  //         if (
-  //           isCurrentlyListView &&
-  //           !selectedView.toLowerCase().includes("list")
-  //         ) {
-  //           calendar.changeView(selectedView);
-  //         }
-  //       }
-  //     }
-  //   },
+    //       if (hycal_is_mobile(views.mobileBreakpoint)) {
+    //         // Only switch to list view if not already on one
+    //         if (!isCurrentlyListView) {
+    //           calendar.changeView(views.listView);
+    //         }
+    //       } else {
+    //         // Only switch away from list view if we enforced it
+    //         if (
+    //           isCurrentlyListView &&
+    //           !selectedView.toLowerCase().includes("list")
+    //         ) {
+    //           calendar.changeView(selectedView);
+    //         }
+    //       }
+    //     }
+    //   },
   };
 
   // Hide past events if requested
@@ -222,7 +287,7 @@ function hycal_render_calendar(hycalSettings) {
     "hycal.fullcalendarOptions",
     hycalArgs,
     hycalSettings,
-    hycalDefaults
+    hycalDefaults,
   );
 
   // console.log(hycalSettings["fc_args"]); // DEBUG
