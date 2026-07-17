@@ -184,6 +184,7 @@ Contact me for requests for additional functionality, and let's see what we can 
 == Changelog ==
 = 3.0.3 =
 * Security Fix
+* Better error message for ICS feed fetching issues
 
 = 3.0.2 =
 * Fixed ICS feed cache

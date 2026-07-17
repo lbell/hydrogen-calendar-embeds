@@ -216,6 +216,7 @@ This plugin is licensed under the GPLv2 or later. See [LICENSE](http://www.gnu.o
 ## Changelog
 ### 3.0.3
 - Security Fix
+- Better error message for ICS feed fetching issues
 
 ### 3.0.2
 - Fixed ICS feed cache
