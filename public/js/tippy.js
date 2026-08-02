@@ -23,12 +23,28 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
     }
   }
 
+  // Format times with the calendar's locale rather than the visitor's browser,
+  // so a de calendar reads 14:30 for every visitor. The locale arrives from a
+  // shortcode attribute, so an unrecognized tag would throw here; an empty
+  // array falls back to the browser default.
+  let timeLocale = [];
+  try {
+    timeLocale = Intl.DateTimeFormat.supportedLocalesOf(
+      (hycalSettings && hycalSettings["locale"]) || [],
+    );
+  } catch (e) {
+    timeLocale = [];
+  }
+
+  const formatTime = (dateStr) =>
+    new Date(dateStr).toLocaleTimeString(timeLocale, {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+
   const startTime = info.event.allDay
-    ? "All Day"
-    : new Date(info.event.startStr).toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit",
-      });
+    ? wp.i18n.__("All Day", "hydrogen-calendar-embeds")
+    : formatTime(info.event.startStr);
 
   // Check if displayEventEnd is disabled via fc_args
   let displayEventEnd = true;
@@ -46,11 +62,7 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
   const endTime =
     !displayEventEnd || info.event.allDay
       ? ""
-      : " - " +
-        new Date(info.event.endStr).toLocaleTimeString([], {
-          hour: "numeric",
-          minute: "2-digit",
-        });
+      : " - " + formatTime(info.event.endStr);
 
   const location = info.event.extendedProps.location || "";
 
@@ -82,7 +94,7 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
   let headerHtml = hycalHooks.applyFilters(
     "hycal.tooltipHeader",
     `
-    <button class="hycal-tooltip-close" aria-label="Close" type="button" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; line-height: 1; color: inherit; opacity: 0.7;">
+    <button class="hycal-tooltip-close" aria-label="${wp.i18n.__("Close", "hydrogen-calendar-embeds")}" type="button" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; line-height: 1; color: inherit; opacity: 0.7;">
       <span aria-hidden="true">&times;</span>
     </button>
     <h2 class="hycal-event-title">${eventTitle} </h2>
