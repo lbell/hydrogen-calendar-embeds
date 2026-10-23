@@ -6,7 +6,7 @@ Tags: calendar, ics, embed, google-calendar, events
 Requires at least: 5.8
 Tested up to: 7.0.2
 Requires PHP: 7.4
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,9 @@ Contact me for requests for additional functionality, and let's see what we can 
 4. Block Editor - It's that simple
 
 == Changelog ==
+= 3.0.4 =
+* Escape untrusted ICS event data in tooltips and reject unsafe event link schemes.
+
 = 3.0.3 =
 * Fixed potential issue with ICS feed fetching on some servers
 * Added better error message for ICS feed fetching issues

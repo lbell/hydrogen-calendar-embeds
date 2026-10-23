@@ -88,7 +88,7 @@ function hycal_split_ics_urls(icsString) {
  */
 const hycal_resolve_views = (settings) => {
   const wantsToEnforceListviewOnMobile = hycal_is_truthy(
-    settings["enforce_listview_on_mobile"]
+    settings["enforce_listview_on_mobile"],
   );
 
   let initialView = settings["initial_view"];
@@ -177,6 +177,23 @@ function hycal_escapeAttr(str) {
 }
 
 /**
+ * Accept only HTTP(S) URLs for event links.
+ *
+ * @param {string} value URL to validate
+ * @returns {string} Safe absolute URL, or an empty string
+ */
+function hycal_safeHttpUrl(value) {
+  if (!value) return "";
+
+  try {
+    const url = new URL(String(value), window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+  } catch (e) {
+    return "";
+  }
+}
+
+/**
  * Detect URLs and encase them in <a>. Ignores existing <a> tags.
  * URLs are properly escaped to prevent XSS attacks.
  *
@@ -184,50 +201,26 @@ function hycal_escapeAttr(str) {
  * @returns
  */
 function hycal_urlify(text) {
-  const urlRegex = /<a[\s>].*?<\/a>|https?:\/\/[^\s]+[?!.]*\/?\b/g;
-  if (text) {
-    return text.replace(urlRegex, function (m) {
-      if (m.startsWith("<a")) {
-        // If it's an existing <a> tag, return it as is
-        return m;
-      } else {
-        // Extract the URL part from the matched string
-        const urlMatch = m.match(/https?:\/\/[^\s]+[?!.]*\/?\b/);
+  if (!text) return "";
 
-        if (urlMatch) {
-          const url = urlMatch[0];
-          const punctuation = url.match(/[?!.]*$/);
+  const value = String(text);
+  const urlRegex = /https?:\/\/[^\s<>"']+/gi;
+  let result = "";
+  let lastIndex = 0;
 
-          if (punctuation) {
-            const cleanedURL = url.replace(/[?!.]*$/, "");
-            const safeURL = hycal_escapeAttr(cleanedURL);
-            const safeLinkText = hycal_escapeAttr(cleanedURL);
-            return (
-              '<a target="_blank" rel="noopener noreferrer" href="' +
-              safeURL +
-              '">' +
-              safeLinkText +
-              "</a>" +
-              punctuation[0]
-            );
-          } else {
-            // If no punctuation found, treat the whole URL as the link text
-            const safeURL = hycal_escapeAttr(url);
-            return (
-              '<a target="_blank" rel="noopener noreferrer" href="' +
-              safeURL +
-              '">' +
-              safeURL +
-              "</a>"
-            );
-          }
-        }
-        // If no URL found, return the original match
-        return m;
-      }
-    });
+  for (const match of value.matchAll(urlRegex)) {
+    const matchedUrl = match[0];
+    const url = matchedUrl.replace(/[.,!?;:)\]]+$/, "");
+    const punctuation = matchedUrl.slice(url.length);
+
+    result += hycal_escapeAttr(value.slice(lastIndex, match.index));
+    result += `<a target="_blank" rel="noopener noreferrer" href="${hycal_escapeAttr(
+      url,
+    )}">${hycal_escapeAttr(url)}</a>${hycal_escapeAttr(punctuation)}`;
+    lastIndex = match.index + matchedUrl.length;
   }
-  return "";
+
+  return result + hycal_escapeAttr(value.slice(lastIndex));
 }
 
 /**
@@ -254,7 +247,7 @@ function hycal_mapify(text) {
   let footer = "";
   if (text) {
     footer += `<br /><a class="button hycal-map-button" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURI(
-      text
+      text,
     )}">${buttonLabel}</a>`;
   }
   return footer;
@@ -268,9 +261,12 @@ function hycal_mapify(text) {
  */
 function hycal_addToGoogle(url) {
   const buttonLabel = wp.i18n.__("Add to Google", "hydrogen-calendar-embeds");
-  if (url) {
-    return `<a class="button hycal-add-to-google-button" href="${url}" target="_blank">${buttonLabel}</a>`;
-  }
+  const safeUrl = hycal_safeHttpUrl(url);
+  if (!safeUrl) return "";
+
+  return `<a class="button hycal-add-to-google-button" href="${hycal_escapeAttr(
+    safeUrl,
+  )}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a>`;
 }
 
 /**
@@ -286,12 +282,17 @@ function hycal_openEventLink(event) {
   const eventUrl = event.extendedProps?.url || event.url;
 
   // Skip Google Calendar URLs (those are handled by Add to Google button)
-  if (!eventUrl || eventUrl.includes("calendar.google.com")) {
+  if (
+    !eventUrl ||
+    typeof eventUrl !== "string" ||
+    eventUrl.includes("calendar.google.com")
+  ) {
     return "";
   }
 
   const buttonLabel = wp.i18n.__("Open Event", "hydrogen-calendar-embeds");
-  const safeUrl = hycal_escapeAttr(eventUrl);
+  const safeUrl = hycal_safeHttpUrl(eventUrl);
+  if (!safeUrl) return "";
   return `<a class="button hycal-open-event-button" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a>`;
 }
 
@@ -339,7 +340,7 @@ function hycal_downloadEventICS(event) {
 
   let ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Hydrogen Calendar Embeds//EN\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${formatICSDate(
     new Date().toISOString(),
-    false
+    false,
   )}\nDTSTART${event.allDay ? ";VALUE=DATE" : ""}:${startDate}\nDTEND${
     event.allDay ? ";VALUE=DATE" : ""
   }:${endDate}\nSUMMARY:${sanitize(event.title)}`;
@@ -355,7 +356,7 @@ function hycal_downloadEventICS(event) {
   ics += `\nEND:VEVENT\nEND:VCALENDAR`;
 
   const encodedICS = encodeURIComponent(ics);
-  const filename = `${event.title || "event"}.ics`;
+  const filename = `${hycal_escapeAttr(event.title || "event")}.ics`;
   const downloadLink = `data:text/calendar;charset=utf-8,${encodedICS}`;
 
   const label = wp.i18n.__("Download (.ics)", "hydrogen-calendar-embeds");

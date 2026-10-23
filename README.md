@@ -214,6 +214,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 This plugin is licensed under the GPLv2 or later. See [LICENSE](http://www.gnu.org/licenses/gpl-2.0.html) for more information.
 
 ## Changelog
+### 3.0.4
+- Escape untrusted ICS event data in tooltips and reject unsafe event link schemes
+
 ### 3.0.3
 - Fixed potential issue with ICS feed fetching on some servers
 - Added better error message for ICS feed fetching issues

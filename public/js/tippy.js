@@ -53,11 +53,12 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
         });
 
   const location = info.event.extendedProps.location || "";
+  const safeLocation = hycal_escapeAttr(location);
 
   const locString = location
     ? `<p class="hycal-event-location"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        location
-      )}" target="_blank" rel="noopener noreferrer" class="hycal-event-location-link"><svg class="hycal-location-icon" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 13 8 13s8-7.75 8-13c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg><span>${location}</span></a></p>`
+        location,
+      )}" target="_blank" rel="noopener noreferrer" class="hycal-event-location-link"><svg class="hycal-location-icon" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 13 8 13s8-7.75 8-13c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg><span>${safeLocation}</span></a></p>`
     : "";
 
   // Handle free/busy calendars with undefined titles
@@ -85,17 +86,17 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
     <button class="hycal-tooltip-close" aria-label="Close" type="button" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; line-height: 1; color: inherit; opacity: 0.7;">
       <span aria-hidden="true">&times;</span>
     </button>
-    <h2 class="hycal-event-title">${eventTitle} </h2>
+    <h2 class="hycal-event-title">${hycal_escapeAttr(eventTitle)} </h2>
     <p class="hycal-event-time"><span class="hycal-event-start-time">${startTime}</span><span class="hycal-event-end-time">${endTime}</span></p>
     ${locString}`,
     info,
-    hycalSettings
+    hycalSettings,
   );
 
   let toolContent = headerHtml;
 
   const description = hycal_breakify(
-    hycal_urlify(info.event.extendedProps.description)
+    hycal_urlify(info.event.extendedProps.description),
   );
 
   /**
@@ -116,7 +117,7 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
       ? `<div class="hycal-event-description">${description}</div>`
       : "",
     info,
-    hycalSettings
+    hycalSettings,
   );
 
   toolContent += descriptionHtml;
@@ -145,7 +146,7 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
     "hycal.tooltipActions",
     [mapHtml, addToGoogleHtml, openEventHtml, downloadICSHtml],
     info,
-    hycalSettings
+    hycalSettings,
   );
 
   const actionsHtml = actions.filter(Boolean).join(" ");
@@ -171,7 +172,7 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
     "hycal.tooltipContent",
     toolContent,
     info,
-    hycalSettings
+    hycalSettings,
   );
 
   /**
@@ -262,7 +263,7 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
       },
     },
     info,
-    hycalSettings
+    hycalSettings,
   );
 
   tippy(info.el, tippyOptions);
