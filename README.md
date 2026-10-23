@@ -12,17 +12,18 @@ This completely free, extremely light-weight plugin with explosive potential emb
 Nothing is hidden behind a "pro" upgrade. All features are free.
 
 Works with any public ICS/iCal feed:
-  - Google Calendar
-  - iCloud
-  - Nextcloud Calendar
-  - Outlook
-  - Airbnb
-  - **Pretty much anything that can output an ICS feed**
+
+- Google Calendar
+- iCloud
+- Nextcloud Calendar
+- Outlook
+- Airbnb
+- **Pretty much anything that can output an ICS feed**
 
 Just add the new Hydrogen Calendar Embeds block, copy in your ical address(s), and BAM! a modern, responsive, beautiful calendar.
 
-- Need two calendars in one? We got you. 
-- Need multiple different calendars on the page? Easy peasy. 
+- Need two calendars in one? We got you.
+- Need multiple different calendars on the page? Easy peasy.
 - Prefer another color or style? We've got CSS classes for days.
 - Need different functionality? It's developer friendly, completely extendable, and infinitely customizable.
 
@@ -48,12 +49,15 @@ Just add the new Hydrogen Calendar Embeds block, copy in your ical address(s), a
 4. Or use the shortcode directly
 
 ### Shortcode Options (Advanced - Block Recommended)
+
 (Migrating from Pretty Google Calendar? Just replace `pretty_google_calendar` with `hydrogen_calendar_embeds`, and swap `gcal=id` with `ics=ics_url` in your shortcodes. All other options remain the same.)
 
 Use the following shortcode format to embed a calendar with custom options:
+
 ```
 [hydrogen_calendar_embeds ics="ICS_URL, ICS_URL, ..." other_option="value" ... ]
 ```
+
 #### `ics="https://example.com/calendar.ics"`
 
 Public ICS/iCal feed URL(s). Works with any standard ICS feed: Google Calendar, iCloud, Outlook, Nextcloud, Teamup, corporate Exchange servers, and more. Multiple ICS feeds can be comma-separated. The plugin fetches the ICS data server-side to avoid CORS issues.
@@ -214,17 +218,22 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 This plugin is licensed under the GPLv2 or later. See [LICENSE](http://www.gnu.org/licenses/gpl-2.0.html) for more information.
 
 ## Changelog
+
 ### 3.0.4
+
 - Escape untrusted ICS event data in tooltips and reject unsafe event link schemes
 
 ### 3.0.3
+
 - Fixed potential issue with ICS feed fetching on some servers
 - Added better error message for ICS feed fetching issues
 
 ### 3.0.2
+
 - Fixed ICS feed cache
 
 ### 3.0.1
+
 - Fixed issue with URL encoding in ICS feed proxy URL.
 
 ### 3.0.0
