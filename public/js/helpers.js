@@ -200,27 +200,124 @@ function hycal_safeHttpUrl(value) {
  * @param {*} text
  * @returns
  */
-function hycal_urlify(text) {
-  if (!text) return "";
+function hycal_sanitizeDescription(description) {
+  if (!description) return "";
 
-  const value = String(text);
-  const urlRegex = /https?:\/\/[^\s<>"']+/gi;
-  let result = "";
-  let lastIndex = 0;
+  const markdownImagesAsAltText = String(description).replace(
+    /!\[([^\]]*)\]\(https?:\/\/[^\s)]+\)/gi,
+    "$1",
+  );
+  const parsed = document.createElement("template");
+  parsed.innerHTML = markdownImagesAsAltText;
+  const container = document.createElement("div");
+  const allowedTags = new Set([
+    "A",
+    "B",
+    "BLOCKQUOTE",
+    "BR",
+    "DIV",
+    "EM",
+    "I",
+    "LI",
+    "OL",
+    "P",
+    "S",
+    "STRONG",
+    "U",
+    "UL",
+  ]);
+  const droppedTags = new Set([
+    "IFRAME",
+    "NOSCRIPT",
+    "OBJECT",
+    "SCRIPT",
+    "STYLE",
+    "SVG",
+    "TEMPLATE",
+  ]);
 
-  for (const match of value.matchAll(urlRegex)) {
-    const matchedUrl = match[0];
-    const url = matchedUrl.replace(/[.,!?;:)\]]+$/, "");
-    const punctuation = matchedUrl.slice(url.length);
+  const appendText = (parent, value) => {
+    const pieces = value.split(/(https?:\/\/[^\s<>"']+|\r\n|\r|\n)/gi);
+    pieces.forEach((piece) => {
+      if (!piece) return;
+      if (/^(\r\n|\r|\n)$/.test(piece)) {
+        parent.appendChild(document.createElement("br"));
+        return;
+      }
 
-    result += hycal_escapeAttr(value.slice(lastIndex, match.index));
-    result += `<a target="_blank" rel="noopener noreferrer" href="${hycal_escapeAttr(
-      url,
-    )}">${hycal_escapeAttr(url)}</a>${hycal_escapeAttr(punctuation)}`;
-    lastIndex = match.index + matchedUrl.length;
-  }
+      if (/^https?:\/\//i.test(piece)) {
+        const urlText = piece.replace(/[.,!?;:)\]]+$/, "");
+        const punctuation = piece.slice(urlText.length);
+        const safeUrl = hycal_safeHttpUrl(urlText);
+        if (safeUrl) {
+          const link = document.createElement("a");
+          link.setAttribute("href", safeUrl);
+          link.setAttribute("target", "_blank");
+          link.setAttribute("rel", "noopener noreferrer");
+          link.textContent = urlText;
+          parent.appendChild(link);
+          parent.appendChild(document.createTextNode(punctuation));
+          return;
+        }
+      }
 
-  return result + hycal_escapeAttr(value.slice(lastIndex));
+      parent.appendChild(document.createTextNode(piece));
+    });
+  };
+
+  const copySafeNodes = (source, destination) => {
+    Array.from(source.childNodes).forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        appendText(destination, node.nodeValue);
+        return;
+      }
+      if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+      const tagName = node.tagName.toUpperCase();
+      if (droppedTags.has(tagName)) return;
+      if (tagName === "IMG") {
+        appendText(destination, node.getAttribute("alt") || "");
+        return;
+      }
+
+      if (!allowedTags.has(tagName)) {
+        copySafeNodes(node, destination);
+        return;
+      }
+
+      const safeElement = document.createElement(node.localName.toLowerCase());
+      if (tagName === "A") {
+        const href = node.getAttribute("href") || "";
+        let safeHref = "";
+        try {
+          const parsedUrl = new URL(href, window.location.href);
+          if (
+            ["http:", "https:", "mailto:", "tel:"].includes(parsedUrl.protocol)
+          ) {
+            safeHref = parsedUrl.href;
+          }
+        } catch (e) {
+          safeHref = "";
+        }
+
+        if (!safeHref) {
+          copySafeNodes(node, destination);
+          return;
+        }
+        safeElement.setAttribute("href", safeHref);
+        if (/^https?:/i.test(safeHref)) {
+          safeElement.setAttribute("target", "_blank");
+          safeElement.setAttribute("rel", "noopener noreferrer");
+        }
+      }
+
+      copySafeNodes(node, safeElement);
+      destination.appendChild(safeElement);
+    });
+  };
+
+  copySafeNodes(parsed.content, container);
+  return container.innerHTML;
 }
 
 /**

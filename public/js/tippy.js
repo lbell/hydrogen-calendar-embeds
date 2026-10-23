@@ -95,8 +95,8 @@ function hycal_tippyRender(info, currCal, hycalSettings) {
 
   let toolContent = headerHtml;
 
-  const description = hycal_breakify(
-    hycal_urlify(info.event.extendedProps.description),
+  const description = hycal_sanitizeDescription(
+    info.event.extendedProps.description,
   );
 
   /**
