@@ -221,7 +221,7 @@ This plugin is licensed under the GPLv2 or later. See [LICENSE](http://www.gnu.o
 
 ### 3.0.4
 
-- Escape untrusted ICS event data in tooltips and reject unsafe event link schemes
+- More secure HTML handling from ICS feed parsing
 
 ### 3.0.3
 
